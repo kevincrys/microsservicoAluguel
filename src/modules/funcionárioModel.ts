@@ -1,7 +1,7 @@
 
 import { Funcionario } from "src/schemas/funcionario.schema";
 import { v4 as uuidv4 } from 'uuid';
-import { novoFuncionario } from "src/schemas/novoFuncionario.schema";
+import { novoFuncionario } from "src/dto/novoFuncionario.dto";
 
 
 let FuncionariosNovos: Funcionario[] = []

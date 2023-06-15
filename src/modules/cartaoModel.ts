@@ -1,6 +1,6 @@
 
 import { Cartao } from "src/schemas/cartao.schema";
-import { novoCartao } from "src/schemas/novocartao.schema";
+import { novoCartao } from "src/dto/novoCartao.dto";
 
 
 let cartaosNovos: Cartao[] = []
@@ -10,9 +10,7 @@ export class cartaoService {
 
 
 async insertcartao (cartao: novoCartao) {
-   
     var id=Math.random()
-
     cartaosNovos.push({ ...cartao, id})
 }
 
@@ -39,11 +37,5 @@ async getcartaos (): Promise<Cartao[]> {
 async getcartaoByID (id: number): Promise<Cartao> {
             return  cartaosNovos.find((cartao) => cartao.id === id)
         }
-            
-
-
-
-
-
 }
 
