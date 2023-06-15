@@ -4,18 +4,15 @@ import { novoCartao } from "src/dto/novoCartao.dto";
 
 
 let cartaosNovos: Cartao[] = []
-export class cartaoService {
-
+export class CartaoRepository{
     
-
-
 async insertcartao (cartao: novoCartao) {
     var id=Math.random()
     cartaosNovos.push({ ...cartao, id})
 }
 
 
-async updatecartao (id: number, cartao: Cartao): Promise<boolean> {
+async updatecartao (id: number, cartao: novoCartao): Promise<boolean> {
     const index = cartaosNovos.findIndex((cartao) => cartao.id === id)
     if (index !== -1) {
         cartaosNovos[index] = { ...cartao, id }

@@ -10,10 +10,10 @@ export class CiclistaService {
     private readonly utils:Utils
   ) {}
 
-  async insertCiclista(Ciclista: novoCiclista): Promise<Boolean> {
+  async insertCiclista(ciclista: novoCiclista): Promise<Boolean> {
     
-    if(!this.utils.checkNullOrBlank(Ciclista)){
-    this.ciclistaRepository.insertCiclista(Ciclista)
+    if(!this.utils.checkNullOrBlank(ciclista)){
+    this.ciclistaRepository.insertCiclista(ciclista)
     }
     else{
         console.log("erro")
@@ -21,10 +21,10 @@ export class CiclistaService {
     return true
   }
 
-  async updateCiclista(id: number, Ciclista: novoCiclista): Promise<Boolean> {
+  async updateCiclista(id: number, ciclista: novoCiclista): Promise<Boolean> {
    
-    if(!this.utils.checkNullOrBlank(Ciclista)){
-    const update= this.ciclistaRepository.updateCiclista(id,Ciclista)
+    if(!this.utils.checkNullOrBlank(ciclista)){
+    const update= this.ciclistaRepository.updateCiclista(id,ciclista)
 
     return update
   }
@@ -32,19 +32,19 @@ export class CiclistaService {
 
   async deleteCiclista(id: number): Promise<Boolean> {
     
-    if(!this.utils.checkNullOrBlank(Ciclista)){
+ 
     const update= this.ciclistaRepository.deleteCiclista(id)
 
     return update
-  }
+ 
   }
   async getCiclistaByID(id: number): Promise<Boolean> {
     
-    if(!this.utils.checkNullOrBlank(Ciclista)){
+
     const update= await this.ciclistaRepository.getCiclistaByID(id)
     console.log(update)
     return true
-  }
+  
   }
 
   async getCiclistas(): Promise<Ciclista[]> {

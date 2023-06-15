@@ -5,7 +5,7 @@ import { novoFuncionario } from "src/dto/novoFuncionario.dto";
 
 
 let FuncionariosNovos: Funcionario[] = []
-export class FuncionarioService {
+export class FuncionarioRepository {
 
     
 
@@ -18,7 +18,7 @@ async insertFuncionario (Funcionario: novoFuncionario) {
 }
 
 
-async updateFuncionario (matricula: string, Funcionario: Funcionario): Promise<boolean> {
+async updateFuncionario (matricula: string, Funcionario: novoFuncionario): Promise<boolean> {
     const index = FuncionariosNovos.findIndex((Funcionario) => Funcionario.matricula === matricula)
     if (index !== -1) {
         FuncionariosNovos[index] = { ...Funcionario, matricula }
