@@ -1,5 +1,5 @@
 import { statusCiclista } from "src/enums/statusCiclista.enum";
-import { Passaporte } from "./Passaporte.schema";
+import { Passaporte } from "../dto/passaporte.dto";
 import { nacionalidade } from "src/enums/nacionalidade.enum";
 
 export class Ciclista {
