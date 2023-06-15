@@ -28,24 +28,24 @@ export class FuncionarioController {
  async updateFuncionario(
  @Body() novoFuncionario: novoFuncionario,
  @Res() res: Response,@Param('idFuncionario') id): Promise<any> {
-  const idbicicleta=  parseInt(id)
-    const response= this.funcionarioService.updateFuncionario(idbicicleta,novoFuncionario);
+ 
+    const response= this.funcionarioService.updateFuncionario(id,novoFuncionario);
     return res.status(HttpStatus.OK).send(response);
   }
 
   @Delete("/funcionario/:idFuncionario")
   async deleteFuncionario(
   @Res() res: Response,@Param('idFuncionario') id): Promise<any> {
-    const idbicicleta=  parseInt(id)
-     const response= this.funcionarioService.deleteFuncionario(idbicicleta);
+  
+     const response= this.funcionarioService.deleteFuncionario(id);
      return res.status(HttpStatus.OK).send(response);
    }
 
    @Get("/funcionario/:idFuncionario")
    async getFuncionarioByID(
    @Res() res: Response,@Param('idFuncionario') id): Promise<any> {
-      const idbicicleta=  parseInt(id)
-      const response= this.funcionarioService.getFuncionarioByID(idbicicleta);
+ 
+      const response= this.funcionarioService.getFuncionarioByID(id);
       return res.status(HttpStatus.OK).send(response);
     }
    
