@@ -15,16 +15,17 @@ async insertFuncionario (Funcionario: novoFuncionario) {
     var matricula= uuidv4()
 
     FuncionariosNovos.push({ ...Funcionario, matricula })
+    return { ...Funcionario, matricula }
 }
 
 
-async updateFuncionario (matricula: string, Funcionario: novoFuncionario): Promise<boolean> {
+async updateFuncionario (matricula: string, Funcionario: novoFuncionario): Promise<Funcionario> {
     const index = FuncionariosNovos.findIndex((Funcionario) => Funcionario.matricula === matricula)
     if (index !== -1) {
         FuncionariosNovos[index] = { ...Funcionario, matricula }
-        return true
+        return { ...Funcionario, matricula }
       }
-      return false
+      return undefined
 }
 
 async deleteFuncionario (matricula: string): Promise<boolean> {
@@ -39,12 +40,7 @@ async getFuncionarios (): Promise<Funcionario[]> {
 
 async getFuncionarioByID (matricula: string): Promise<Funcionario> {
             return  FuncionariosNovos.find((Funcionario) => Funcionario.matricula === matricula)
-        }
-            
-
-
-
-
+        }                     
 
 }
 

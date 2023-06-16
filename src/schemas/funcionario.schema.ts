@@ -17,7 +17,7 @@ export class Funcionario {
   cpf: string;
 
   matricula: string;
-  ;
+  
 }
  
 

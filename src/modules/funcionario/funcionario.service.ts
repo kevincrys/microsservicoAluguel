@@ -10,17 +10,17 @@ export class FuncionarioService {
     private readonly utils:Utils
   ) {}
 
-  async insertFuncionario(Funcionario: novoFuncionario): Promise<Boolean> {
-    this.funcionarioRepository.insertFuncionario(Funcionario)
-    return true
+  async insertFuncionario(Funcionario: novoFuncionario): Promise<Funcionario> {
+    const funcionario= this.funcionarioRepository.insertFuncionario(Funcionario)
+    return funcionario
   }
 
-  async updateFuncionario(id: string, Funcionario: novoFuncionario): Promise<Boolean> {
+  async updateFuncionario(id: string, Funcionario: novoFuncionario): Promise<Funcionario> {
    
     if(!this.utils.checkNullOrBlank(Funcionario)){
     const update= await this.funcionarioRepository.updateFuncionario(id,Funcionario)
-    if(update === false){throw new NotFoundException("Não encontrado")}
-    return true
+    if(update === undefined){throw new NotFoundException("Não encontrado")}
+    return update
 
   }
   }

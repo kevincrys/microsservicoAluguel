@@ -8,6 +8,7 @@ import { CiclistaService } from './ciclista.service';
 import { Utils } from '../../common/utils';
 import { nacionalidade } from 'src/enums/nacionalidade.enum';
 import { emails } from 'src/common/emails/emails';
+import { statusCiclista } from 'src/enums/statusCiclista.enum';
 
 describe('CiclistaService', () => {
   let ciclistaService: CiclistaService;
@@ -56,15 +57,31 @@ const newCartao= {
   validade: '12/2025',
   cvv: '123',
 }
+const ciclista: CadastroCiclista = {
+  Ciclista: newCiclista,
+  MetodoDePagamento:  newCartao,
+};
+const ciclistaCad={  id: 1,
+  nome: 'Jane Smith',
+  nascimento: '1992-05-15',
+  cpf: '9876543210',
+  passaporte: {
+    numero: 'WXYZ5678',
+    validade: '2024-10-31',
+    pais: 'Estados Unidos',
+  },
+  nacionalidade: nacionalidade.ESTRANGEIRO,
+  email: 'jane.smith@example.com',
+  urlFotoDocumento: 'https://example.com/document2.jpg',
+  senha: 'secret789',
+  status: statusCiclista.INATIVO,
+}
   describe('insertCiclista', () => {
     it('should insert a ciclista and return true', async () => {
-      const ciclista: CadastroCiclista = {
-        Ciclista: newCiclista,
-        MetodoDePagamento:  newCartao,
-      };
+     
 
       cartaoService.insertcartao = jest.fn();
-      ciclistaRepository.insertCiclista = jest.fn().mockResolvedValue(true);
+      ciclistaRepository.insertCiclista = jest.fn().mockResolvedValue(ciclistaCad);
 
       const result = await ciclistaService.insertCiclista(ciclista);
 
@@ -79,7 +96,7 @@ const newCartao= {
         assunto: emails.cadastroCiclista.assunto,
         mensagem: emails.cadastroCiclista.mensagem,
       });
-      expect(result).toBe(true);
+      expect(result).toBe(ciclistaCad);
     });
 
     it('should throw NotFoundException if insertCiclista returns false', async () => {
@@ -88,7 +105,7 @@ const newCartao= {
         MetodoDePagamento: newCartao,
       };
 
-      ciclistaRepository.insertCiclista = jest.fn().mockResolvedValue(false);
+      ciclistaRepository.insertCiclista = jest.fn().mockResolvedValue(undefined);
 
       await expect(ciclistaService.insertCiclista(ciclista)).rejects.toThrow(
         NotFoundException,
@@ -114,7 +131,7 @@ const newCartao= {
       const id = 1;
       const ciclista= newCiclista ;
 
-      ciclistaRepository.updateCiclista = jest.fn().mockResolvedValue(true);
+      ciclistaRepository.updateCiclista = jest.fn().mockResolvedValue(ciclistaCad);
 
       const result = await ciclistaService.updateCiclista(id, ciclista);
 
@@ -122,14 +139,14 @@ const newCartao= {
         id,
         ciclista,
       );
-      expect(result).toBe(true);
+      expect(result).toBe(ciclistaCad);
     });
 
     it('should throw NotFoundException if updateCiclista returns false', async () => {
       const id = 1;
       const ciclista= newCiclista ;
 
-      ciclistaRepository.updateCiclista = jest.fn().mockResolvedValue(false);
+      ciclistaRepository.updateCiclista = jest.fn().mockResolvedValue(undefined);
 
       await expect(
         ciclistaService.updateCiclista(id, ciclista),
@@ -187,12 +204,12 @@ const newCartao= {
     it('should get a ciclista by ID and return true', async () => {
       const id = 1;
 
-      ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue({});
+      ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue(ciclistaCad);
 
       const result = await ciclistaService.getCiclistaByID(id);
 
       expect(ciclistaRepository.getCiclistaByID).toHaveBeenCalledWith(id);
-      expect(result).toBe(true);
+      expect(result).toBe(ciclistaCad);
     });
 
     it('should throw NotFoundException if getCiclistaByID returns null', async () => {
@@ -254,7 +271,9 @@ const newCartao= {
 
   describe('sendEmailMock', () => {
     it('should return true', async () => {
-      const result = await ciclistaService.sendEmailMock();
+      var emailContent= emails.cadastroCiclista
+      var email= newCiclista.email
+      const result = await ciclistaService.sendEmailMock({...emailContent,email});
 
       expect(result).toBe(true);
     });

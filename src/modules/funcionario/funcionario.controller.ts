@@ -50,33 +50,41 @@ export class FuncionarioController {
     }
    
 
-  // @Get("/funcionario/:idFuncionario")
-  // recuperarFuncionario(@Param('idFuncionario') idFuncionario: string): string {
-  //   return this.appService.getHello();
-  // }
+    class Funcionario {
 
-  // @Put("/funcionario/:idFuncionario")
-  // alterarDadosFuncionario(@Param('idFuncionario') idFuncionario: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Post("/funcionario/:idFuncionario/ativar")
-  // ativarCadastroFuncionario(@Param('idFuncionario') idFuncionario: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Get("/funcionario/:idFuncionario/permiteAluguel")
-  // verificaPermissaoAluguel(@Param('idFuncionario') idFuncionario: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Get("/funcionario/:idFuncionario/bicicletaAlugada")
-  // obterBicicletaAlugada(@Param('idFuncionario') idFuncionario: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Get("/funcionario/existeEmail/:email")
-  // verificarEmailFuncionario(@Param('email') email: string): string {
-  //   return this.appService.getHello();
-  // }
+      senha: string;
+    
+      confirmacaoSenha: string;
+    
+      email: string;
+    
+      nome: string;
+    
+      idade: number;
+    
+      funcao: string;
+    
+      cpf: string;
+    
+      matricula: string;
+      
+    }
+    
+  class novoFuncionario {
+  
+      senha: string;
+    
+      confirmacaoSenha: string;
+    
+      email: string;
+    
+      nome: string;
+    
+      idade: number;
+    
+      funcao: string;
+    
+      cpf: string;
+      
+    }
 }

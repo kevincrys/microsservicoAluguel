@@ -15,31 +15,31 @@ export class CiclistaService {
     private readonly cartaoService:CartaoService
   ) {}
 
-  async insertCiclista(ciclista: CadastroCiclista): Promise<Boolean> {
+  async insertCiclista(ciclista: CadastroCiclista): Promise<Ciclista> {
    
     if(this.validaCartaoMock()){
     this.cartaoService.insertcartao(ciclista.MetodoDePagamento)
     const check= await this.ciclistaRepository.insertCiclista(ciclista.Ciclista)
-    if(check===false)
+    if(check===undefined)
     {
       throw new NotFoundException("Requisição mal formada")
     }
       var emailContent=emails.cadastroCiclista
       var email= ciclista.Ciclista.email
       this.sendEmailMock({...emailContent,email})
-    return true
+    return check
   }else{
     throw new NotFoundException("Requisição mal formada")
   }
   
 }
 
-  async updateCiclista(id: number, ciclista: novoCiclista): Promise<Boolean> {
+  async updateCiclista(id: number, ciclista: novoCiclista): Promise<Ciclista> {
    
    
     const update= await this.ciclistaRepository.updateCiclista(id,ciclista)
-    if(update === false){throw new NotFoundException("Não encontrado")}
-    return true
+    if(update === undefined){throw new NotFoundException("Não encontrado")}
+    return update
    
   
   }

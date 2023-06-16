@@ -33,14 +33,7 @@ export class CartaoService {
   }
   }
 
-  // async deletecartao(id: number): Promise<Boolean> {
-    
 
-  //   const update= this.cartaoRepository.deletecartao(id)
-
-  //   return update
-  
-  // }
 
   async getcartaoByID(id: number): Promise<Cartao> {
     
@@ -54,15 +47,6 @@ export class CartaoService {
   
   }
 
-  async getcartaos(): Promise<Cartao[]> {
-   
-    const array= await this.cartaoRepository.getcartaos()
-    array.forEach((el) => {
-      console.log("el", el)
-
-    })
-    return array
-  }
 
 }
 

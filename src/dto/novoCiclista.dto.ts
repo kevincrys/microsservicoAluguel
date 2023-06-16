@@ -1,6 +1,6 @@
 import { nacionalidade } from "src/enums/nacionalidade.enum";
 import { Passaporte } from "./passaporte.dto";
-import {  IsDateString, IsEmail, IsNotEmpty } from 'class-validator';
+import {  IsDateString, IsEmail, IsNotEmpty, ValidateIf } from 'class-validator';
 
 export class novoCiclista {
   @IsNotEmpty()
@@ -10,9 +10,11 @@ export class novoCiclista {
   @IsNotEmpty()
   nascimento: string;
 
+  @ValidateIf((object) => object.nacionalidade === nacionalidade.BRASILEIRO)
   @IsNotEmpty()
   cpf: string;
 
+  @ValidateIf((object) => object.nacionalidade === nacionalidade.ESTRANGEIRO)
   @IsNotEmpty()
   passaporte: Passaporte;
 

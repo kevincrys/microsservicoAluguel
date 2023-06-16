@@ -6,9 +6,10 @@ import { novoCartao } from "../../dto/novoCartao.dto";
 let cartaosNovos: Cartao[] = []
 export class CartaoRepository{
     
-async insertcartao (cartao: novoCartao) {
+async insertcartao (cartao: novoCartao): Promise<Cartao> {
     var id=Math.random()
     cartaosNovos.push({ ...cartao, id})
+    return { ...cartao, id}
 }
 
 
@@ -27,9 +28,9 @@ async deletecartao (id: number): Promise<boolean> {
     return beforeLenght !== cartaosNovos.length
     }
 
-async getcartaos (): Promise<Cartao[]> {
-            return  cartaosNovos
-        }
+// async getcartaos (): Promise<Cartao[]> {
+//             return  cartaosNovos
+//         }
 
 async getcartaoByID (id: number): Promise<Cartao> {
             return  cartaosNovos.find((cartao) => cartao.id === id)

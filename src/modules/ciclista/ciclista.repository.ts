@@ -7,31 +7,33 @@ let ciclistasNovos: Ciclista[] = []
 export class CiclistaRepository {
 
 
-async insertCiclista (ciclista: novoCiclista) {
-    console.log(ciclista)
+async insertCiclista (ciclista: novoCiclista): Promise<Ciclista> {
+    var ciclistaAdd= new Ciclista
    try{
   
   const id = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
     
   const status= statusCiclista.AGUARDANDO
-    ciclistasNovos.push({ ...ciclista, id, status })
+  ciclistaAdd={ ...ciclista, id, status }
+    ciclistasNovos.push(ciclistaAdd)
    }
    catch{
-    return false
+    return undefined
    }
-   return true
+   return ciclistaAdd
 }
 
 
-async updateCiclista (id: number, ciclista: novoCiclista): Promise<boolean> {
+async updateCiclista (id: number, ciclista: novoCiclista): Promise<Ciclista> {
     const index = ciclistasNovos.findIndex((ciclista) => ciclista.id === id)
-    
+    var ciclistaAdd= new Ciclista
     if (index !== -1) {
         const status= ciclistasNovos[index].status
-        ciclistasNovos[index] = {...ciclista,id,status}
-        return true
+        ciclistaAdd={ ...ciclista, id, status }
+        ciclistasNovos[index] = ciclistaAdd
+        return ciclistaAdd
       }
-      return false
+      return undefined
 }
 
 async deleteCiclista (id: number): Promise<boolean> {
@@ -70,8 +72,7 @@ async checkEmail (email: string): Promise<boolean> {
             
 
 
-
-
+  
 
 }
 

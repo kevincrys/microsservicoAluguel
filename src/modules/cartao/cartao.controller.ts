@@ -16,14 +16,8 @@ export class CartaoController {
     return res.status(HttpStatus.OK).send(response);
   }
 
-  @Get("/cartao")
-  async getcartao(
-  @Res() res: Response): Promise<any> {
-     console.log(novoCartao)
-     const response= this.cartaoService.getcartaos();
-     return res.status(HttpStatus.OK).send(response);
-   }
-   
+
+  
    @Put("/cartao/:idcartao")
  async updatecartao(
  @Body() novocartao: novoCartao,
@@ -42,33 +36,4 @@ export class CartaoController {
     }
    
 
-  // @Get("/cartao/:idcartao")
-  // recuperarcartao(@Param('idcartao') idcartao: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Put("/cartao/:idcartao")
-  // alterarDadoscartao(@Param('idcartao') idcartao: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Post("/cartao/:idcartao/ativar")
-  // ativarCadastrocartao(@Param('idcartao') idcartao: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Get("/cartao/:idcartao/permiteAluguel")
-  // verificaPermissaoAluguel(@Param('idcartao') idcartao: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Get("/cartao/:idcartao/bicicletaAlugada")
-  // obterBicicletaAlugada(@Param('idcartao') idcartao: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Get("/cartao/existeEmail/:email")
-  // verificarEmailcartao(@Param('email') email: string): string {
-  //   return this.appService.getHello();
-  // }
 }
