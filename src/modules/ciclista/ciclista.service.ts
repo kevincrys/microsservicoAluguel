@@ -17,29 +17,27 @@ export class CiclistaService {
    
     if(this.validaCartaoMock()){
     this.cartaoService.insertcartao(ciclista.MetodoDePagamento)
-
-  
-    if(!this.utils.checkNullOrBlank(ciclista)){
-    this.ciclistaRepository.insertCiclista(ciclista.Ciclista)
+    const check= await this.ciclistaRepository.insertCiclista(ciclista.Ciclista)
+    if(check===false)
+    {
+      throw new NotFoundException("Requisição mal formada")
     }
       this.sendEmailMock()
     return true
   }else{
-    
+    throw new NotFoundException("Requisição mal formada")
   }
   
 }
 
   async updateCiclista(id: number, ciclista: novoCiclista): Promise<Boolean> {
    
-    if(!this.utils.checkNullOrBlank(ciclista)){
-    const update= await this.ciclistaRepository.updateCiclista(id,ciclista)
-    if(update === true){return update}
-    else{
-      throw new NotFoundException("Não encontrado")
-    }
    
-  }
+    const update= await this.ciclistaRepository.updateCiclista(id,ciclista)
+    if(update === false){throw new NotFoundException("Não encontrado")}
+    return true
+   
+  
   }
 
   async ativarCiclista(id: number): Promise<Boolean> {
@@ -55,26 +53,31 @@ export class CiclistaService {
   async deleteCiclista(id: number): Promise<Boolean> {
     
  
-    const update= this.ciclistaRepository.deleteCiclista(id)
-
-    return update
+    const update= await this.ciclistaRepository.deleteCiclista(id)
+    if(update === false){
+      throw new NotFoundException("Não encontrado")
+    }
+    return true
  
   }
   async getCiclistaByID(id: number): Promise<Boolean> {
     
 
     const update= await this.ciclistaRepository.getCiclistaByID(id)
-    console.log(update)
+    if(update === null){
+      throw new NotFoundException("Não encontrado")
+  }
+ 
     return true
   
   }
   async checkEmail(email: string): Promise<Boolean> {
     
     if(this.utils.checkNullOrBlank(email)){
-      throw new BadRequestException
+      throw new BadRequestException("Email não enviado como parâmetro")
     }
     const update= await this.ciclistaRepository.checkEmail(email)
-    console.log(update)
+
     return update
   
   }

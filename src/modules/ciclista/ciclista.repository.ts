@@ -45,8 +45,9 @@ async getCiclistas (): Promise<Ciclista[]> {
         }
 
 async getCiclistaByID (id: number): Promise<Ciclista> {
-            console.log
-            return  ciclistasNovos.find((ciclista) => ciclista.id === id)
+            
+            const ciclista=  ciclistasNovos.find((ciclista) => ciclista.id === id)
+            return ciclista
         }
 
 async checkEmail (email: string): Promise<boolean> {

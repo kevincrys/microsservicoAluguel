@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { novoCartao } from "src/dto/novocartao.dto";
 import { CartaoRepository } from './cartao.repository';
 import {Utils} from '../../common/utils';
@@ -25,23 +25,30 @@ export class CartaoService {
    
     if(!this.utils.checkNullOrBlank(cartao)){
     const update= this.cartaoRepository.updatecartao(id,cartao)
+    if(update === null){
+      throw new NotFoundException("Não encontrado")
+  }
 
     return update
   }
   }
 
-  async deletecartao(id: number): Promise<Boolean> {
+  // async deletecartao(id: number): Promise<Boolean> {
     
 
-    const update= this.cartaoRepository.deletecartao(id)
+  //   const update= this.cartaoRepository.deletecartao(id)
 
-    return update
+  //   return update
   
-  }
+  // }
+
   async getcartaoByID(id: number): Promise<Boolean> {
     
     
     const update= await this.cartaoRepository.getcartaoByID(id)
+    if(update === null){
+      throw new NotFoundException("Não encontrado")
+  }
     console.log(update)
     return true
   

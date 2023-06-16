@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { novoFuncionario } from "src/dto/novoFuncionario.dto";
 import { FuncionarioRepository } from './funcionario.repository';
 import {Utils} from '../../common/utils';
@@ -11,38 +11,37 @@ export class FuncionarioService {
   ) {}
 
   async insertFuncionario(Funcionario: novoFuncionario): Promise<Boolean> {
-    
-    if(!this.utils.checkNullOrBlank(Funcionario)){
     this.funcionarioRepository.insertFuncionario(Funcionario)
-    }
-    else{
-        console.log("erro")
-    }
     return true
   }
 
   async updateFuncionario(id: string, Funcionario: novoFuncionario): Promise<Boolean> {
    
     if(!this.utils.checkNullOrBlank(Funcionario)){
-    const update= this.funcionarioRepository.updateFuncionario(id,Funcionario)
+    const update= await this.funcionarioRepository.updateFuncionario(id,Funcionario)
+    if(update === false){throw new NotFoundException("Não encontrado")}
+    return true
 
-    return update
   }
   }
 
   async deleteFuncionario(id: string): Promise<Boolean> {
     
     if(!this.utils.checkNullOrBlank(Funcionario)){
-    const update= this.funcionarioRepository.deleteFuncionario(id)
-
-    return update
+    const update= await this.funcionarioRepository.deleteFuncionario(id)
+    if(update === false){
+      throw new NotFoundException("Não encontrado")
+    }
+    return true
   }
   }
   async getFuncionarioByID(id: string): Promise<Boolean> {
     
     if(!this.utils.checkNullOrBlank(Funcionario)){
     const update= await this.funcionarioRepository.getFuncionarioByID(id)
-    console.log(update)
+    if(this.utils.checkNullOrBlank(update)){
+      throw new NotFoundException("Não encontrado")
+  }
     return true
   }
   }
