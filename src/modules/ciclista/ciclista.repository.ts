@@ -25,9 +25,10 @@ async insertCiclista (ciclista: novoCiclista) {
 
 async updateCiclista (id: number, ciclista: novoCiclista): Promise<boolean> {
     const index = ciclistasNovos.findIndex((ciclista) => ciclista.id === id)
-    const status= statusCiclista.ATIVO
+    
     if (index !== -1) {
-        ciclistasNovos[index] = { ...ciclista, id , status }
+        const status= ciclistasNovos[index].status
+        ciclistasNovos[index] = {...ciclista,id,status}
         return true
       }
       return false
@@ -46,6 +47,24 @@ async getCiclistas (): Promise<Ciclista[]> {
 async getCiclistaByID (id: number): Promise<Ciclista> {
             console.log
             return  ciclistasNovos.find((ciclista) => ciclista.id === id)
+        }
+
+async checkEmail (email: string): Promise<boolean> {
+    const index = ciclistasNovos.findIndex((ciclista) => ciclista.email === email)
+    if (index !== -1) {
+        return false
+      }
+      return true
+}
+
+        async ativarCiclista (id: number): Promise<boolean> {
+            const index = ciclistasNovos.findIndex((ciclista) => ciclista.id === id)
+            const status= statusCiclista.ATIVO
+            if (index !== -1) {
+                ciclistasNovos[index] = { ...ciclistasNovos[index],status }
+                return true
+              }
+              return false
         }
             
 

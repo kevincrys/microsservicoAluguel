@@ -3,16 +3,20 @@ import { CiclistaService } from './ciclista.service';
 
 import { novoCiclista } from "src/dto/novoCiclista.dto";
 import { Response } from 'express';
+
+import { CadastroCiclista } from 'src/dto/cadastroCiclista';
 @Controller()
 export class CiclistaController {
-  constructor(private readonly ciclistaService: CiclistaService) {}
+  constructor(private readonly ciclistaService: CiclistaService,
+    ) {}
 
   @Post("/ciclista")
  async cadastrarCiclista(
- @Body() novoCiclista: novoCiclista,
+ @Body() cadastroCiclista: CadastroCiclista,
  @Res() res: Response): Promise<any> {
-    console.log(novoCiclista)
-    const response= this.ciclistaService.insertCiclista(novoCiclista);
+    const response= this.ciclistaService.insertCiclista(cadastroCiclista)
+
+    
     return res.status(HttpStatus.OK).send(response);
   }
 
@@ -49,34 +53,21 @@ export class CiclistaController {
       return res.status(HttpStatus.OK).send(response);
     }
    
+    @Post("/ciclista/:idCiclista/ativar")
+    async ativarCiclista(
+    @Res() res: Response,@Param('idCiclista') id): Promise<any> {
+       const idbicicleta=  parseInt(id)
+       const response= this.ciclistaService.ativarCiclista(idbicicleta);
+       return res.status(HttpStatus.OK).send(response);
+     }
 
-  // @Get("/ciclista/:idCiclista")
-  // recuperarCiclista(@Param('idCiclista') idCiclista: string): string {
-  //   return this.appService.getHello();
-  // }
+     @Get("/ciclista/existeEmail/:email")
+   async checkEmail(
+   @Res() res: Response,@Param('email') email): Promise<any> {
+      const response= this.ciclistaService.checkEmail(email);
+      return res.status(HttpStatus.OK).send(response);
+    }
 
-  // @Put("/ciclista/:idCiclista")
-  // alterarDadosCiclista(@Param('idCiclista') idCiclista: string): string {
-  //   return this.appService.getHello();
-  // }
 
-  // @Post("/ciclista/:idCiclista/ativar")
-  // ativarCadastroCiclista(@Param('idCiclista') idCiclista: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Get("/ciclista/:idCiclista/permiteAluguel")
-  // verificaPermissaoAluguel(@Param('idCiclista') idCiclista: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Get("/ciclista/:idCiclista/bicicletaAlugada")
-  // obterBicicletaAlugada(@Param('idCiclista') idCiclista: string): string {
-  //   return this.appService.getHello();
-  // }
-
-  // @Get("/ciclista/existeEmail/:email")
-  // verificarEmailCiclista(@Param('email') email: string): string {
-  //   return this.appService.getHello();
-  // }
+  
 }
