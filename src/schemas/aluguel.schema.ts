@@ -8,9 +8,9 @@ export class Aluguel {
 
   horaInicio: string;
 
-  trancaFim: number;
+  trancaFim?: number;
 
-  horaFim: string;
+  horaFim?: string;
 
   cobranca: number;
     

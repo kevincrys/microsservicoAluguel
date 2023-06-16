@@ -42,7 +42,7 @@ export class CartaoService {
   
   // }
 
-  async getcartaoByID(id: number): Promise<Boolean> {
+  async getcartaoByID(id: number): Promise<Cartao> {
     
     
     const update= await this.cartaoRepository.getcartaoByID(id)
@@ -50,7 +50,7 @@ export class CartaoService {
       throw new NotFoundException("Não encontrado")
   }
     console.log(update)
-    return true
+    return update
   
   }
 

@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, Res, HttpStatus } from '@nestjs/common';
 import { CartaoService } from './cartao.service';
 
-import { novoCartao } from "src/dto/novocartao.dto";
+import { novoCartao } from "../../dto/novocartao.dto";
 import { Response } from 'express';
 @Controller()
 export class CartaoController {
@@ -32,14 +32,6 @@ export class CartaoController {
     const response= this.cartaoService.updatecartao(idbicicleta,novocartao);
     return res.status(HttpStatus.OK).send(response);
   }
-
-  @Delete("/cartao/:idcartao")
-  async deletecartao(
-  @Res() res: Response,@Param('idcartao') id): Promise<any> {
-    const idbicicleta=  parseInt(id)
-     const response= this.cartaoService.deletecartao(idbicicleta);
-     return res.status(HttpStatus.OK).send(response);
-   }
 
    @Get("/cartao/:idcartao")
    async getcartaoByID(

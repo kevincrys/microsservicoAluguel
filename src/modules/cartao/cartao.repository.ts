@@ -1,6 +1,6 @@
 
 import { Cartao } from "src/schemas/cartao.schema";
-import { novoCartao } from "src/dto/novoCartao.dto";
+import { novoCartao } from "../../dto/novoCartao.dto";
 
 
 let cartaosNovos: Cartao[] = []

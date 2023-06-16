@@ -1,10 +1,12 @@
 import { BadRequestException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
-import { novoCiclista } from "src/dto/novoCiclista.dto";
+import { novoCiclista } from "../../dto/novoCiclista.dto";
 import { CiclistaRepository } from './ciclista.repository';
 import {Utils} from '../../common/utils';
 import { Ciclista } from 'src/schemas/Ciclista.schema';
-import { CadastroCiclista } from 'src/dto/cadastroCiclista';
+import { CadastroCiclista } from '../../dto/cadastroCiclista';
 import { CartaoService } from '../cartao/cartao.service';
+import { enviaEmail } from 'src/dto/enviaEmail';
+import { emails } from 'src/common/emails/emails';
 @Injectable()
 export class CiclistaService {
   constructor(
@@ -22,7 +24,9 @@ export class CiclistaService {
     {
       throw new NotFoundException("Requisição mal formada")
     }
-      this.sendEmailMock()
+      var emailContent=emails.cadastroCiclista
+      var email= ciclista.Ciclista.email
+      this.sendEmailMock({...emailContent,email})
     return true
   }else{
     throw new NotFoundException("Requisição mal formada")
@@ -60,7 +64,7 @@ export class CiclistaService {
     return true
  
   }
-  async getCiclistaByID(id: number): Promise<Boolean> {
+  async getCiclistaByID(id: number): Promise<Ciclista> {
     
 
     const update= await this.ciclistaRepository.getCiclistaByID(id)
@@ -68,7 +72,7 @@ export class CiclistaService {
       throw new NotFoundException("Não encontrado")
   }
  
-    return true
+    return update
   
   }
   async checkEmail(email: string): Promise<Boolean> {
@@ -97,7 +101,7 @@ export class CiclistaService {
 
     return true
   }
-  async sendEmailMock(): Promise<boolean> {
+  async sendEmailMock(aluguel: enviaEmail): Promise<boolean> {
    
 
     return true

@@ -1,10 +1,10 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, Res, HttpStatus } from '@nestjs/common';
 import { CiclistaService } from './ciclista.service';
 
-import { novoCiclista } from "src/dto/novoCiclista.dto";
+import { novoCiclista } from "../../dto/novoCiclista.dto";
 import { Response } from 'express';
 
-import { CadastroCiclista } from 'src/dto/cadastroCiclista';
+import { CadastroCiclista } from '../../dto/cadastroCiclista';
 @Controller()
 export class CiclistaController {
   constructor(private readonly ciclistaService: CiclistaService,

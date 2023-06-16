@@ -1,6 +1,6 @@
 import { statusCiclista } from "src/enums/statusCiclista.enum";
 import { Ciclista } from "src/schemas/Ciclista.schema";
-import { novoCiclista } from "src/dto/novoCiclista.dto";
+import { novoCiclista } from "../../dto/novoCiclista.dto";
 
 
 let ciclistasNovos: Ciclista[] = []
