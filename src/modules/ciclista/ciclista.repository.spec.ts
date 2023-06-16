@@ -4,21 +4,7 @@ import { Ciclista } from "src/schemas/Ciclista.schema";
 import { novoCiclista } from "../../dto/novoCiclista.dto";
 
 import { nacionalidade } from 'src/enums/nacionalidade.enum';
-const ciclistaCad={  id: 1,
-    nome: 'Jane Smith',
-    nascimento: '1992-05-15',
-    cpf: '9876543210',
-    passaporte: {
-      numero: 'WXYZ5678',
-      validade: '2024-10-31',
-      pais: 'Estados Unidos',
-    },
-    nacionalidade: nacionalidade.ESTRANGEIRO,
-    email: 'jane.smith@example.com',
-    urlFotoDocumento: 'https://example.com/document2.jpg',
-    senha: 'secret789',
-    status: statusCiclista.INATIVO,
-  }
+
 describe("CiclistaRepository", () => {
   let ciclistaRepository: CiclistaRepository;
 
