@@ -10,36 +10,35 @@ export class CartaoService {
     private readonly utils:Utils
   ) {}
 
-  async insertcartao(cartao: novoCartao): Promise<Boolean> {
+  async insertCartao(cartao: novoCartao): Promise<Cartao> {
     
-    if(!this.utils.checkNullOrBlank(cartao)){
-    this.cartaoRepository.insertcartao(cartao)
-    }
-    else{
-        console.log("erro")
-    }
-    return true
+   
+   const card= this.cartaoRepository.insertCartao(cartao)
+    
+    
+    return card
   }
 
-  async updatecartao(id: number, cartao: novoCartao): Promise<Boolean> {
+  async updateCartao(id: number, cartao: novoCartao): Promise<Cartao> {
    
-    if(!this.utils.checkNullOrBlank(cartao)){
-    const update= this.cartaoRepository.updatecartao(id,cartao)
-    if(update === null){
+   
+    const update= this.cartaoRepository.updateCartao(id,cartao)
+    if(this.utils.checkNullOrBlank(update)){
+      console.log("caiu aqui")
       throw new NotFoundException("Não encontrado")
   }
 
     return update
+  
   }
-  }
 
 
 
-  async getcartaoByID(id: number): Promise<Cartao> {
+  async getCartaoByID(id: number): Promise<Cartao> {
     
     
-    const update= await this.cartaoRepository.getcartaoByID(id)
-    if(update === null){
+    const update= await this.cartaoRepository.getCartaoByID(id)
+    if(update === undefined){
       throw new NotFoundException("Não encontrado")
   }
     console.log(update)

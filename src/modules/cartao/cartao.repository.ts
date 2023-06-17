@@ -6,34 +6,38 @@ import { novoCartao } from "../../dto/novoCartao.dto";
 let cartaosNovos: Cartao[] = []
 export class CartaoRepository{
     
-async insertcartao (cartao: novoCartao): Promise<Cartao> {
+async insertCartao (cartao: novoCartao): Promise<Cartao> {
     var id=Math.random()
     cartaosNovos.push({ ...cartao, id})
     return { ...cartao, id}
 }
 
 
-async updatecartao (id: number, cartao: novoCartao): Promise<boolean> {
-    const index = cartaosNovos.findIndex((cartao) => cartao.id === id)
+async updateCartao (id: number, cartao: novoCartao): Promise<Cartao> {
+    var cartaosArray= await this.getCartaos()
+    const index = cartaosArray.findIndex((cartao) => cartao.id === id)
     if (index !== -1) {
-        cartaosNovos[index] = { ...cartao, id }
-        return true
+        const cartaoAdd={ ...cartao, id }
+        cartaosNovos[index] = cartaoAdd
+        return cartaoAdd
       }
-      return false
+      return undefined
 }
 
-async deletecartao (id: number): Promise<boolean> {
-    const beforeLenght = cartaosNovos.length
-    cartaosNovos = cartaosNovos.filter((cartao) => cartao.id !== id)
-    return beforeLenght !== cartaosNovos.length
-    }
+// async deleteCartao (id: number): Promise<boolean> {
+//     var cartaosArray= await this.getCartaos()
+//     const beforeLenght = cartaosArray.length
+//     cartaosNovos = cartaosArray.filter((cartao) => cartao.id !== id)
+//     return beforeLenght !== cartaosArray.length
+//     }
 
-// async getcartaos (): Promise<Cartao[]> {
-//             return  cartaosNovos
-//         }
+async getCartaos (): Promise<Cartao[]> {
+            return  cartaosNovos
+        }
 
-async getcartaoByID (id: number): Promise<Cartao> {
-            return  cartaosNovos.find((cartao) => cartao.id === id)
+async getCartaoByID (id: number): Promise<Cartao> {
+    var cartaosArray= await this.getCartaos()
+            return  cartaosArray.find((cartao) => cartao.id === id)
         }
 }
 

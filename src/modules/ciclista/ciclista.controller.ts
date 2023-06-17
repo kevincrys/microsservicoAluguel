@@ -14,17 +14,17 @@ export class CiclistaController {
  async cadastrarCiclista(
  @Body() cadastroCiclista: CadastroCiclista,
  @Res() res: Response): Promise<any> {
-    const response= this.ciclistaService.insertCiclista(cadastroCiclista)
+    const response= await this.ciclistaService.insertCiclista(cadastroCiclista)
 
     
-    return res.status(HttpStatus.OK).send(response);
+    return res.status(HttpStatus.CREATED).send(response);
   }
 
   @Get("/ciclista")
   async getCiclista(
   @Res() res: Response): Promise<any> {
      console.log(novoCiclista)
-     const response= this.ciclistaService.getCiclistas();
+     const response= await this.ciclistaService.getCiclistas();
      return res.status(HttpStatus.OK).send(response);
    }
    
@@ -33,7 +33,7 @@ export class CiclistaController {
  @Body() novoCiclista: novoCiclista,
  @Res() res: Response,@Param('idCiclista') id): Promise<any> {
   const idbicicleta=  parseInt(id)
-    const response= this.ciclistaService.updateCiclista(idbicicleta,novoCiclista);
+    const response= await this.ciclistaService.updateCiclista(idbicicleta,novoCiclista);
     return res.status(HttpStatus.OK).send(response);
   }
 
@@ -41,7 +41,7 @@ export class CiclistaController {
   async deleteCiclista(
   @Res() res: Response,@Param('idCiclista') id): Promise<any> {
     const idbicicleta=  parseInt(id)
-     const response= this.ciclistaService.deleteCiclista(idbicicleta);
+     const response= await this.ciclistaService.deleteCiclista(idbicicleta);
      return res.status(HttpStatus.OK).send(response);
    }
 
@@ -49,7 +49,7 @@ export class CiclistaController {
    async getCiclistaByID(
    @Res() res: Response,@Param('idCiclista') id): Promise<any> {
       const idbicicleta=  parseInt(id)
-      const response= this.ciclistaService.getCiclistaByID(idbicicleta);
+      const response= await this.ciclistaService.getCiclistaByID(idbicicleta);
       return res.status(HttpStatus.OK).send(response);
     }
    
@@ -57,14 +57,14 @@ export class CiclistaController {
     async ativarCiclista(
     @Res() res: Response,@Param('idCiclista') id): Promise<any> {
        const idbicicleta=  parseInt(id)
-       const response= this.ciclistaService.ativarCiclista(idbicicleta);
+       const response= await this.ciclistaService.ativarCiclista(idbicicleta);
        return res.status(HttpStatus.OK).send(response);
      }
 
      @Get("/ciclista/existeEmail/:email")
    async checkEmail(
    @Res() res: Response,@Param('email') email): Promise<any> {
-      const response= this.ciclistaService.checkEmail(email);
+      const response= await this.ciclistaService.checkEmail(email);
       return res.status(HttpStatus.OK).send(response);
     }
 

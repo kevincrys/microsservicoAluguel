@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CartaoController } from './cartao.controller';
 import { CartaoService } from './cartao.service';
 import { CartaoRepository } from './cartao.repository';
-import { Utils } from 'src/common/utils';
+import { Utils } from '../../common/utils';
 
 @Module({
   imports: [],

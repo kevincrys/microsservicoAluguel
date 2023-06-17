@@ -1,5 +1,5 @@
-import { statusCiclista } from "src/enums/statusCiclista.enum";
-import { Ciclista } from "src/schemas/Ciclista.schema";
+import { statusCiclista } from "../../enums/statusCiclista.enum";
+import { Ciclista } from "../../schemas/Ciclista.schema";
 import { novoCiclista } from "../../dto/novoCiclista.dto";
 
 
@@ -25,21 +25,25 @@ async insertCiclista (ciclista: novoCiclista): Promise<Ciclista> {
 
 
 async updateCiclista (id: number, ciclista: novoCiclista): Promise<Ciclista> {
-    const index = ciclistasNovos.findIndex((ciclista) => ciclista.id === id)
+   const ciclistaArray= await this.getCiclistas()
+   console.log(id)
+    const index = ciclistaArray.findIndex((ciclista) => ciclista.id === id)
     var ciclistaAdd= new Ciclista
     if (index !== -1) {
         const status= ciclistasNovos[index].status
         ciclistaAdd={ ...ciclista, id, status }
-        ciclistasNovos[index] = ciclistaAdd
+        ciclistaArray[index] = ciclistaAdd
         return ciclistaAdd
       }
       return undefined
 }
 
 async deleteCiclista (id: number): Promise<boolean> {
-    const beforeLenght = ciclistasNovos.length
-    ciclistasNovos = ciclistasNovos.filter((ciclista) => ciclista.id !== id)
-    return beforeLenght !== ciclistasNovos.length
+    var ciclistaArray= await this.getCiclistas()
+    const beforeLenght = ciclistaArray.length
+    ciclistasNovos = ciclistaArray.filter((ciclista) => ciclista.id !== id)
+    ciclistaArray=ciclistasNovos
+    return beforeLenght !== ciclistaArray.length
     }
 
 async getCiclistas (): Promise<Ciclista[]> {
@@ -47,8 +51,8 @@ async getCiclistas (): Promise<Ciclista[]> {
         }
 
 async getCiclistaByID (id: number): Promise<Ciclista> {
-            
-            const ciclista=  ciclistasNovos.find((ciclista) => ciclista.id === id)
+    const ciclistaArray= await this.getCiclistas()
+            const ciclista=  ciclistaArray.find((ciclista) => ciclista.id === id)
             return ciclista
         }
 

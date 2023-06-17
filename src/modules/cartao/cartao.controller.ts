@@ -8,30 +8,30 @@ export class CartaoController {
   constructor(private readonly cartaoService: CartaoService) {}
 
   @Post("/cartao")
- async cadastrarcartao(
+ async cadastrarCartao(
  @Body() novocartao: novoCartao,
  @Res() res: Response): Promise<any> {
     console.log(novocartao)
-    const response= this.cartaoService.insertcartao(novocartao);
-    return res.status(HttpStatus.OK).send(response);
+    const response= await this.cartaoService.insertCartao(novocartao);
+    return res.status(HttpStatus.CREATED).send(response);
   }
 
 
   
    @Put("/cartao/:idcartao")
- async updatecartao(
+ async updateCartao(
  @Body() novocartao: novoCartao,
  @Res() res: Response,@Param('idcartao') id): Promise<any> {
   const idbicicleta=  parseInt(id)
-    const response= this.cartaoService.updatecartao(idbicicleta,novocartao);
+    const response= await this.cartaoService.updateCartao(idbicicleta,novocartao);
     return res.status(HttpStatus.OK).send(response);
   }
 
    @Get("/cartao/:idcartao")
-   async getcartaoByID(
+   async getCartaoByID(
    @Res() res: Response,@Param('idcartao') id): Promise<any> {
       const idbicicleta=  parseInt(id)
-      const response= this.cartaoService.getcartaoByID(idbicicleta);
+      const response= await this.cartaoService.getCartaoByID(idbicicleta);
       return res.status(HttpStatus.OK).send(response);
     }
    

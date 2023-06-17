@@ -5,8 +5,11 @@ import { novoCiclista } from '../../dto/novoCiclista.dto';
 import { CadastroCiclista } from '../../dto/cadastroCiclista';
 import { Response } from 'express';
 import { HttpStatus } from '@nestjs/common';
-import { nacionalidade } from 'src/enums/nacionalidade.enum';
-import { statusCiclista } from 'src/enums/statusCiclista.enum';
+import { nacionalidade } from '../../enums/nacionalidade.enum';
+import { statusCiclista } from '../../enums/statusCiclista.enum';
+import { CartaoModule } from '../cartao/cartao.module';
+import { CiclistaRepository } from './ciclista.repository';
+import { Utils } from '../../common/utils';
 
 const newCiclista=  {
     nome: 'John Doe',
@@ -53,9 +56,12 @@ describe('CiclistaController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [CartaoModule],
       controllers: [CiclistaController],
-      providers: [CiclistaService],
+      providers: [CiclistaService, CiclistaRepository, Utils],
+      exports: [CiclistaService, Utils],
     }).compile();
+
 
     controller = module.get<CiclistaController>(CiclistaController);
     service = module.get<CiclistaService>(CiclistaService);
@@ -64,9 +70,9 @@ describe('CiclistaController', () => {
   describe('cadastrarCiclista', () => {
     it('should call insertCiclista in the service and return response from service', async () => {
       const cadastroCiclista: CadastroCiclista = ciclista;
-      const response = true; // sample response from the service
+      const response = CiclistaReturn; // sample response from the service
       
-      jest.spyOn(service, 'insertCiclista').mockResolvedValue(response);
+      jest.spyOn(service, 'insertCiclista').mockResolvedValue(CiclistaReturn);
       const res: Response = {
         status: jest.fn().mockReturnThis(),
         send: jest.fn(),
@@ -102,9 +108,9 @@ describe('CiclistaController', () => {
     it('should call updateCiclista in the service and return response from service', async () => {
       const id = '1';
       const novoCiclista: novoCiclista = newCiclista;
-      const response = true; 
+      const response = CiclistaReturn 
       
-      jest.spyOn(service, 'updateCiclista').mockResolvedValue(response);
+      jest.spyOn(service, 'updateCiclista').mockResolvedValue(CiclistaReturn);
       const res: Response = {
         status: jest.fn().mockReturnThis(),
         send: jest.fn(),

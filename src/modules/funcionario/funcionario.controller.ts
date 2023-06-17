@@ -12,15 +12,15 @@ export class FuncionarioController {
  @Body() novoFuncionario: novoFuncionario,
  @Res() res: Response): Promise<any> {
     console.log(novoFuncionario)
-    const response= this.funcionarioService.insertFuncionario(novoFuncionario);
-    return res.status(HttpStatus.OK).send(response);
+    const response= await this.funcionarioService.insertFuncionario(novoFuncionario);
+    return res.status(HttpStatus.CREATED).send(response);
   }
 
   @Get("/funcionario")
   async getFuncionario(
   @Res() res: Response): Promise<any> {
      console.log(novoFuncionario)
-     const response= this.funcionarioService.getFuncionarios();
+     const response= await this.funcionarioService.getFuncionarios();
      return res.status(HttpStatus.OK).send(response);
    }
    
@@ -29,7 +29,7 @@ export class FuncionarioController {
  @Body() novoFuncionario: novoFuncionario,
  @Res() res: Response,@Param('idFuncionario') id): Promise<any> {
  
-    const response= this.funcionarioService.updateFuncionario(id,novoFuncionario);
+    const response= await this.funcionarioService.updateFuncionario(id,novoFuncionario);
     return res.status(HttpStatus.OK).send(response);
   }
 
@@ -37,7 +37,7 @@ export class FuncionarioController {
   async deleteFuncionario(
   @Res() res: Response,@Param('idFuncionario') id): Promise<any> {
   
-     const response= this.funcionarioService.deleteFuncionario(id);
+     const response= await this.funcionarioService.deleteFuncionario(id);
      return res.status(HttpStatus.OK).send(response);
    }
 
@@ -45,46 +45,10 @@ export class FuncionarioController {
    async getFuncionarioByID(
    @Res() res: Response,@Param('idFuncionario') id): Promise<any> {
  
-      const response= this.funcionarioService.getFuncionarioByID(id);
+      const response= await this.funcionarioService.getFuncionarioByID(id);
       return res.status(HttpStatus.OK).send(response);
     }
    
 
-    class Funcionario {
-
-      senha: string;
-    
-      confirmacaoSenha: string;
-    
-      email: string;
-    
-      nome: string;
-    
-      idade: number;
-    
-      funcao: string;
-    
-      cpf: string;
-    
-      matricula: string;
-      
-    }
-    
-  class novoFuncionario {
-  
-      senha: string;
-    
-      confirmacaoSenha: string;
-    
-      email: string;
-    
-      nome: string;
-    
-      idade: number;
-    
-      funcao: string;
-    
-      cpf: string;
-      
-    }
+   
 }

@@ -2,11 +2,11 @@ import { BadRequestException, Injectable, NotFoundException, UnprocessableEntity
 import { novoCiclista } from "../../dto/novoCiclista.dto";
 import { CiclistaRepository } from './ciclista.repository';
 import {Utils} from '../../common/utils';
-import { Ciclista } from 'src/schemas/Ciclista.schema';
+import { Ciclista } from '../../schemas/Ciclista.schema';
 import { CadastroCiclista } from '../../dto/cadastroCiclista';
 import { CartaoService } from '../cartao/cartao.service';
-import { enviaEmail } from 'src/dto/enviaEmail';
-import { emails } from 'src/common/emails/emails';
+import { enviaEmail } from '../../dto/enviaEmail';
+import { emails } from '../../common/emails/emails';
 @Injectable()
 export class CiclistaService {
   constructor(
@@ -18,8 +18,9 @@ export class CiclistaService {
   async insertCiclista(ciclista: CadastroCiclista): Promise<Ciclista> {
    
     if(this.validaCartaoMock()){
-    this.cartaoService.insertcartao(ciclista.MetodoDePagamento)
+    this.cartaoService.insertCartao(ciclista.MetodoDePagamento)
     const check= await this.ciclistaRepository.insertCiclista(ciclista.Ciclista)
+    console.log(check)
     if(check===undefined)
     {
       throw new NotFoundException("Requisição mal formada")

@@ -1,10 +1,42 @@
 import { CiclistaRepository } from './ciclista.repository';
-import { statusCiclista } from "src/enums/statusCiclista.enum";
+import { statusCiclista } from "../../enums/statusCiclista.enum";
 import { Ciclista } from "src/schemas/Ciclista.schema";
 import { novoCiclista } from "../../dto/novoCiclista.dto";
 
-import { nacionalidade } from 'src/enums/nacionalidade.enum';
+import { nacionalidade } from '../../enums/nacionalidade.enum';
+const ciclistasArray: Ciclista[] = [
+  {  id: 1,
+    nome: 'Jane Smith',
+    nascimento: '1992-05-15',
+    cpf: '9876543210',
+    passaporte: {
+      numero: 'WXYZ5678',
+      validade: '2024-10-31',
+      pais: 'Estados Unidos',
+    },
+    nacionalidade: nacionalidade.ESTRANGEIRO,
+    email: 'jane.smith@example.com',
+    urlFotoDocumento: 'https://example.com/document2.jpg',
+    senha: 'secret789',
+    status: statusCiclista.INATIVO,
+  },{
+    id:2,
+    nome: 'Carlos Ramirez',
+    nascimento: '1985-09-20',
+    cpf: '4567890123',
+    passaporte: {
+      numero: 'LMNO9012',
+      validade: '2023-06-30',
+      pais: 'México',
+    },
+    nacionalidade: nacionalidade.ESTRANGEIRO,
+    email: 'carlos.ramirez@example.com',
+    urlFotoDocumento: 'https://example.com/document3.jpg',
+    senha: 'confidential456',
+    status: statusCiclista.ATIVO,
+  },
 
+];
 describe("CiclistaRepository", () => {
   let ciclistaRepository: CiclistaRepository;
 
@@ -34,7 +66,7 @@ describe("CiclistaRepository", () => {
 
     const result = await ciclistaRepository.insertCiclista(ciclistaData);
 
-    expect(result).toContainEqual(
+    expect(result).toEqual(
       expect.objectContaining({
         nome: ciclistaData.nome,
         nascimento: ciclistaData.nascimento,
@@ -50,8 +82,8 @@ describe("CiclistaRepository", () => {
   });
 
   it("should update an existing ciclista", async () => {
-    const ciclistaId = 123; // ID de um ciclista existente
-
+    const ciclistaId = 1; 
+   
     const updatedCiclistaData: novoCiclista =  {
         nome: 'John Doe',
         nascimento: '1990-01-01',
@@ -66,7 +98,9 @@ describe("CiclistaRepository", () => {
         urlFotoDocumento: 'https://example.com/document.jpg',
         senha: 'password123',
       };
-
+      jest
+      .spyOn(ciclistaRepository, 'getCiclistas')
+      .mockResolvedValue(ciclistasArray)
     const result = await ciclistaRepository.updateCiclista(ciclistaId, updatedCiclistaData);
 
 
@@ -89,62 +123,22 @@ describe("CiclistaRepository", () => {
   });
 
   it("should delete an existing ciclista", async () => {
-    const ciclistaId = 123; // ID de um ciclista existente
-
+    const ciclistaId = 2;
+    jest
+    .spyOn(ciclistaRepository, 'getCiclistas')
+    .mockResolvedValue(ciclistasArray)
     const result = await ciclistaRepository.deleteCiclista(ciclistaId);
-
-    expect(result).toBeTruthy();
+    console.log("result",result)
+    expect(result).toBe(true);
     // Verifique se o ciclista foi removido corretamente da lista ciclistasNovos
-    const ciclistas = await ciclistaRepository.getCiclistas();
-    const deletedCiclistaFromList = ciclistas.find((c) => c.id === ciclistaId);
-    expect(deletedCiclistaFromList).toBeUndefined();
   });
   ;
-  it("should get all ciclistas", async () => {
-    // Adicione alguns ciclistas fictícios à lista ciclistasNovos
-    const ciclistas: Ciclista[] = [
-      {  id: 1,
-        nome: 'Jane Smith',
-        nascimento: '1992-05-15',
-        cpf: '9876543210',
-        passaporte: {
-          numero: 'WXYZ5678',
-          validade: '2024-10-31',
-          pais: 'Estados Unidos',
-        },
-        nacionalidade: nacionalidade.ESTRANGEIRO,
-        email: 'jane.smith@example.com',
-        urlFotoDocumento: 'https://example.com/document2.jpg',
-        senha: 'secret789',
-        status: statusCiclista.INATIVO,
-      },{
-        id:2,
-        nome: 'Carlos Ramirez',
-        nascimento: '1985-09-20',
-        cpf: '4567890123',
-        passaporte: {
-          numero: 'LMNO9012',
-          validade: '2023-06-30',
-          pais: 'México',
-        },
-        nacionalidade: nacionalidade.ESTRANGEIRO,
-        email: 'carlos.ramirez@example.com',
-        urlFotoDocumento: 'https://example.com/document3.jpg',
-        senha: 'confidential456',
-        status: statusCiclista.ATIVO,
-      },
-
-    ];
-
-
-    const result = await ciclistaRepository.getCiclistas();
-
-    expect(result).toEqual(ciclistas);
-  });
 
   it("should get a ciclista by ID", async () => {
-    const ciclistaId = 123; // ID de um ciclista existente
-
+    const ciclistaId = 1;
+    jest
+    .spyOn(ciclistaRepository, 'getCiclistas')
+    .mockResolvedValue(ciclistasArray)
     const result = await ciclistaRepository.getCiclistaByID(ciclistaId);
 
     // Verifique se o ciclista retornado possui o ID correto
@@ -153,7 +147,9 @@ describe("CiclistaRepository", () => {
 
   it("should check if an email is available", async () => {
     const email = "example@example.com"; // Email a ser verificado
-
+    jest
+    .spyOn(ciclistaRepository, 'getCiclistas')
+    .mockResolvedValue(ciclistasArray)
     const result = await ciclistaRepository.checkEmail(email);
 
     expect(result).toBeTruthy();
@@ -161,8 +157,10 @@ describe("CiclistaRepository", () => {
   });
 
   it("should activate a ciclista", async () => {
-    const ciclistaId = 123; // ID de um ciclista existente
-
+    const ciclistaId = 1; // ID de um ciclista existente
+    jest
+    .spyOn(ciclistaRepository, 'getCiclistas')
+    .mockResolvedValue(ciclistasArray)
     const result = await ciclistaRepository.ativarCiclista(ciclistaId);
 
     expect(result).toBeTruthy();

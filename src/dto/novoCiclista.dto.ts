@@ -1,4 +1,5 @@
-import { nacionalidade } from "src/enums/nacionalidade.enum";
+
+import { nacionalidade } from "../../src/enums/nacionalidade.enum";
 import { Passaporte } from "./passaporte.dto";
 import {  IsDateString, IsEmail, IsNotEmpty, ValidateIf } from 'class-validator';
 

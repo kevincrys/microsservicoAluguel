@@ -1,14 +1,18 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { CadastroCiclista } from '../../dto/cadastroCiclista';
-import { novoCiclista } from "../../dto/novoCiclista.dto";
+import { Test, TestingModule } from '@nestjs/testing';
 import { Ciclista } from 'src/schemas/Ciclista.schema';
 import { CiclistaRepository } from './ciclista.repository';
 import { CartaoService } from '../cartao/cartao.service';
 import { CiclistaService } from './ciclista.service';
 import { Utils } from '../../common/utils';
-import { nacionalidade } from 'src/enums/nacionalidade.enum';
-import { emails } from 'src/common/emails/emails';
-import { statusCiclista } from 'src/enums/statusCiclista.enum';
+import { nacionalidade } from '../../enums/nacionalidade.enum';
+import { emails } from '../../common/emails/emails';
+import { statusCiclista } from '../../enums/statusCiclista.enum';
+import { CartaoModule } from '../cartao/cartao.module';
+import { CiclistaController } from './ciclista.controller';
+
+
 
 describe('CiclistaService', () => {
   let ciclistaService: CiclistaService;
@@ -16,7 +20,13 @@ describe('CiclistaService', () => {
   let utils: Utils;
   let cartaoService: CartaoService;
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [CartaoModule],
+      providers: [CiclistaService, CiclistaRepository, Utils],
+      exports: [CiclistaService, Utils],
+    }).compile();
+    cartaoService = module.get<CartaoService>(CartaoService);
     ciclistaRepository = {
       insertCiclista: jest.fn(),
       updateCiclista: jest.fn(),
@@ -28,9 +38,6 @@ describe('CiclistaService', () => {
     } as unknown as CiclistaRepository;
 
     utils = {} as Utils;
-
-    cartaoService = {} as CartaoService;
-
     ciclistaService = new CiclistaService(
       ciclistaRepository,
       utils,
@@ -80,12 +87,12 @@ const ciclistaCad={  id: 1,
     it('should insert a ciclista and return true', async () => {
      
 
-      cartaoService.insertcartao = jest.fn();
+      cartaoService.insertCartao = jest.fn();
       ciclistaRepository.insertCiclista = jest.fn().mockResolvedValue(ciclistaCad);
-
+      ciclistaService.sendEmailMock= jest.fn();
       const result = await ciclistaService.insertCiclista(ciclista);
 
-      expect(cartaoService.insertcartao).toHaveBeenCalledWith(
+      expect(cartaoService.insertCartao).toHaveBeenCalledWith(
         ciclista.MetodoDePagamento,
       );
       expect(ciclistaRepository.insertCiclista).toHaveBeenCalledWith(

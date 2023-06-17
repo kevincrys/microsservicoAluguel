@@ -74,7 +74,7 @@ describe('FuncionarioService', () => {
       };
 
       utils.checkNullOrBlank.mockReturnValue(false);
-      funcionarioRepository.updateFuncionario.mockReturnValue({});
+      funcionarioRepository.updateFuncionario.mockReturnValue(undefined);
 
       await expect(service.updateFuncionario(id, novoFuncionario)).rejects.toThrow(NotFoundException);
     });
@@ -149,7 +149,7 @@ describe('FuncionarioService', () => {
     it('should throw NotFoundException when Funcionario is not found', async () => {
       const id = '1234';
 
-      utils.checkNullOrBlank.mockReturnValue(false);
+      utils.checkNullOrBlank.mockReturnValue(true);
       funcionarioRepository.getFuncionarioByID.mockReturnValue(undefined);
 
       await expect(service.getFuncionarioByID(id)).rejects.toThrow(NotFoundException);
@@ -160,9 +160,9 @@ describe('FuncionarioService', () => {
 
       utils.checkNullOrBlank.mockReturnValue(true);
 
-      await service.getFuncionarioByID(id);
+     
 
-      expect(funcionarioRepository.getFuncionarioByID).not.toHaveBeenCalled();
+      await expect(service.getFuncionarioByID(id)).rejects.toThrow(NotFoundException);
     });
   });
 

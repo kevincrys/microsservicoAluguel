@@ -1,126 +1,124 @@
-import { NotFoundException } from '@nestjs/common';
 import { CartaoService } from './cartao.service';
-import { CartaoRepository } from './cartao.repository';
-import { Utils } from '../../common/utils';
+import { NotFoundException } from '@nestjs/common';
 
 describe('CartaoService', () => {
   let service: CartaoService;
-  let repository: CartaoRepository;
-  let utils: Utils;
+  let cartaoRepository: any;
+  let utils: any;
 
   beforeEach(() => {
-    repository = new CartaoRepository();
-    utils = new Utils();
-    service = new CartaoService(repository, utils);
+    cartaoRepository = {
+      insertCartao: jest.fn(),
+      updateCartao: jest.fn(),
+      deleteCartao: jest.fn(),
+      getCartaoByID: jest.fn(),
+      getCartaos: jest.fn(),
+    };
+
+    utils = {
+      checkNullOrBlank: jest.fn(),
+    };
+
+    service = new CartaoService(cartaoRepository, utils);
   });
 
-  describe('insertcartao', () => {
-    it('should insert cartao', async () => {
-      const cartao = {
+  describe('insertCartao', () => {
+    it('should insert Cartao', async () => {
+      const novoCartao =  {
         nomeTitular: 'John Doe',
-        numero: '1234567890',
+        numero: '1234567890123456',
         validade: '12/24',
         cvv: '123',
       };
+      ;
 
-      const result = await service.insertcartao(cartao);
+      await service.insertCartao(novoCartao);
 
-      expect(result).toBe(true);
-      expect(repository.getcartaoByID(1)).toEqual({
-        id: 1,
-        ...cartao,
-      });
-    });
-
-    it('should not insert cartao if cartao is null or blank', async () => {
-      const cartao = null;
-
-      const result = await service.insertcartao(cartao);
-
-      expect(result).toBeUndefined();
-      expect(repository.getcartaoByID(1)).toBeUndefined();
-    });
-  });
-
-  describe('updatecartao', () => {
-    it('should update cartao', async () => {
-      const cartao = {
-        nomeTitular: 'John Doe',
-        numero: '1234567890',
-        validade: '12/24',
-        cvv: '123',
-      };
-      repository.insertcartao(cartao);
-
-      const updatedCartao = {
-        nomeTitular: 'Jane Smith',
-        numero: '9876543210',
-        validade: '01/26',
-        cvv: '456',
-      };
-
-      const result = await service.updatecartao(1, updatedCartao);
-
-      expect(result).toBe(true);
-      expect(repository.getcartaoByID(1)).toEqual({
-        id: 1,
-        ...updatedCartao,
-      });
-    });
-
-    it('should throw NotFoundException if cartao is not found', async () => {
-      const cartao = {
-        nomeTitular: 'Jane Smith',
-        numero: '9876543210',
-        validade: '01/26',
-        cvv: '456',
-      };
-
-      expect(service.updatecartao(1, cartao)).rejects.toThrowError(NotFoundException);
-    });
-
-    it('should not update cartao if cartao is null or blank', async () => {
-      const cartao = null;
-      repository.insertcartao({
-        nomeTitular: 'John Doe',
-        numero: '1234567890',
-        validade: '12/24',
-        cvv: '123',
-      });
-
-      const result = await service.updatecartao(1, cartao);
-
-      expect(result).toBeUndefined();
-      expect(repository.getcartaoByID(1)).toEqual({
-        id: 1,
-        nomeTitular: 'John Doe',
-        numero: '1234567890',
-        validade: '12/24',
-        cvv: '123',
-      });
+      expect(cartaoRepository.insertCartao).toHaveBeenCalledWith(novoCartao);
     });
   });
 
-  describe('getcartaoByID', () => {
-    it('should get cartao by ID', async () => {
-      const cartao = {
+  describe('updateCartao', () => {
+    it('should update Cartao', async () => {
+      const id = 1;
+      const novoCartao =  {
         nomeTitular: 'John Doe',
-        numero: '1234567890',
+        numero: '1234567890123456',
         validade: '12/24',
         cvv: '123',
       };
-      repository.insertcartao(cartao);
+      ;
 
-      const result = await service.getcartaoByID(1);
+      utils.checkNullOrBlank.mockReturnValue(false);
+      cartaoRepository.updateCartao.mockReturnValue({});
 
-      expect(result).toEqual({
-        id: 1,
-        ...cartao,
-      });
+      await service.updateCartao(id, novoCartao);
+
+      expect(cartaoRepository.updateCartao).toHaveBeenCalledWith(id, novoCartao);
     });
 
-    it('should throw NotFoundException if cartao is not found', async () => {
-      expect(service.getcartaoByID(1)).rejects.toThrowError(NotFoundException);
+    it('should throw NotFoundException when Cartao is not found', async () => {
+      const id = 12;
+      const novoCartao =  {
+        nomeTitular: 'John Doe',
+        numero: '1234567890123456',
+        validade: '12/24',
+        cvv: '123',
+      };
+      ;
+
+      utils.checkNullOrBlank = jest.fn().mockReturnValue(true);
+      cartaoRepository.updateCartao.mockReturnValue(undefined);
+
+     
+
+      expect(service.updateCartao(id, novoCartao)).rejects.toThrow(NotFoundException);
     });
   });
+
+
+
+  describe('getCartaoByID', () => {
+    it('should return Cartao by id', async () => {
+      const id = 1234;
+      const cartao = {
+        senha: 'password',
+        confirmacaoSenha: 'password',
+        email: 'john@example.com',
+        nome: 'John Doe',
+        idade: 30,
+        funcao: 'Gerente',
+        cpf: '1234567890',
+        matricula: id,
+      };
+
+      utils.checkNullOrBlank.mockReturnValue(false);
+      cartaoRepository.getCartaoByID.mockReturnValue(cartao);
+
+      const result = await service.getCartaoByID(id);
+
+      expect(result).toEqual(cartao);
+      expect(cartaoRepository.getCartaoByID).toHaveBeenCalledWith(id);
+    });
+
+    it('should throw NotFoundException when Cartao is not found', async () => {
+      const id = 1234;
+
+      utils.checkNullOrBlank.mockReturnValue(true);
+      cartaoRepository.getCartaoByID.mockReturnValue(undefined);
+
+      await expect(service.getCartaoByID(id)).rejects.toThrow(NotFoundException);
+    });
+
+    it('should not getCartaoByID when id is null or blank', async () => {
+      const id = null;
+
+      utils.checkNullOrBlank.mockReturnValue(true);
+
+     
+
+      await expect(service.getCartaoByID(id)).rejects.toThrow(NotFoundException);
+    });
+  });
+
 });

@@ -13,25 +13,30 @@ export class FuncionarioRepository {
 async insertFuncionario (Funcionario: novoFuncionario) {
     
     var matricula= uuidv4()
-
+    console.log(matricula)
     FuncionariosNovos.push({ ...Funcionario, matricula })
     return { ...Funcionario, matricula }
 }
 
 
 async updateFuncionario (matricula: string, Funcionario: novoFuncionario): Promise<Funcionario> {
-    const index = FuncionariosNovos.findIndex((Funcionario) => Funcionario.matricula === matricula)
+    var FuncionariosArray= await this.getFuncionarios()
+    const index = FuncionariosArray.findIndex((Funcionario) => Funcionario.matricula === matricula)
     if (index !== -1) {
-        FuncionariosNovos[index] = { ...Funcionario, matricula }
+        FuncionariosArray[index] = { ...Funcionario, matricula }
         return { ...Funcionario, matricula }
       }
       return undefined
 }
 
 async deleteFuncionario (matricula: string): Promise<boolean> {
-    const beforeLenght = FuncionariosNovos.length
-    FuncionariosNovos = FuncionariosNovos.filter((Funcionario) => Funcionario.matricula !== matricula)
-    return beforeLenght !== FuncionariosNovos.length
+    var FuncionariosArray= await this.getFuncionarios()
+    const beforeLenght = FuncionariosArray.length
+    console.log(beforeLenght)
+    FuncionariosNovos = FuncionariosArray.filter((Funcionario) => Funcionario.matricula !== matricula)
+    FuncionariosArray=FuncionariosNovos
+    console.log(beforeLenght !== FuncionariosArray.length)
+    return beforeLenght !== FuncionariosArray.length
     }
 
 async getFuncionarios (): Promise<Funcionario[]> {
@@ -39,8 +44,9 @@ async getFuncionarios (): Promise<Funcionario[]> {
         }
 
 async getFuncionarioByID (matricula: string): Promise<Funcionario> {
-            return  FuncionariosNovos.find((Funcionario) => Funcionario.matricula === matricula)
+    var FuncionariosArray= await this.getFuncionarios()
+            return  FuncionariosArray.find((Funcionario) => Funcionario.matricula === matricula)
         }                     
 
-}
+}  
 

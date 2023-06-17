@@ -1,6 +1,7 @@
 export class Utils{
 checkNullOrBlank<T>(dado: T): boolean{
-const verified =  dado === null|| dado === undefined|| dado === ""
+    console.log(dado)
+const verified =  dado === null|| dado === undefined|| dado === ""||dado ==="null"||dado === "undefined"
 return verified
 
 }
