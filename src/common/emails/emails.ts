@@ -6,5 +6,9 @@ export const emails = {
     'aluguel': {
       assunto: 'seu aluguel foi concluido',
       mensagem: 'seu aluguel foi concluido, obrigado',
+    },
+    'devolucao': {
+      assunto: 'sua devolucao foi concluido',
+      mensagem: 'seu devolucao foi concluido, obrigado',
     }
   };

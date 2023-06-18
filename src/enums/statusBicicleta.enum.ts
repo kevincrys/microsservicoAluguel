@@ -1,0 +1,9 @@
+export enum statusBicicleta {
+  DISPONÍVEL = 'DISPONÍVEL',
+  EM_USO = 'EM_USO',
+  NOVA = 'NOVA',
+  APOSENTADA = 'APOSENTADA',
+  REPARO_SOLICITADO = 'REPARO_SOLICITADO',
+  EM_REPARO = 'EM_REPARO',
+  }
+ 

@@ -1,6 +1,6 @@
 import { IsNotEmpty } from "class-validator";
 
-export class novaDevolucao {
+export class NovaDevolucao {
 
     @IsNotEmpty()
     ciclista: number;

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AluguelController } from './aluguel.controller';
 import { AluguelService } from './aluguel.service';
 import { AluguelRepository } from './aluguel.repository';
-import { Utils } from 'src/common/utils';
+import { Utils } from '../../common/utils';
 
 @Module({
   imports: [],

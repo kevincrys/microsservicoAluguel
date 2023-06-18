@@ -1,29 +1,28 @@
 import { BadRequestException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
-import { NovoAluguel } from "../../dto/novoAluguel.dto";
-import { AluguelRepository } from './aluguel.repository';
+import { NovaDevolucao } from "../../dto/novaDevolucao.dto";
+import { DevolucaoRepository } from './devolucao.repository';
 import {Utils} from '../../common/utils';
-import { Aluguel } from '../../schemas/Aluguel.schema';
+import { Devolucao } from 'src/schemas/Devolucao.schema';
 import {realizaCobrança} from "../../dto/realizaCobranca";
 import { CartaoService } from '../cartao/cartao.service';
-import { enviaEmail } from '../../dto/enviaEmail';
+import { enviaEmail } from 'src/dto/enviaEmail';
 import { CiclistaService } from '../ciclista/ciclista.service';
-import { emails } from '../../common/emails/emails';
-import { Bicicleta } from '../../schemas/bicicleta.schema';
+import { emails } from 'src/common/emails/emails';
 @Injectable()
-export class AluguelService {
+export class DevolucaoService {
   constructor(
-    private readonly aluguelRepository:AluguelRepository,
+    private readonly devolucaoRepository:DevolucaoRepository,
     private readonly utils:Utils,
     private readonly cartaoService:CartaoService,
     private readonly ciclistaService:CiclistaService
   ) {}
 
-  async insertAluguel(aluguel: NovoAluguel): Promise<Boolean> {
-    const alugado = new Aluguel;
+  async insertDevolucao(devolucao: NovaDevolucao): Promise<Boolean> {
+    const alugado = new Devolucao;
     const cobrança= new realizaCobrança()
-    cobrança.ciclista=  aluguel.ciclista
+    cobrança.ciclista=  devolucao.ciclista
     cobrança.valor=  30
-    const ciclista= await this.ciclistaService.getCiclistaByID(aluguel.ciclista)
+    const ciclista= await this.ciclistaService.getCiclistaByID(devolucao.ciclista)
     const email= ciclista.email
     const tranca= {
       id: 1,
@@ -35,14 +34,14 @@ export class AluguelService {
       status: "Ativo",
     }
     const fimCobrança= await this.realizaCobrança(cobrança)
-    this.destrancaTranca(aluguel.trancaInicio)
-    this.enviaEmail( {...emails.aluguel,email})
+    this.trancarTranca(devolucao.trancaFim)
+    this.enviaEmail( {...emails.devolucao,email})
     alugado.bicicleta= tranca.bicicleta
-    alugado.ciclista= aluguel.ciclista
+    alugado.ciclista= devolucao.ciclista
     alugado.cobranca= fimCobrança
     alugado.horaInicio= Date()
     alugado.trancaInicio=tranca.id
-    this.aluguelRepository.insertAluguel(alugado)
+    this.devolucaoRepository.insertDevolucao(alugado)
     return true
   
     
@@ -87,30 +86,18 @@ async mocktrancas(id: number): Promise<any> {
       status: "Disponível",
     },
   ]
-
+  const trancaEscolhida=  trancas.find((tranca) => tranca.id === id)
 }
 
-async permiteAluguel(id: number): Promise<Boolean> {
-  const update= await this.aluguelRepository.permiteAluguel(id)
-  return update
-
-}
-
-
-async getBikeByCiclista(id: number): Promise<number> {
-  const update= await this.aluguelRepository.getBikeByCiclista(id)
-  return update
-
-}
-async realizaCobrança(aluguel: realizaCobrança): Promise<any> {
+async realizaCobrança(devolucao: realizaCobrança): Promise<any> {
    return 1
 }
-async enviaEmail(aluguel: enviaEmail): Promise<any> {
+async enviaEmail(devolucao: enviaEmail): Promise<any> {
    
   
 return true
 }
-async destrancaTranca(id: number): Promise<any> {
+async trancarTranca(id: number): Promise<any> {
    
   
   return true

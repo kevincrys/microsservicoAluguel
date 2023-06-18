@@ -1,4 +1,4 @@
-import { IsNotEmpty } from "class-validator";
+import { IsDateString, IsNotEmpty } from "class-validator";
 
 export class novoCartao {
     @IsNotEmpty()
@@ -6,7 +6,8 @@ export class novoCartao {
 
     @IsNotEmpty()
     numero: string;
-
+    
+    @IsDateString()
     @IsNotEmpty()
     validade: string;
 

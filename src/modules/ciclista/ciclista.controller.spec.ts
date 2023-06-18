@@ -25,7 +25,8 @@ const newCiclista=  {
     urlFotoDocumento: 'https://example.com/document.jpg',
     senha: 'password123',
   }
-  const CiclistaReturn=  {  id: 1,
+  const CiclistaReturn=  {  
+    id: 1,
     nome: 'Jane Smith',
     nascimento: '1992-05-15',
     cpf: '9876543210',
@@ -39,6 +40,14 @@ const newCiclista=  {
     urlFotoDocumento: 'https://example.com/document2.jpg',
     senha: 'secret789',
     status: statusCiclista.INATIVO,
+  }
+  const BicicletaReturn= {
+    "marca": "Marca 1",
+    "modelo": "Modelo 1",
+    "ano": "2023",
+    "numero": "123456",
+    "status": "Disponível",
+    "id": 1
   }
   const newCartao= {
     nomeTitular: 'John Doe',
@@ -199,4 +208,42 @@ describe('CiclistaController', () => {
       expect(res.send).toHaveBeenCalledWith(response);
     });
   });
+
+  // describe('permiteAluguel', () => {
+  //   it('should call permiteAluguel in the service and return response from service', async () => {
+  //     const id = '1';
+  //     const response =true ;
+      
+  //     jest.spyOn(service, 'permiteAluguel').mockResolvedValue(response);
+  //     const res: Response = {
+  //       status: jest.fn().mockReturnThis(),
+  //       send: jest.fn(),
+  //     } as any;
+
+  //     await controller.getCiclistaByID(res, id);
+
+  //     expect(service.getCiclistaByID).toHaveBeenCalledWith(parseInt(id));
+  //     expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
+  //     expect(res.send).toHaveBeenCalledWith(response);
+  //   });
+  // });
+
+  // describe('getBikeByCiclista', () => {
+  //   it('should call getBikeByCiclista in the service and return response from service', async () => {
+  //     const id = '1';
+  //     const response =BicicletaReturn ;
+      
+  //     jest.spyOn(service, 'getBikeByCiclista').mockResolvedValue(response);
+  //     const res: Response = {
+  //       status: jest.fn().mockReturnThis(),
+  //       send: jest.fn(),
+  //     } as any;
+
+  //     await controller.getBikeByCiclista(res, id);
+
+  //     expect(service.getBikeByCiclista).toHaveBeenCalledWith(parseInt(id));
+  //     expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
+  //     expect(res.send).toHaveBeenCalledWith(response);
+  //   });
+  // });
 });

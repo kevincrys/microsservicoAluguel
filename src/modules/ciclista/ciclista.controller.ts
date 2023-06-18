@@ -67,7 +67,19 @@ export class CiclistaController {
       const response= await this.ciclistaService.checkEmail(email);
       return res.status(HttpStatus.OK).send(response);
     }
-
-
+    // @Get("/ciclista/:idCiclista/permiteAluguel")
+    // async permiteAluguel(
+    // @Res() res: Response,@Param('idCiclista') id): Promise<any> {
+    //   const idbicicleta=  parseInt(id)
+    //    const response= await this.ciclistaService.permiteAluguel(idbicicleta);
+    //    return res.status(HttpStatus.OK).send(response);
+    //  }
+    //  @Get("/ciclista/:idCiclista/bicicletaAlugada")
+    //  async getBikeByCiclista(
+    //  @Res() res: Response,@Param('idCiclista') id): Promise<any> {
+    //     const idbicicleta=  parseInt(id)
+    //     const response= await this.ciclistaService.getBikeByCiclista(idbicicleta);
+    //     return res.status(HttpStatus.OK).send(response);
+    //   }
   
 }

@@ -15,4 +15,3 @@ export class Aluguel {
   cobranca: number;
     
   }
-
