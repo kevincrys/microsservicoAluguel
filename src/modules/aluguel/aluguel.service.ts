@@ -1,14 +1,12 @@
-import { BadRequestException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import {Injectable  } from '@nestjs/common';
 import { NovoAluguel } from "../../dto/novoAluguel.dto";
 import { AluguelRepository } from './aluguel.repository';
 import {Utils} from '../../common/utils';
 import { Aluguel } from '../../schemas/Aluguel.schema';
 import {realizaCobrança} from "../../dto/realizaCobranca";
-import { CartaoService } from '../cartao/cartao.service';
 import { enviaEmail } from '../../dto/enviaEmail';
 import { CiclistaService } from '../ciclista/ciclista.service';
 import { emails } from '../../common/emails/emails';
-import { Bicicleta } from '../../schemas/bicicleta.schema';
 import { Tranca } from 'src/schemas/trancas.schemas';
 import { statusTranca } from '../../enums/statusTranca.enum';
 @Injectable()

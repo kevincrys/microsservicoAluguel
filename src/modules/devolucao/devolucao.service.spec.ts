@@ -1,4 +1,4 @@
-import { BadRequestException, NotFoundException } from '@nestjs/common';
+
 import { Test, TestingModule } from '@nestjs/testing';
 import { DevolucaoRepository } from './devolucao.repository';
 import { DevolucaoService } from './devolucao.service';
@@ -46,7 +46,7 @@ const devolucao= {
     "ciclista": 1,
     "trancaFim": 1234,
     "bicicleta": 9876,
-    "horaInicio": "2023-06-18T10:00:00",
+    "horaFim": "2023-06-18T10:00:00",
     "cobranca": 20.5
   }
 const tranca: Tranca = {

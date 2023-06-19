@@ -1,10 +1,9 @@
-import { BadRequestException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { Injectable  } from '@nestjs/common';
 import { NovaDevolucao } from "../../dto/novaDevolucao.dto";
 import { DevolucaoRepository } from './devolucao.repository';
 import {Utils} from '../../common/utils';
 import { Devolucao } from '../../schemas/Devolucao.schema';
 import {realizaCobrança} from "../../dto/realizaCobranca";
-import { CartaoService } from '../cartao/cartao.service';
 import { enviaEmail } from '../../dto/enviaEmail';
 import { CiclistaService } from '../ciclista/ciclista.service';
 import { emails } from '../../common/emails/emails';
@@ -32,7 +31,7 @@ export class DevolucaoService {
     alugado.bicicleta= tranca.bicicleta
     alugado.ciclista= devolucao.ciclista
     alugado.cobranca= fimCobrança
-    alugado.horaInicio= await this.utils.getData()
+    alugado.horaFim= await this.utils.getData()
     alugado.trancaFim=tranca.id
     const devolucaoResult=  this.devolucaoRepository.insertDevolucao(alugado)
     return devolucaoResult
