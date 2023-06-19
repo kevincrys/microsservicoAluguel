@@ -21,7 +21,7 @@ export class CiclistaService {
 
   async insertCiclista(ciclista: CadastroCiclista): Promise<Ciclista> {
    
-    if(this.validaCartaoMock()){
+    if(await this.validaCartaoMock()){
     this.cartaoService.insertCartao(ciclista.MetodoDePagamento)
     const check= await this.ciclistaRepository.insertCiclista(ciclista.Ciclista)
     console.log(check)
