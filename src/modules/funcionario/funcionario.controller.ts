@@ -11,7 +11,7 @@ export class FuncionarioController {
  async cadastrarFuncionario(
  @Body() novoFuncionario: novoFuncionario,
  @Res() res: Response): Promise<any> {
-    console.log(novoFuncionario)
+
     const response= await this.funcionarioService.insertFuncionario(novoFuncionario);
     return res.status(HttpStatus.CREATED).send(response);
   }
@@ -19,7 +19,7 @@ export class FuncionarioController {
   @Get("/funcionario")
   async getFuncionario(
   @Res() res: Response): Promise<any> {
-     console.log(novoFuncionario)
+
      const response= await this.funcionarioService.getFuncionarios();
      return res.status(HttpStatus.OK).send(response);
    }

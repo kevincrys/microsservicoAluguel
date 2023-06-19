@@ -1,5 +1,5 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
-import { CadastroCiclista } from '../../dto/cadastroCiclista';
+import { CadastroCiclista } from '../../dto/cadastroCiclista.dto';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Ciclista } from 'src/schemas/Ciclista.schema';
 import { CiclistaRepository } from './ciclista.repository';
@@ -11,6 +11,8 @@ import { emails } from '../../common/emails/emails';
 import { statusCiclista } from '../../enums/statusCiclista.enum';
 import { CartaoModule } from '../cartao/cartao.module';
 import { CiclistaController } from './ciclista.controller';
+import { AluguelRepository } from '../aluguel/aluguel.repository';
+import { Bicicleta } from '../../schemas/bicicleta.schema';
 
 
 
@@ -19,11 +21,12 @@ describe('CiclistaService', () => {
   let ciclistaRepository: CiclistaRepository;
   let utils: Utils;
   let cartaoService: CartaoService;
-
+  let aluguelRepository: AluguelRepository;
+  Bicicleta
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [CartaoModule],
-      providers: [CiclistaService, CiclistaRepository, Utils],
+      providers: [CiclistaService, CiclistaRepository, Utils,AluguelRepository],
       exports: [CiclistaService, Utils],
     }).compile();
     cartaoService = module.get<CartaoService>(CartaoService);
@@ -38,10 +41,17 @@ describe('CiclistaService', () => {
     } as unknown as CiclistaRepository;
 
     utils = {} as Utils;
+    aluguelRepository =  {
+      insertAluguel: jest.fn(),
+      getAluguels: jest.fn(),
+      permiteAluguel: jest.fn(),
+      getBikeByCiclistats: jest.fn()
+    }  as unknown as AluguelRepository;
     ciclistaService = new CiclistaService(
       ciclistaRepository,
       utils,
       cartaoService,
+      aluguelRepository
     );
   });
 const newCiclista=  {
@@ -255,6 +265,71 @@ const ciclistaCad={  id: 1,
     });
   });
 
+  describe('permiteAluguel', () => {
+    it('should get a ciclista by ID and return true', async () => {
+      const id = 1;
+      ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue(ciclistaCad);
+      aluguelRepository.permiteAluguel = jest.fn().mockResolvedValue(true);
+
+      const result = await ciclistaService.permiteAluguel(id);
+
+      expect(aluguelRepository.permiteAluguel).toHaveBeenCalledWith(id);
+      expect(result).toBe(true);
+    });
+
+    it('should get a ciclista by ID and return false', async () => {
+      const id = 1;
+      ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue(ciclistaCad);
+      aluguelRepository.permiteAluguel = jest.fn().mockResolvedValue(false);
+
+      const result = await ciclistaService.permiteAluguel(id);
+
+      expect(aluguelRepository.permiteAluguel).toHaveBeenCalledWith(id);
+      expect(result).toBe(false);
+    });
+
+    it('should throw NotFoundException if permiteAluguel returns null', async () => {
+      const id = 1;
+      ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue(null);
+  
+      await expect(
+        ciclistaService.getCiclistaByID(id),
+      ).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  
+  describe('getBikeByCiclista', () => {
+    it('should get a ciclista by ID and return true', async () => {
+      const id = 1;
+      const bike= {
+        "marca": "Exemplo",
+        "modelo": "XYZ",
+        "ano": "2023",
+        "numero": "12345",
+        "status": "Ativo",
+        "id": 1
+      }
+
+      aluguelRepository.getBikeByCiclista = jest.fn().mockResolvedValue(1234);
+
+      const result = await ciclistaService.getBikeByCiclista(id);
+      jest.spyOn(ciclistaService, 'getBicicletaByid').mockResolvedValue(bike);
+     
+      expect(aluguelRepository.getBikeByCiclista).toHaveBeenCalledWith(id);
+      expect(result).toStrictEqual(bike);
+    });
+
+    it('should throw NotFoundException if getBikeByCiclista returns null', async () => {
+      const id = 1;
+
+      ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue(null);
+
+      await expect(
+        ciclistaService.getCiclistaByID(id),
+      ).rejects.toThrow(NotFoundException);
+    });
+  });
   describe('getCiclistas', () => {
     it('should get all ciclistas', async () => {
       const ciclistas: Ciclista[] = [];

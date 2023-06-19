@@ -3,9 +3,9 @@ import { novoCiclista } from "../../dto/novoCiclista.dto";
 import { CiclistaRepository } from './ciclista.repository';
 import {Utils} from '../../common/utils';
 import { Ciclista } from '../../schemas/Ciclista.schema';
-import { CadastroCiclista } from '../../dto/cadastroCiclista';
+import { CadastroCiclista } from '../../dto/cadastroCiclista.dto';
 import { CartaoService } from '../cartao/cartao.service';
-import { enviaEmail } from '../../dto/enviaEmail';
+import { enviaEmail } from '../../dto/enviaEmail.dto';
 import { emails } from '../../common/emails/emails';
 import { AluguelRepository } from '../aluguel/aluguel.repository';
 import { statusBicicleta } from '../../enums/statusBicicleta.enum';
@@ -16,7 +16,7 @@ export class CiclistaService {
     private readonly ciclistaRepository:CiclistaRepository,
     private readonly utils:Utils,
     private readonly cartaoService:CartaoService,
-    // private readonly aluguelRepository:AluguelRepository
+    private readonly aluguelRepository:AluguelRepository
   ) {}
 
   async insertCiclista(ciclista: CadastroCiclista): Promise<Ciclista> {
@@ -24,7 +24,7 @@ export class CiclistaService {
     if(await this.validaCartaoMock()){
     this.cartaoService.insertCartao(ciclista.MetodoDePagamento)
     const check= await this.ciclistaRepository.insertCiclista(ciclista.Ciclista)
-    console.log(check)
+
     if(check===undefined)
     {
       throw new NotFoundException("Requisição mal formada")
@@ -91,37 +91,34 @@ export class CiclistaService {
   
   }
 
-  // async permiteAluguel(id: number): Promise<Boolean> {
-  //   const getCiclistas= this.getCiclistaByID(id);
-  //   if(getCiclistas === null){
-  //     throw new NotFoundException("Não encontrado")
-  // }
-  //   const update= await this.aluguelRepository.permiteAluguel(id)
+  async permiteAluguel(id: number): Promise<Boolean> {
+    const getCiclistas= this.getCiclistaByID(id);
+    if(getCiclistas === null){
+      throw new NotFoundException("Não encontrado")
+  }
+    const update= await this.aluguelRepository.permiteAluguel(id)
 
-  //   return update
+    return update
   
-  // }
+  }
   
 
-  // async getBikeByCiclista(id: number): Promise<Bicicleta> {
+  async getBikeByCiclista(id: number): Promise<Bicicleta> {
     
-  //   this.getCiclistaByID(id);
-  //   const update= await this.aluguelRepository.getBikeByCiclista(id)
-  //   if(update === null){
-  //     throw new NotFoundException("Ciclista não encontrado")
-  //   }
-  //   const getBike= await this.getBicicletaByid(update)
- 
-  //   return getBike
   
-  // }
+    const update= await this.aluguelRepository.getBikeByCiclista(id)
+    if(update === null){
+      throw new NotFoundException("Ciclista não encontrado")
+    }
+   
+    const getBike= await this.getBicicletaByid(update)
+    return getBike
+  
+  }
   async getCiclistas(): Promise<Ciclista[]> {
    
     const array= await this.ciclistaRepository.getCiclistas()
-    array.forEach((el) => {
-      console.log("el", el)
 
-    })
     return array
   }
 
@@ -137,7 +134,14 @@ export class CiclistaService {
   }
   async getBicicletaByid(id:number): Promise<Bicicleta> {
     // /bicicleta/{idBicicleta}:
-  const bike= new Bicicleta
+  const bike: Bicicleta={
+    "marca": "Exemplo",
+    "modelo": "XYZ",
+    "ano": "2023",
+    "numero": "12345",
+    "status": "Ativo",
+    "id": 1
+  }
     return bike
   }
 

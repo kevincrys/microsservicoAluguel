@@ -26,7 +26,6 @@ async insertCiclista (ciclista: novoCiclista): Promise<Ciclista> {
 
 async updateCiclista (id: number, ciclista: novoCiclista): Promise<Ciclista> {
    const ciclistaArray= await this.getCiclistas()
-   console.log(id)
     const index = ciclistaArray.findIndex((ciclista) => ciclista.id === id)
     var ciclistaAdd= new Ciclista
     if (index !== -1) {

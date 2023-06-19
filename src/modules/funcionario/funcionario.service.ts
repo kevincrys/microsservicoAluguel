@@ -39,7 +39,7 @@ export class FuncionarioService {
    
    
     const update= await this.funcionarioRepository.getFuncionarioByID(id)
-    console.log(update)
+
     if(this.utils.checkNullOrBlank(update)){
       throw new NotFoundException("Não encontrado")
     }
@@ -50,10 +50,7 @@ export class FuncionarioService {
   async getFuncionarios(): Promise<Funcionario[]> {
    
     const array= await this.funcionarioRepository.getFuncionarios()
-    array.forEach((el) => {
-      console.log("el", el)
-
-    })
+   
     return array
   }
 

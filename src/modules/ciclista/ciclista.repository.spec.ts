@@ -128,7 +128,6 @@ describe("CiclistaRepository", () => {
     .spyOn(ciclistaRepository, 'getCiclistas')
     .mockResolvedValue(ciclistasArray)
     const result = await ciclistaRepository.deleteCiclista(ciclistaId);
-    console.log("result",result)
     expect(result).toBe(true);
     // Verifique se o ciclista foi removido corretamente da lista ciclistasNovos
   });
@@ -140,7 +139,6 @@ describe("CiclistaRepository", () => {
     .spyOn(ciclistaRepository, 'getCiclistas')
     .mockResolvedValue(ciclistasArray)
     const result = await ciclistaRepository.getCiclistaByID(ciclistaId);
-
     // Verifique se o ciclista retornado possui o ID correto
     expect(result.id).toBe(ciclistaId);
   });

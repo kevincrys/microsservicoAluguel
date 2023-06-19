@@ -4,7 +4,7 @@ import { CiclistaService } from './ciclista.service';
 import { novoCiclista } from "../../dto/novoCiclista.dto";
 import { Response } from 'express';
 
-import { CadastroCiclista } from '../../dto/cadastroCiclista';
+import { CadastroCiclista } from '../../dto/cadastroCiclista.dto';
 @Controller()
 export class CiclistaController {
   constructor(private readonly ciclistaService: CiclistaService,
@@ -23,7 +23,7 @@ export class CiclistaController {
   @Get("/ciclista")
   async getCiclista(
   @Res() res: Response): Promise<any> {
-     console.log(novoCiclista)
+  
      const response= await this.ciclistaService.getCiclistas();
      return res.status(HttpStatus.OK).send(response);
    }
@@ -67,19 +67,19 @@ export class CiclistaController {
       const response= await this.ciclistaService.checkEmail(email);
       return res.status(HttpStatus.OK).send(response);
     }
-    // @Get("/ciclista/:idCiclista/permiteAluguel")
-    // async permiteAluguel(
-    // @Res() res: Response,@Param('idCiclista') id): Promise<any> {
-    //   const idbicicleta=  parseInt(id)
-    //    const response= await this.ciclistaService.permiteAluguel(idbicicleta);
-    //    return res.status(HttpStatus.OK).send(response);
-    //  }
-    //  @Get("/ciclista/:idCiclista/bicicletaAlugada")
-    //  async getBikeByCiclista(
-    //  @Res() res: Response,@Param('idCiclista') id): Promise<any> {
-    //     const idbicicleta=  parseInt(id)
-    //     const response= await this.ciclistaService.getBikeByCiclista(idbicicleta);
-    //     return res.status(HttpStatus.OK).send(response);
-    //   }
+    @Get("/ciclista/:idCiclista/permiteAluguel")
+    async permiteAluguel(
+    @Res() res: Response,@Param('idCiclista') id): Promise<any> {
+      const idbicicleta=  parseInt(id)
+       const response= await this.ciclistaService.permiteAluguel(idbicicleta);
+       return res.status(HttpStatus.OK).send(response);
+     }
+     @Get("/ciclista/:idCiclista/bicicletaAlugada")
+     async getBikeByCiclista(
+     @Res() res: Response,@Param('idCiclista') id): Promise<any> {
+        const idbicicleta=  parseInt(id)
+        const response= await this.ciclistaService.getBikeByCiclista(idbicicleta);
+        return res.status(HttpStatus.OK).send(response);
+      }
   
 }

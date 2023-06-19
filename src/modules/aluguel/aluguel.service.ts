@@ -3,8 +3,8 @@ import { NovoAluguel } from "../../dto/novoAluguel.dto";
 import { AluguelRepository } from './aluguel.repository';
 import {Utils} from '../../common/utils';
 import { Aluguel } from '../../schemas/Aluguel.schema';
-import {realizaCobrança} from "../../dto/realizaCobranca";
-import { enviaEmail } from '../../dto/enviaEmail';
+import {realizaCobrança} from "../../dto/realizaCobranca.dto";
+import { enviaEmail } from '../../dto/enviaEmail.dto';
 import { CiclistaService } from '../ciclista/ciclista.service';
 import { emails } from '../../common/emails/emails';
 import { Tranca } from 'src/schemas/trancas.schemas';
@@ -33,7 +33,7 @@ export class AluguelService {
     alugado.cobranca= fimCobrança
     alugado.horaInicio= await  this.utils.getData()
     alugado.trancaInicio=tranca.id
-    console.log(alugado)
+
     const aluguelResult= this.aluguelRepository.insertAluguel(alugado)
     return aluguelResult
   

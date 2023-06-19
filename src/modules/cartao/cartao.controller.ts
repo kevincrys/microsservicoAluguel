@@ -11,7 +11,7 @@ export class CartaoController {
  async cadastrarCartao(
  @Body() novocartao: novoCartao,
  @Res() res: Response): Promise<any> {
-    console.log(novocartao)
+
     const response= await this.cartaoService.insertCartao(novocartao);
     return res.status(HttpStatus.CREATED).send(response);
   }
