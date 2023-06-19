@@ -3,9 +3,10 @@ import { AluguelController } from './aluguel.controller';
 import { AluguelService } from './aluguel.service';
 import { AluguelRepository } from './aluguel.repository';
 import { Utils } from '../../common/utils';
+import { CiclistaModule } from '../ciclista/ciclista.module';
 
 @Module({
-  imports: [],
+  imports: [CiclistaModule],
   controllers: [AluguelController],
   providers: [AluguelService,AluguelRepository, Utils],
   exports: [AluguelService, Utils]
