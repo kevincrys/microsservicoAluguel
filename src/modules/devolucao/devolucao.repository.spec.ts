@@ -2,7 +2,7 @@ import { DevolucaoRepository } from './devolucao.repository';
 
 
 import { nacionalidade } from '../../enums/nacionalidade.enum';
-import { Devolucao } from '../../schemas/Devolucao.schema';
+import { Devolucao } from '../../schemas/devolucao.schema';
 const devolucaosArray: Devolucao[] = [
   {
     "ciclista": 1,
