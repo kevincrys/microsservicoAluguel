@@ -59,24 +59,6 @@ async mocktrancas(id: number): Promise<Tranca> {
       modelo: "Modelo 2",
       status: statusTranca.OCUPADA,
     },
-    {
-      id: 3,
-      bicicleta: 131415,
-      numero: 161718,
-      localizacao: "Localização 3",
-      anoDeFabricacao: "2023",
-      modelo: "Modelo 3",
-      status:statusTranca.OCUPADA,
-    },
-    {
-      id: 4,
-      bicicleta: 192021,
-      numero: 222324,
-      localizacao: "Localização 4",
-      anoDeFabricacao: "2020",
-      modelo: "Modelo 4",
-      status: statusTranca.OCUPADA,
-    },
   ]
   return trancas[id]
 }
