@@ -12,17 +12,17 @@ async insertAluguel (aluguel: Aluguel) {
     aluguelsNovos.push(aluguel)
    }
    catch{
-    return false
+    return undefined
    }
-   return true
+   return aluguel
 }
 
-async getCiclistas (): Promise<Aluguel[]> {
+async getAluguels (): Promise<Aluguel[]> {
    return  aluguelsNovos
 }
 
 async permiteAluguel (id: number): Promise<Boolean> {
-const aluguelArray= await this.getCiclistas()
+const aluguelArray= await this.getAluguels()
 const index = aluguelArray.findIndex((aluguel) => aluguel.ciclista === id)
 if (index !== -1) {
     return false
@@ -31,7 +31,7 @@ if (index !== -1) {
 }
 
 async getBikeByCiclista (id: number): Promise<number> {
-   const aluguelArray= await this.getCiclistas()
+   const aluguelArray= await this.getAluguels()
       const aluguelfim=  aluguelArray.find((aluguel) => aluguel.ciclista === id)
       return aluguelfim.bicicleta
    }

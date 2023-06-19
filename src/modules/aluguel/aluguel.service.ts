@@ -9,45 +9,39 @@ import { enviaEmail } from '../../dto/enviaEmail';
 import { CiclistaService } from '../ciclista/ciclista.service';
 import { emails } from '../../common/emails/emails';
 import { Bicicleta } from '../../schemas/bicicleta.schema';
+import { Tranca } from 'src/schemas/trancas.schemas';
+import { statusTranca } from '../../enums/statusTranca.enum';
 @Injectable()
 export class AluguelService {
   constructor(
     private readonly aluguelRepository:AluguelRepository,
     private readonly utils:Utils,
-    private readonly cartaoService:CartaoService,
     private readonly ciclistaService:CiclistaService
   ) {}
 
-  async insertAluguel(aluguel: NovoAluguel): Promise<Boolean> {
+  async insertAluguel(aluguel: NovoAluguel): Promise<Aluguel> {
     const alugado = new Aluguel;
     const cobrança= new realizaCobrança()
     cobrança.ciclista=  aluguel.ciclista
     cobrança.valor=  30
     const ciclista= await this.ciclistaService.getCiclistaByID(aluguel.ciclista)
     const email= ciclista.email
-    const tranca= {
-      id: 1,
-      bicicleta: 123,
-      numero: 456,
-      localizacao: "Localização 1",
-      anoDeFabricacao: "2022",
-      modelo: "Modelo 1",
-      status: "Ativo",
-    }
+    const tranca= await this.mocktrancas(1)
     const fimCobrança= await this.realizaCobrança(cobrança)
     this.destrancaTranca(aluguel.trancaInicio)
     this.enviaEmail( {...emails.aluguel,email})
     alugado.bicicleta= tranca.bicicleta
     alugado.ciclista= aluguel.ciclista
     alugado.cobranca= fimCobrança
-    alugado.horaInicio= Date()
+    alugado.horaInicio= await  this.utils.getData()
     alugado.trancaInicio=tranca.id
-    this.aluguelRepository.insertAluguel(alugado)
-    return true
+    console.log(alugado)
+    const aluguelResult= this.aluguelRepository.insertAluguel(alugado)
+    return aluguelResult
   
     
 }
-async mocktrancas(id: number): Promise<any> {
+async mocktrancas(id: number): Promise<Tranca> {
    
   const trancas =[
     {
@@ -57,7 +51,7 @@ async mocktrancas(id: number): Promise<any> {
       localizacao: "Localização 1",
       anoDeFabricacao: "2022",
       modelo: "Modelo 1",
-      status: "Ativo",
+      status: statusTranca.OCUPADA,
     },
     {
       id: 2,
@@ -66,7 +60,7 @@ async mocktrancas(id: number): Promise<any> {
       localizacao: "Localização 2",
       anoDeFabricacao: "2021",
       modelo: "Modelo 2",
-      status: "Inativo",
+      status: statusTranca.OCUPADA,
     },
     {
       id: 3,
@@ -75,7 +69,7 @@ async mocktrancas(id: number): Promise<any> {
       localizacao: "Localização 3",
       anoDeFabricacao: "2023",
       modelo: "Modelo 3",
-      status: "Em manutenção",
+      status: statusTranca.OCUPADA,
     },
     {
       id: 4,
@@ -84,10 +78,10 @@ async mocktrancas(id: number): Promise<any> {
       localizacao: "Localização 4",
       anoDeFabricacao: "2020",
       modelo: "Modelo 4",
-      status: "Disponível",
+      status: statusTranca.OCUPADA,
     },
   ]
-
+return trancas[id]
 }
 
 async permiteAluguel(id: number): Promise<Boolean> {
@@ -115,6 +109,7 @@ async destrancaTranca(id: number): Promise<any> {
   
   return true
   }
+
 
 }
 

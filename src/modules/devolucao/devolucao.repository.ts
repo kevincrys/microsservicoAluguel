@@ -1,5 +1,5 @@
 
-import { Devolucao } from "src/schemas/Devolucao.schema";
+import { Devolucao } from "../../schemas/Devolucao.schema";
 
 
 
@@ -12,9 +12,9 @@ async insertDevolucao (devolucao: Devolucao) {
     devolucaosNovos.push(devolucao)
    }
    catch{
-    return false
-   }
-   return true
+      return undefined
+     }
+     return devolucao
 }
 
 

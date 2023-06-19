@@ -14,13 +14,13 @@ export class AluguelController {
  async cadastrarAluguel(
  @Body() cadastroAluguel: NovoAluguel,
  @Res() res: Response): Promise<any> {
-    const response= this.aluguelService.insertAluguel(cadastroAluguel)
+    const response= await this.aluguelService.insertAluguel(cadastroAluguel)
 
     
 
     
     
-    return res.status(HttpStatus.OK).send(response);
+    return res.status(HttpStatus.CREATED).send(response);
   }
 
   

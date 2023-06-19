@@ -14,13 +14,13 @@ export class DevolucaoController {
  async cadastrarDevolucao(
  @Body() cadastroDevolucao: NovaDevolucao,
  @Res() res: Response): Promise<any> {
-    const response= this.devolucaoService.insertDevolucao(cadastroDevolucao)
+    const response= await this.devolucaoService.insertDevolucao(cadastroDevolucao)
 
     
 
     
     
-    return res.status(HttpStatus.OK).send(response);
+    return res.status(HttpStatus.CREATED).send(response);
   }
 
   
