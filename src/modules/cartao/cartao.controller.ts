@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, Res, HttpStatus } from '@nestjs/common';
 import { CartaoService } from './cartao.service';
 
-import { novoCartao } from "../../dto/novocartao.dto";
+import { novoCartao } from "../../dto/novoCartao.dto";
 import { Response } from 'express';
 @Controller()
 export class CartaoController {

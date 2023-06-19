@@ -1,7 +1,7 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { CadastroCiclista } from '../../dto/cadastroCiclista.dto';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Ciclista } from 'src/schemas/Ciclista.schema';
+import { Ciclista } from 'src/schemas/ciclista.schema';
 import { CiclistaRepository } from './ciclista.repository';
 import { CartaoService } from '../cartao/cartao.service';
 import { CiclistaService } from './ciclista.service';

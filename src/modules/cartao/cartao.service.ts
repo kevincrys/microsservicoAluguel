@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { novoCartao } from "src/dto/novocartao.dto";
+import { novoCartao } from "src/dto/novoCartao.dto";
 import { CartaoRepository } from './cartao.repository';
 import {Utils} from '../../common/utils';
 import { Cartao } from 'src/schemas/cartao.schema';

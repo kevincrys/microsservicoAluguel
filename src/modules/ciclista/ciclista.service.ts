@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, NotFoundException, UnprocessableEntity
 import { novoCiclista } from "../../dto/novoCiclista.dto";
 import { CiclistaRepository } from './ciclista.repository';
 import {Utils} from '../../common/utils';
-import { Ciclista } from '../../schemas/Ciclista.schema';
+import { Ciclista } from '../../schemas/ciclista.schema';
 import { CadastroCiclista } from '../../dto/cadastroCiclista.dto';
 import { CartaoService } from '../cartao/cartao.service';
 import { enviaEmail } from '../../dto/enviaEmail.dto';

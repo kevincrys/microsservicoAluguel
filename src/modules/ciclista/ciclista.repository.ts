@@ -1,5 +1,5 @@
 import { statusCiclista } from "../../enums/statusCiclista.enum";
-import { Ciclista } from "../../schemas/Ciclista.schema";
+import { Ciclista } from "../../schemas/ciclista.schema";
 import { novoCiclista } from "../../dto/novoCiclista.dto";
 
 

@@ -2,7 +2,7 @@ import { Injectable  } from '@nestjs/common';
 import { NovaDevolucao } from "../../dto/novaDevolucao.dto";
 import { DevolucaoRepository } from './devolucao.repository';
 import {Utils} from '../../common/utils';
-import { Devolucao } from '../../schemas/Devolucao.schema';
+import { Devolucao } from '../../schemas/devolucao.schema';
 import {realizaCobrança} from "../../dto/realizaCobranca.dto";
 import { enviaEmail } from '../../dto/enviaEmail.dto';
 import { CiclistaService } from '../ciclista/ciclista.service';

@@ -1,6 +1,6 @@
 import { CiclistaRepository } from './ciclista.repository';
 import { statusCiclista } from "../../enums/statusCiclista.enum";
-import { Ciclista } from "src/schemas/Ciclista.schema";
+import { Ciclista } from "src/schemas/ciclista.schema";
 import { novoCiclista } from "../../dto/novoCiclista.dto";
 
 import { nacionalidade } from '../../enums/nacionalidade.enum';

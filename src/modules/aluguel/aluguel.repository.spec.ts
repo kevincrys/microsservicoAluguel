@@ -2,7 +2,7 @@ import { AluguelRepository } from './aluguel.repository';
 
 
 import { nacionalidade } from '../../enums/nacionalidade.enum';
-import { Aluguel } from 'src/schemas/Aluguel.schema';
+import { Aluguel } from 'src/schemas/aluguel.schema';
 const aluguelsArray: Aluguel[] = [
   {
     "ciclista": 1,
