@@ -1,5 +1,5 @@
 
-import { Devolucao } from "../../schemas/Devolucao.schema";
+import { Devolucao } from "../../schemas/devolucao.schema";
 
 
 
