@@ -8,7 +8,7 @@ export class CadastroCiclista {
   @IsNotEmpty()
   Ciclista: novoCiclista;
   
-  @IsDateString()
+
   @IsNotEmpty()
   MetodoDePagamento: novoCartao;
 
