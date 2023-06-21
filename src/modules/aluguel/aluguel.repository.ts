@@ -1,5 +1,5 @@
 
-import { Aluguel } from "src/schemas/Aluguel.schema";
+import { Aluguel } from "src/schemas/aluguel.schema";
 
 
 

@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { novoFuncionario } from "../../dto/novoFuncionario.dto";
 import { FuncionarioRepository } from './funcionario.repository';
 import {Utils} from '../../common/utils';
-import { Funcionario } from '../../schemas/Funcionario.schema';
+import { Funcionario } from '../../schemas/funcionario.schema';
 @Injectable()
 export class FuncionarioService {
   constructor(
@@ -39,7 +39,7 @@ export class FuncionarioService {
    
    
     const update= await this.funcionarioRepository.getFuncionarioByID(id)
-    console.log(update)
+
     if(this.utils.checkNullOrBlank(update)){
       throw new NotFoundException("Não encontrado")
     }
@@ -50,10 +50,7 @@ export class FuncionarioService {
   async getFuncionarios(): Promise<Funcionario[]> {
    
     const array= await this.funcionarioRepository.getFuncionarios()
-    array.forEach((el) => {
-      console.log("el", el)
-
-    })
+   
     return array
   }
 

@@ -2,9 +2,9 @@ import { Injectable  } from '@nestjs/common';
 import { NovaDevolucao } from "../../dto/novaDevolucao.dto";
 import { DevolucaoRepository } from './devolucao.repository';
 import {Utils} from '../../common/utils';
-import { Devolucao } from '../../schemas/Devolucao.schema';
-import {realizaCobrança} from "../../dto/realizaCobranca";
-import { enviaEmail } from '../../dto/enviaEmail';
+import { Devolucao } from '../../schemas/devolucao.schema';
+import {realizaCobrança} from "../../dto/realizaCobranca.dto";
+import { enviaEmail } from '../../dto/enviaEmail.dto';
 import { CiclistaService } from '../ciclista/ciclista.service';
 import { emails } from '../../common/emails/emails';
 import { Tranca } from '../../schemas/trancas.schemas';
@@ -57,24 +57,6 @@ async mocktrancas(id: number): Promise<Tranca> {
       localizacao: "Localização 2",
       anoDeFabricacao: "2021",
       modelo: "Modelo 2",
-      status: statusTranca.OCUPADA,
-    },
-    {
-      id: 3,
-      bicicleta: 131415,
-      numero: 161718,
-      localizacao: "Localização 3",
-      anoDeFabricacao: "2023",
-      modelo: "Modelo 3",
-      status:statusTranca.OCUPADA,
-    },
-    {
-      id: 4,
-      bicicleta: 192021,
-      numero: 222324,
-      localizacao: "Localização 4",
-      anoDeFabricacao: "2020",
-      modelo: "Modelo 4",
       status: statusTranca.OCUPADA,
     },
   ]

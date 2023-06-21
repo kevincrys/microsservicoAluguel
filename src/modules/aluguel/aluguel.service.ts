@@ -2,9 +2,9 @@ import {Injectable  } from '@nestjs/common';
 import { NovoAluguel } from "../../dto/novoAluguel.dto";
 import { AluguelRepository } from './aluguel.repository';
 import {Utils} from '../../common/utils';
-import { Aluguel } from '../../schemas/Aluguel.schema';
-import {realizaCobrança} from "../../dto/realizaCobranca";
-import { enviaEmail } from '../../dto/enviaEmail';
+import { Aluguel } from '../../schemas/aluguel.schema';
+import {realizaCobrança} from "../../dto/realizaCobranca.dto";
+import { enviaEmail } from '../../dto/enviaEmail.dto';
 import { CiclistaService } from '../ciclista/ciclista.service';
 import { emails } from '../../common/emails/emails';
 import { Tranca } from 'src/schemas/trancas.schemas';
@@ -33,7 +33,7 @@ export class AluguelService {
     alugado.cobranca= fimCobrança
     alugado.horaInicio= await  this.utils.getData()
     alugado.trancaInicio=tranca.id
-    console.log(alugado)
+
     const aluguelResult= this.aluguelRepository.insertAluguel(alugado)
     return aluguelResult
   
@@ -58,24 +58,6 @@ async mocktrancas(id: number): Promise<Tranca> {
       localizacao: "Localização 2",
       anoDeFabricacao: "2021",
       modelo: "Modelo 2",
-      status: statusTranca.OCUPADA,
-    },
-    {
-      id: 3,
-      bicicleta: 131415,
-      numero: 161718,
-      localizacao: "Localização 3",
-      anoDeFabricacao: "2023",
-      modelo: "Modelo 3",
-      status: statusTranca.OCUPADA,
-    },
-    {
-      id: 4,
-      bicicleta: 192021,
-      numero: 222324,
-      localizacao: "Localização 4",
-      anoDeFabricacao: "2020",
-      modelo: "Modelo 4",
       status: statusTranca.OCUPADA,
     },
   ]

@@ -1,6 +1,6 @@
 import { CiclistaRepository } from './ciclista.repository';
 import { statusCiclista } from "../../enums/statusCiclista.enum";
-import { Ciclista } from "src/schemas/Ciclista.schema";
+import { Ciclista } from "src/schemas/ciclista.schema";
 import { novoCiclista } from "../../dto/novoCiclista.dto";
 
 import { nacionalidade } from '../../enums/nacionalidade.enum';
@@ -128,7 +128,6 @@ describe("CiclistaRepository", () => {
     .spyOn(ciclistaRepository, 'getCiclistas')
     .mockResolvedValue(ciclistasArray)
     const result = await ciclistaRepository.deleteCiclista(ciclistaId);
-    console.log("result",result)
     expect(result).toBe(true);
     // Verifique se o ciclista foi removido corretamente da lista ciclistasNovos
   });
@@ -140,7 +139,6 @@ describe("CiclistaRepository", () => {
     .spyOn(ciclistaRepository, 'getCiclistas')
     .mockResolvedValue(ciclistasArray)
     const result = await ciclistaRepository.getCiclistaByID(ciclistaId);
-
     // Verifique se o ciclista retornado possui o ID correto
     expect(result.id).toBe(ciclistaId);
   });

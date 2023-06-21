@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, Res, HttpStatus } from '@nestjs/common';
 import { CartaoService } from './cartao.service';
 
-import { novoCartao } from "../../dto/novocartao.dto";
+import { novoCartao } from "../../dto/novoCartao.dto";
 import { Response } from 'express';
 @Controller()
 export class CartaoController {
@@ -11,7 +11,7 @@ export class CartaoController {
  async cadastrarCartao(
  @Body() novocartao: novoCartao,
  @Res() res: Response): Promise<any> {
-    console.log(novocartao)
+
     const response= await this.cartaoService.insertCartao(novocartao);
     return res.status(HttpStatus.CREATED).send(response);
   }

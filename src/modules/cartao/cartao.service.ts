@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { novoCartao } from "src/dto/novocartao.dto";
+import { novoCartao } from "src/dto/novoCartao.dto";
 import { CartaoRepository } from './cartao.repository';
 import {Utils} from '../../common/utils';
 import { Cartao } from 'src/schemas/cartao.schema';
@@ -24,7 +24,7 @@ export class CartaoService {
    
     const update= this.cartaoRepository.updateCartao(id,cartao)
     if(this.utils.checkNullOrBlank(update)){
-      console.log("caiu aqui")
+
       throw new NotFoundException("Não encontrado")
   }
 
@@ -41,7 +41,7 @@ export class CartaoService {
     if(update === undefined){
       throw new NotFoundException("Não encontrado")
   }
-    console.log(update)
+
     return update
   
   }

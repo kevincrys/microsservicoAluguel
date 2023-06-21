@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { CiclistaController } from './ciclista.controller';
 import { CiclistaService } from './ciclista.service';
 import { novoCiclista } from '../../dto/novoCiclista.dto';
-import { CadastroCiclista } from '../../dto/cadastroCiclista';
+import { CadastroCiclista } from '../../dto/cadastroCiclista.dto';
 import { Response } from 'express';
 import { HttpStatus } from '@nestjs/common';
 import { nacionalidade } from '../../enums/nacionalidade.enum';
@@ -10,6 +10,7 @@ import { statusCiclista } from '../../enums/statusCiclista.enum';
 import { CartaoModule } from '../cartao/cartao.module';
 import { CiclistaRepository } from './ciclista.repository';
 import { Utils } from '../../common/utils';
+import { AluguelRepository } from '../aluguel/aluguel.repository';
 
 const newCiclista=  {
     nome: 'John Doe',
@@ -67,7 +68,7 @@ describe('CiclistaController', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [CartaoModule],
       controllers: [CiclistaController],
-      providers: [CiclistaService, CiclistaRepository, Utils],
+      providers: [CiclistaService, CiclistaRepository, Utils,AluguelRepository],
       exports: [CiclistaService, Utils],
     }).compile();
 
@@ -209,41 +210,41 @@ describe('CiclistaController', () => {
     });
   });
 
-  // describe('permiteAluguel', () => {
-  //   it('should call permiteAluguel in the service and return response from service', async () => {
-  //     const id = '1';
-  //     const response =true ;
+  describe('permiteAluguel', () => {
+    it('should call permiteAluguel in the service and return response from service', async () => {
+      const id = '1';
+      const response =true ;
       
-  //     jest.spyOn(service, 'permiteAluguel').mockResolvedValue(response);
-  //     const res: Response = {
-  //       status: jest.fn().mockReturnThis(),
-  //       send: jest.fn(),
-  //     } as any;
+      jest.spyOn(service, 'permiteAluguel').mockResolvedValue(response);
+      const res: Response = {
+        status: jest.fn().mockReturnThis(),
+        send: jest.fn(),
+      } as any;
 
-  //     await controller.getCiclistaByID(res, id);
+      await controller.permiteAluguel(res, id);
 
-  //     expect(service.getCiclistaByID).toHaveBeenCalledWith(parseInt(id));
-  //     expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
-  //     expect(res.send).toHaveBeenCalledWith(response);
-  //   });
-  // });
+      expect(service.permiteAluguel).toHaveBeenCalledWith(parseInt(id));
+      expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
+      expect(res.send).toHaveBeenCalledWith(response);
+    });
+  });
 
-  // describe('getBikeByCiclista', () => {
-  //   it('should call getBikeByCiclista in the service and return response from service', async () => {
-  //     const id = '1';
-  //     const response =BicicletaReturn ;
+  describe('getBikeByCiclista', () => {
+    it('should call getBikeByCiclista in the service and return response from service', async () => {
+      const id = '1';
+      const response =BicicletaReturn ;
       
-  //     jest.spyOn(service, 'getBikeByCiclista').mockResolvedValue(response);
-  //     const res: Response = {
-  //       status: jest.fn().mockReturnThis(),
-  //       send: jest.fn(),
-  //     } as any;
+      jest.spyOn(service, 'getBikeByCiclista').mockResolvedValue(response);
+      const res: Response = {
+        status: jest.fn().mockReturnThis(),
+        send: jest.fn(),
+      } as any;
 
-  //     await controller.getBikeByCiclista(res, id);
+      await controller.getBikeByCiclista(res, id);
 
-  //     expect(service.getBikeByCiclista).toHaveBeenCalledWith(parseInt(id));
-  //     expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
-  //     expect(res.send).toHaveBeenCalledWith(response);
-  //   });
-  // });
+      expect(service.getBikeByCiclista).toHaveBeenCalledWith(parseInt(id));
+      expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
+      expect(res.send).toHaveBeenCalledWith(response);
+    });
+  });
 });

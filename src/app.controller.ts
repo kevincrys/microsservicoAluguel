@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Put, Delete, Param } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get } from '@nestjs/common';
+
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor() {}
 
   @Get('/status')
   hc(): any {
