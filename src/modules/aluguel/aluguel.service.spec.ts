@@ -21,8 +21,8 @@ let utils: Utils
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [CiclistaModule],
-      providers: [AluguelService, AluguelRepository],
-      exports: [AluguelService, ],
+      providers: [AluguelService, AluguelRepository,Utils],
+      exports: [AluguelService,Utils ],
     }).compile();
     ciclistaService = module.get<CiclistaService>(CiclistaService);
     aluguelRepository = {
@@ -80,7 +80,7 @@ const cobranca={"ciclista": 1, "valor": 30
 
         
         ciclistaService.getCiclistaByID=jest.fn().mockResolvedValue(Ciclista);
-     
+        utils.checkNullOrBlank = jest.fn().mockReturnValue(false);
       
       aluguelService.mocktrancas= jest.fn().mockResolvedValue(tranca);
       aluguelService.realizaCobrança= jest.fn().mockResolvedValue(20.5);

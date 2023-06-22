@@ -144,7 +144,7 @@ describe("CiclistaRepository", () => {
   });
 
   it("should check if an email is available", async () => {
-    const email = "example@example.com"; // Email a ser verificado
+    const email = "john.doe@example.com"; // Email a ser verificado
     jest
     .spyOn(ciclistaRepository, 'getCiclistas')
     .mockResolvedValue(ciclistasArray)

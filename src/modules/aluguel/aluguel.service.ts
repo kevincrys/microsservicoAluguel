@@ -1,4 +1,4 @@
-import {Injectable  } from '@nestjs/common';
+import {Injectable, NotFoundException  } from '@nestjs/common';
 import { NovoAluguel } from "../../dto/novoAluguel.dto";
 import { AluguelRepository } from './aluguel.repository';
 import {Utils} from '../../common/utils';
@@ -20,19 +20,22 @@ export class AluguelService {
   async insertAluguel(aluguel: NovoAluguel): Promise<Aluguel> {
     const alugado = new Aluguel;
     const cobrança= new realizaCobrança()
-    cobrança.ciclista=  aluguel.ciclista
+    cobrança.ciclista=  aluguel?.ciclista
     cobrança.valor=  30
-    const ciclista= await this.ciclistaService.getCiclistaByID(aluguel.ciclista)
-    const email= ciclista.email
+    const ciclista= await this.ciclistaService.getCiclistaByID(aluguel?.ciclista)
+    if(this.utils.checkNullOrBlank(ciclista) ){
+      throw new NotFoundException("Ciclista não encontrado")
+  }
+    const email= ciclista?.email
     const tranca= await this.mocktrancas(1)
     const fimCobrança= await this.realizaCobrança(cobrança)
-    this.destrancaTranca(aluguel.trancaInicio)
-    this.enviaEmail( {...emails.aluguel,email})
-    alugado.bicicleta= tranca.bicicleta
-    alugado.ciclista= aluguel.ciclista
+    this.destrancaTranca(aluguel?.trancaInicio)
+    this.enviaEmail( {...emails?.aluguel,email})
+    alugado.bicicleta= tranca?.bicicleta
+    alugado.ciclista= aluguel?.ciclista
     alugado.cobranca= fimCobrança
     alugado.horaInicio= await  this.utils.getData()
-    alugado.trancaInicio=tranca.id
+    alugado.trancaInicio=tranca?.id
 
     const aluguelResult= this.aluguelRepository.insertAluguel(alugado)
     return aluguelResult

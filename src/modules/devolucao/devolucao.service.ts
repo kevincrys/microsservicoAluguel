@@ -1,4 +1,4 @@
-import { Injectable  } from '@nestjs/common';
+import { Injectable, NotFoundException  } from '@nestjs/common';
 import { NovaDevolucao } from "../../dto/novaDevolucao.dto";
 import { DevolucaoRepository } from './devolucao.repository';
 import {Utils} from '../../common/utils';
@@ -23,6 +23,9 @@ export class DevolucaoService {
     cobrança.ciclista=  devolucao.ciclista
     cobrança.valor=  30
     const ciclista= await this.ciclistaService.getCiclistaByID(devolucao.ciclista)
+    if(this.utils.checkNullOrBlank(ciclista) ){
+      throw new NotFoundException("Ciclista não encontrado")
+  }
     const email= ciclista.email
     const tranca= await this.mocktrancas(1)
     const fimCobrança= await this.realizaCobrança(cobrança)

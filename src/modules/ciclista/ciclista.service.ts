@@ -93,7 +93,7 @@ export class CiclistaService {
 
   async permiteAluguel(id: number): Promise<Boolean> {
     const getCiclistas= this.getCiclistaByID(id);
-    if(getCiclistas === null){
+    if(this.utils.checkNullOrBlank(getCiclistas)){
       throw new NotFoundException("Não encontrado")
   }
     const update= await this.aluguelRepository.permiteAluguel(id)
@@ -104,11 +104,14 @@ export class CiclistaService {
   
 
   async getBikeByCiclista(id: number): Promise<Bicicleta> {
+    const getCiclistas= await this.getCiclistaByID(id);
     
-  
-    const update= await this.aluguelRepository.getBikeByCiclista(id)
-    if(update === null){
+    if(this.utils.checkNullOrBlank(getCiclistas) ){
       throw new NotFoundException("Ciclista não encontrado")
+  }
+    const update= await this.aluguelRepository.getBikeByCiclista(id)
+    if(this.utils.checkNullOrBlank(update)){
+      return 
     }
    
     const getBike= await this.getBicicletaByid(update)

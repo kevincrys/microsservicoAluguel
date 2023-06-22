@@ -33,7 +33,9 @@ if (index !== -1) {
 async getBikeByCiclista (id: number): Promise<number> {
    const aluguelArray= await this.getAluguels()
       const aluguelfim=  aluguelArray.find((aluguel) => aluguel.ciclista === id)
-      return aluguelfim.bicicleta
+   
+      if(aluguelfim===undefined){return }
+      return aluguelfim?.bicicleta
    }
 
 

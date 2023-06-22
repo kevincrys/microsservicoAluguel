@@ -81,7 +81,7 @@ const cobranca={"ciclista": 1, "valor": 30
         
         ciclistaService.getCiclistaByID=jest.fn().mockResolvedValue(Ciclista);
      
-      
+        utils.checkNullOrBlank = jest.fn().mockReturnValue(false);
       devolucaoService.mocktrancas= jest.fn().mockResolvedValue(tranca);
       devolucaoService.realizaCobrança= jest.fn().mockResolvedValue(20.5);
       devolucaoService.trancarTranca=jest.fn()

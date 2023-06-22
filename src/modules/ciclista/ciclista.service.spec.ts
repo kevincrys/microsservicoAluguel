@@ -269,6 +269,7 @@ const ciclistaCad={  id: 1,
     it('should get a ciclista by ID and return true', async () => {
       const id = 1;
       ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue(ciclistaCad);
+      utils.checkNullOrBlank = jest.fn().mockReturnValue(false);
       aluguelRepository.permiteAluguel = jest.fn().mockResolvedValue(true);
 
       const result = await ciclistaService.permiteAluguel(id);
@@ -277,9 +278,10 @@ const ciclistaCad={  id: 1,
       expect(result).toBe(true);
     });
 
-    it('should get a ciclista by ID and return false', async () => {
+    it('should get a permiteAluguel by ID and return false', async () => {
       const id = 1;
       ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue(ciclistaCad);
+      utils.checkNullOrBlank = jest.fn().mockReturnValue(false);
       aluguelRepository.permiteAluguel = jest.fn().mockResolvedValue(false);
 
       const result = await ciclistaService.permiteAluguel(id);
@@ -290,6 +292,7 @@ const ciclistaCad={  id: 1,
 
     it('should throw NotFoundException if permiteAluguel returns null', async () => {
       const id = 1;
+      utils.checkNullOrBlank = jest.fn().mockReturnValue(true);
       ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue(null);
   
       await expect(
@@ -312,7 +315,7 @@ const ciclistaCad={  id: 1,
       }
 
       aluguelRepository.getBikeByCiclista = jest.fn().mockResolvedValue(1234);
-
+      utils.checkNullOrBlank = jest.fn().mockReturnValue(false);
       const result = await ciclistaService.getBikeByCiclista(id);
       jest.spyOn(ciclistaService, 'getBicicletaByid').mockResolvedValue(bike);
      
@@ -323,10 +326,10 @@ const ciclistaCad={  id: 1,
     it('should throw NotFoundException if getBikeByCiclista returns null', async () => {
       const id = 1;
 
-      ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue(null);
+      utils.checkNullOrBlank = jest.fn().mockReturnValue(true);
 
       await expect(
-        ciclistaService.getCiclistaByID(id),
+        ciclistaService.getBikeByCiclista(id),
       ).rejects.toThrow(NotFoundException);
     });
   });
