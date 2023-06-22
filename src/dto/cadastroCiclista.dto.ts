@@ -6,11 +6,11 @@ import { novoCartao } from "./novoCartao.dto";
 
 export class CadastroCiclista {
   @IsNotEmpty()
-  Ciclista: novoCiclista;
+  ciclista: novoCiclista;
   
 
   @IsNotEmpty()
-  MetodoDePagamento: novoCartao;
+  meioDePagamento: novoCartao;
 
 
 }
