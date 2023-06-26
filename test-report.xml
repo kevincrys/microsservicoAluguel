@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.spec.ts">
+    <testCase name="CiclistaRepository should insert a new ciclista" duration="3"/>
+    <testCase name="CiclistaRepository should update an existing ciclista" duration="2"/>
+    <testCase name="CiclistaRepository should delete an existing ciclista" duration="0"/>
+    <testCase name="CiclistaRepository should get a ciclista by ID" duration="1"/>
+    <testCase name="CiclistaRepository should check if an email is available" duration="1"/>
+    <testCase name="CiclistaRepository should activate a ciclista" duration="0"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.controller.spec.ts">
+    <testCase name="CartaoController cadastrarCartao should call insertCartao in the service and return response from service" duration="24"/>
+    <testCase name="CartaoController updateCartao should call updateCartao in the service and return response from service" duration="6"/>
+    <testCase name="CartaoController getCartaoByID should call getCartaoByID in the service and return response from service" duration="7"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.controller.spec.ts">
+    <testCase name="FuncionarioController cadastrarFuncionario should call insertFuncionario in the service and return response from service" duration="24"/>
+    <testCase name="FuncionarioController getFuncionario should call getFuncionarios in the service and return response from service" duration="6"/>
+    <testCase name="FuncionarioController updateFuncionario should call updateFuncionario in the service and return response from service" duration="8"/>
+    <testCase name="FuncionarioController deleteFuncionario should call deleteFuncionario in the service and return response from service" duration="7"/>
+    <testCase name="FuncionarioController getFuncionarioByID should call getFuncionarioByID in the service and return response from service" duration="8"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.service.spec.ts">
+    <testCase name="DevolucaoService insertDevolucao should insert a devolucao and return true" duration="27"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts">
+    <testCase name="CiclistaService insertCiclista should insert a ciclista and return true" duration="26"/>
+    <testCase name="CiclistaService insertCiclista should throw NotFoundException if insertCiclista returns false" duration="35"/>
+    <testCase name="CiclistaService insertCiclista should throw NotFoundException if validaCartaoMock returns false" duration="6"/>
+    <testCase name="CiclistaService updateCiclista should update a ciclista and return true" duration="5"/>
+    <testCase name="CiclistaService updateCiclista should throw NotFoundException if updateCiclista returns false" duration="6"/>
+    <testCase name="CiclistaService ativarCiclista should activate a ciclista and return true" duration="4"/>
+    <testCase name="CiclistaService ativarCiclista should throw NotFoundException if ativarCiclista returns false" duration="7"/>
+    <testCase name="CiclistaService deleteCiclista should delete a ciclista and return true" duration="4"/>
+    <testCase name="CiclistaService deleteCiclista should throw NotFoundException if deleteCiclista returns false" duration="6"/>
+    <testCase name="CiclistaService getCiclistaByID should get a ciclista by ID and return true" duration="5"/>
+    <testCase name="CiclistaService getCiclistaByID should throw NotFoundException if getCiclistaByID returns null" duration="5"/>
+    <testCase name="CiclistaService checkEmail should check email and return true" duration="4"/>
+    <testCase name="CiclistaService checkEmail should throw BadRequestException if email is null or blank" duration="6"/>
+    <testCase name="CiclistaService permiteAluguel should get a ciclista by ID and return true" duration="9"/>
+    <testCase name="CiclistaService permiteAluguel should get a permiteAluguel by ID and return false" duration="4"/>
+    <testCase name="CiclistaService permiteAluguel should throw NotFoundException if permiteAluguel returns null" duration="12"/>
+    <testCase name="CiclistaService getBikeByCiclista should get a ciclista by ID and return true" duration="6"/>
+    <testCase name="CiclistaService getBikeByCiclista should throw NotFoundException if getBikeByCiclista returns null" duration="4"/>
+    <testCase name="CiclistaService getCiclistas should get all ciclistas" duration="4"/>
+    <testCase name="CiclistaService validaCartaoMock should return true" duration="3"/>
+    <testCase name="CiclistaService sendEmailMock should return true" duration="3"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.controller.spec.ts">
+    <testCase name="DevolucaoController cadastrarDevolucao should call insertDevolucao in the service and return response from service" duration="35"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.controller.spec.ts">
+    <testCase name="AluguelController cadastrarAluguel should call insertAluguel in the service and return response from service" duration="27"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.service.spec.ts">
+    <testCase name="CartaoService insertCartao should insert Cartao" duration="3"/>
+    <testCase name="CartaoService updateCartao should update Cartao" duration="1"/>
+    <testCase name="CartaoService updateCartao should throw NotFoundException when Cartao is not found" duration="17"/>
+    <testCase name="CartaoService getCartaoByID should return Cartao by id" duration="1"/>
+    <testCase name="CartaoService getCartaoByID should throw NotFoundException when Cartao is not found" duration="2"/>
+    <testCase name="CartaoService getCartaoByID should not getCartaoByID when id is null or blank" duration="1"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.service.spec.ts">
+    <testCase name="AluguelService insertAluguel should insert a aluguel and return true" duration="37"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts">
+    <testCase name="CiclistaController cadastrarCiclista should call insertCiclista in the service and return response from service" duration="29"/>
+    <testCase name="CiclistaController getCiclista should call getCiclistas in the service and return response from service" duration="13"/>
+    <testCase name="CiclistaController updateCiclista should call updateCiclista in the service and return response from service" duration="6"/>
+    <testCase name="CiclistaController deleteCiclista should call deleteCiclista in the service and return response from service" duration="8"/>
+    <testCase name="CiclistaController getCiclistaByID should call getCiclistaByID in the service and return response from service" duration="6"/>
+    <testCase name="CiclistaController ativarCiclista should call ativarCiclista in the service and return response from service" duration="4"/>
+    <testCase name="CiclistaController checkEmail should call checkEmail in the service and return response from service" duration="8"/>
+    <testCase name="CiclistaController permiteAluguel should call permiteAluguel in the service and return response from service" duration="4"/>
+    <testCase name="CiclistaController getBikeByCiclista should call getBikeByCiclista in the service and return response from service" duration="8"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.repository.spec.ts">
+    <testCase name="FuncionarioRepository insertFuncionario should insert Funcionario" duration="3"/>
+    <testCase name="FuncionarioRepository updateFuncionario should update Funcionario by matricula" duration="1"/>
+    <testCase name="FuncionarioRepository updateFuncionario should return false when trying to update non-existent Funcionario" duration="1"/>
+    <testCase name="FuncionarioRepository deleteFuncionario should delete Funcionario by matricula" duration="1"/>
+    <testCase name="FuncionarioRepository deleteFuncionario should return false when trying to delete non-existent Funcionario" duration="0"/>
+    <testCase name="FuncionarioRepository getFuncionarioByID should return Funcionario by matricula" duration="2"/>
+    <testCase name="FuncionarioRepository getFuncionarioByID should return undefined for non-existent Funcionario" duration="1"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.spec.ts">
+    <testCase name="CartaoRepository insertCartao should insert Cartao" duration="2"/>
+    <testCase name="CartaoRepository updateCartao should update Cartao by matricula" duration="2"/>
+    <testCase name="CartaoRepository updateCartao should return false when trying to update non-existent Cartao" duration="0"/>
+    <testCase name="CartaoRepository getCartaoByID should return Cartao by matricula" duration="0"/>
+    <testCase name="CartaoRepository getCartaoByID should return undefined for non-existent Cartao" duration="0"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.repository.spec.ts">
+    <testCase name="AluguelRepository should insert a new aluguel" duration="4"/>
+    <testCase name="AluguelRepository should get a  Bike By Ciclista ID" duration="0"/>
+    <testCase name="AluguelRepository should check if permiteAluguel already exist aluguel" duration="0"/>
+    <testCase name="AluguelRepository should check if permiteAluguel not already exist aluguel " duration="0"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.service.spec.ts">
+    <testCase name="FuncionarioService insertFuncionario should insert Funcionario" duration="3"/>
+    <testCase name="FuncionarioService updateFuncionario should update Funcionario" duration="1"/>
+    <testCase name="FuncionarioService updateFuncionario should throw NotFoundException when Funcionario is not found" duration="17"/>
+    <testCase name="FuncionarioService updateFuncionario should not update Funcionario when novoFuncionario is null or blank" duration="1"/>
+    <testCase name="FuncionarioService deleteFuncionario should delete Funcionario" duration="1"/>
+    <testCase name="FuncionarioService deleteFuncionario should throw NotFoundException when Funcionario is not found" duration="1"/>
+    <testCase name="FuncionarioService deleteFuncionario should not delete Funcionario when id is null or blank" duration="0"/>
+    <testCase name="FuncionarioService getFuncionarioByID should return Funcionario by id" duration="0"/>
+    <testCase name="FuncionarioService getFuncionarioByID should throw NotFoundException when Funcionario is not found" duration="1"/>
+    <testCase name="FuncionarioService getFuncionarioByID should not getFuncionarioByID when id is null or blank" duration="1"/>
+    <testCase name="FuncionarioService getFuncionarios should return all Funcionarios" duration="1"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.repository.spec.ts">
+    <testCase name="DevolucaoRepository should insert a new devolucao" duration="3"/>
+  </file>
+</testExecutions>
