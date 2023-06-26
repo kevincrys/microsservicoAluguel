@@ -22,7 +22,6 @@ describe('CiclistaService', () => {
   let utils: Utils;
   let cartaoService: CartaoService;
   let aluguelRepository: AluguelRepository;
-  Bicicleta
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [CartaoModule],
