@@ -56,7 +56,6 @@ async getCiclistaByID (id: number): Promise<Ciclista> {
         }
 
 async checkEmail (email: string): Promise<boolean> {
-    console.log(ciclistasNovos)
     const index = ciclistasNovos.findIndex((ciclista) => ciclista.email === email)
    
     if (index !== -1) {

@@ -57,8 +57,8 @@ const newCiclista=  {
     cvv: '123',
   }
   const ciclista: CadastroCiclista = {
-    Ciclista: newCiclista,
-    MetodoDePagamento:  newCartao,
+    ciclista: newCiclista,
+    meioDePagamento:  newCartao,
   };
 describe('CiclistaController', () => {
   let controller: CiclistaController;

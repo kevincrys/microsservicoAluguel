@@ -75,8 +75,8 @@ const newCartao= {
   cvv: '123',
 }
 const ciclista: CadastroCiclista = {
-  Ciclista: newCiclista,
-  MetodoDePagamento:  newCartao,
+  ciclista: newCiclista,
+  meioDePagamento:  newCartao,
 };
 const ciclistaCad={  id: 1,
   nome: 'Jane Smith',
@@ -103,10 +103,10 @@ const ciclistaCad={  id: 1,
       const result = await ciclistaService.insertCiclista(ciclista);
 
       expect(cartaoService.insertCartao).toHaveBeenCalledWith(
-        ciclista.MetodoDePagamento,
+        ciclista.meioDePagamento,
       );
       expect(ciclistaRepository.insertCiclista).toHaveBeenCalledWith(
-        ciclista.Ciclista,
+        ciclista.ciclista,
       );
       expect(ciclistaService.sendEmailMock).toHaveBeenCalledWith({
         email: 'john.doe@example.com',
@@ -118,8 +118,8 @@ const ciclistaCad={  id: 1,
 
     it('should throw NotFoundException if insertCiclista returns false', async () => {
       const ciclista: CadastroCiclista = {
-        Ciclista: newCiclista,
-        MetodoDePagamento: newCartao,
+        ciclista: newCiclista,
+        meioDePagamento: newCartao,
       };
 
       ciclistaRepository.insertCiclista = jest.fn().mockResolvedValue(undefined);
@@ -131,8 +131,8 @@ const ciclistaCad={  id: 1,
 
     it('should throw NotFoundException if validaCartaoMock returns false', async () => {
       const ciclista: CadastroCiclista = {
-        Ciclista: newCiclista,
-        MetodoDePagamento: newCartao,
+        ciclista: newCiclista,
+        meioDePagamento: newCartao,
       };
 
       ciclistaService.validaCartaoMock = jest.fn().mockResolvedValue(false);
