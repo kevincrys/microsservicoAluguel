@@ -1,3 +1,4 @@
+
 export class Aluguel {
 
   ciclista: number;

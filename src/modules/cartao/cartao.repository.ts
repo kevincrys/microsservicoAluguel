@@ -1,43 +1,38 @@
 
 import { Cartao } from "src/schemas/cartao.schema";
 import { novoCartao } from "../../dto/novoCartao.dto";
-
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 let cartaosNovos: Cartao[] = []
+@Injectable()
 export class CartaoRepository{
-    
+    constructor(
+        @InjectRepository(Cartao)
+        private cartaoRepository: Repository<Cartao>,
+      ) {}
 async insertCartao (cartao: novoCartao): Promise<Cartao> {
-    var id=Math.random()
-    cartaosNovos.push({ ...cartao, id})
-    return { ...cartao, id}
+    const check= await this.cartaoRepository.findOneBy({numero: cartao.numero})
+    if(!check){
+    const card= await this.cartaoRepository.save(cartao);
+    return card
+    }
+
 }
 
 
 async updateCartao (id: number, cartao: novoCartao): Promise<Cartao> {
-    var cartaosArray= await this.getCartaos()
-    const index = cartaosArray.findIndex((cartao) => cartao.id === id)
-    if (index !== -1) {
-        const cartaoAdd={ ...cartao, id }
-        cartaosNovos[index] = cartaoAdd
-        return cartaoAdd
-      }
-      return undefined
+        await this.cartaoRepository.update(id, cartao)
+        return await this.cartaoRepository.findOneBy({id: id})
 }
 
-// async deleteCartao (id: number): Promise<boolean> {
-//     var cartaosArray= await this.getCartaos()
-//     const beforeLenght = cartaosArray.length
-//     cartaosNovos = cartaosArray.filter((cartao) => cartao.id !== id)
-//     return beforeLenght !== cartaosArray.length
-//     }
-
 async getCartaos (): Promise<Cartao[]> {
-            return  cartaosNovos
+            return  await this.cartaoRepository.find()
         }
 
 async getCartaoByID (id: number): Promise<Cartao> {
-    var cartaosArray= await this.getCartaos()
-            return  cartaosArray.find((cartao) => cartao.id === id)
+            return  await this.cartaoRepository.findOneBy({id: id})
         }
 }
 

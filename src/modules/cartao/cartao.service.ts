@@ -22,7 +22,7 @@ export class CartaoService {
   async updateCartao(id: number, cartao: novoCartao): Promise<Cartao> {
    
    
-    const update= this.cartaoRepository.updateCartao(id,cartao)
+    const update= await this.cartaoRepository.updateCartao(id,cartao)
     if(this.utils.checkNullOrBlank(update)){
 
       throw new NotFoundException("Não encontrado")
@@ -38,7 +38,7 @@ export class CartaoService {
     
     
     const update= await this.cartaoRepository.getCartaoByID(id)
-    if(update === undefined){
+    if(this.utils.checkNullOrBlank(update)){
       throw new NotFoundException("Não encontrado")
   }
 
