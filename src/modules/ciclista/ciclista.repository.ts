@@ -1,40 +1,29 @@
 import { statusCiclista } from "../../enums/statusCiclista.enum";
 import { Ciclista } from "../../schemas/ciclista.schema";
 import { novoCiclista } from "../../dto/novoCiclista.dto";
-
-
+import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 let ciclistasNovos: Ciclista[] = []
+@Injectable()
 export class CiclistaRepository {
-
+    constructor(
+        @InjectRepository(Ciclista)
+        private ciclistaRepository: Repository<Ciclista>,
+      ) {}
 
 async insertCiclista (ciclista: novoCiclista): Promise<Ciclista> {
-    var ciclistaAdd= new Ciclista
-   try{
-  
-  const id = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
     
-  const status= statusCiclista.AGUARDANDO
-  ciclistaAdd={ ...ciclista, id, status }
-    ciclistasNovos.push(ciclistaAdd)
-   }
-   catch{
-    return undefined
-   }
-   return ciclistaAdd
+    const card= await this.ciclistaRepository.save(ciclista);
+    return card
+    
 }
 
 
 async updateCiclista (id: number, ciclista: novoCiclista): Promise<Ciclista> {
-   const ciclistaArray= await this.getCiclistas()
-    const index = ciclistaArray.findIndex((ciclista) => ciclista.id === id)
-    var ciclistaAdd= new Ciclista
-    if (index !== -1) {
-        const status= ciclistasNovos[index].status
-        ciclistaAdd={ ...ciclista, id, status }
-        ciclistaArray[index] = ciclistaAdd
-        return ciclistaAdd
-      }
-      return undefined
+    await this.ciclistaRepository.update(id, ciclista)
+    return await this.ciclistaRepository.findOneBy({id: id})
 }
 
 async deleteCiclista (id: number): Promise<boolean> {
@@ -46,13 +35,11 @@ async deleteCiclista (id: number): Promise<boolean> {
     }
 
 async getCiclistas (): Promise<Ciclista[]> {
-            return  ciclistasNovos
+    return  await this.ciclistaRepository.find()
         }
 
 async getCiclistaByID (id: number): Promise<Ciclista> {
-    const ciclistaArray= await this.getCiclistas()
-            const ciclista=  ciclistaArray.find((ciclista) => ciclista.id === id)
-            return ciclista
+    return  await this.ciclistaRepository.findOneBy({id: id})
         }
 
 async checkEmail (email: string): Promise<boolean> {

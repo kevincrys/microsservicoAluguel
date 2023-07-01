@@ -10,12 +10,8 @@ export class CartaoService {
     private readonly utils:Utils
   ) {}
 
-  async insertCartao(cartao: novoCartao): Promise<Cartao> {
-    
-   
-   const card= this.cartaoRepository.insertCartao(cartao)
-    
-    
+  async insertCartao(cartao: novoCartao): Promise<Cartao> {    
+   const card= this.cartaoRepository.insertCartao(cartao)   
     return card
   }
 
