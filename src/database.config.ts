@@ -4,6 +4,7 @@ import { Aluguel } from './schemas/aluguel.schema';
 import { Ciclista } from './schemas/ciclista.schema';
 import { Devolucao } from './schemas/devolucao.schema';
 import { Funcionario } from './schemas/funcionario.schema';
+import { Passaporte } from './schemas/passaporte.schema';
 
 export const databaseConfig: TypeOrmModuleOptions = {
   type: 'postgres',
@@ -12,6 +13,6 @@ export const databaseConfig: TypeOrmModuleOptions = {
   username: 'abjsgzsc',
   password: 'EQzpRKCoPuuFOCWlGXcsTTYgJv8Er0u0',
   database: 'abjsgzsc',
-  entities: [Cartao,Aluguel,Ciclista,Devolucao,Funcionario],
+  entities: [Cartao,Aluguel,Ciclista,Devolucao,Funcionario,Passaporte],
   synchronize: true, // Somente para ambiente de desenvolvimento
 };

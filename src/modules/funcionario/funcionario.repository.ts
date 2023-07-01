@@ -4,39 +4,40 @@ import { v4 as uuidv4 } from 'uuid';
 import { novoFuncionario } from "../../dto/novoFuncionario.dto";
 
 
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 let FuncionariosNovos: Funcionario[] = []
+@Injectable()
+
 export class FuncionarioRepository {
+    constructor(
+        @InjectRepository(Funcionario)
+        private funcionarioRepository: Repository<Funcionario>,
+      ) {}
 
     
 
 
-async insertFuncionario (Funcionario: novoFuncionario) {
+async insertFuncionario (funcionario: novoFuncionario) {
     
-    var matricula= uuidv4()
-   
-    FuncionariosNovos.push({ ...Funcionario, matricula })
-    return { ...Funcionario, matricula }
+    const card= await this.funcionarioRepository.save(funcionario);
+    return card
 }
 
 
 async updateFuncionario (matricula: string, Funcionario: novoFuncionario): Promise<Funcionario> {
-    var FuncionariosArray= await this.getFuncionarios()
-    const index = FuncionariosArray.findIndex((Funcionario) => Funcionario.matricula === matricula)
-    if (index !== -1) {
-        FuncionariosArray[index] = { ...Funcionario, matricula }
-        return { ...Funcionario, matricula }
-      }
-      return undefined
+    await this.funcionarioRepository.update(matricula, Funcionario)
+    return await this.funcionarioRepository.findOneBy({matricula: matricula})
 }
 
 async deleteFuncionario (matricula: string): Promise<boolean> {
-    var FuncionariosArray= await this.getFuncionarios()
-    const beforeLenght = FuncionariosArray.length
-
-    FuncionariosNovos = FuncionariosArray.filter((Funcionario) => Funcionario.matricula !== matricula)
-    FuncionariosArray=FuncionariosNovos
- 
-    return beforeLenght !== FuncionariosArray.length
+    await this.funcionarioRepository.delete(matricula);
+    const ciclista= this.getFuncionarioByID(matricula)
+    if(ciclista===null){
+        return true
+    }
+    return false
     }
 
 async getFuncionarios (): Promise<Funcionario[]> {

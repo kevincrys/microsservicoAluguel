@@ -10,7 +10,7 @@ export class Bicicleta {
 
   status: string;
 
-  id: number;
+  id?: number;
   
 
     

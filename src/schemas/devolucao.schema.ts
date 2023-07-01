@@ -2,16 +2,16 @@ import { Entity, Column, PrimaryColumn } from 'typeorm';
 @Entity()
 export class Devolucao {
 
-  @Column()
+  @PrimaryColumn()
     ciclista: number;
     @Column()
     trancaFim: number;
     @Column()
     bicicleta: number;
-    @Column()
-    horaInicio: string;
-    @Column()
-    trancaInicio: number;
+    @Column({nullable: true })
+    horaInicio?: string;
+    @Column({nullable: true })
+    trancaInicio?: number;
     @Column()
     horaFim: string;
     @Column()

@@ -4,8 +4,8 @@ import { novoCiclista } from "../../dto/novoCiclista.dto";
 import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-let ciclistasNovos: Ciclista[] = []
+
+
 @Injectable()
 export class CiclistaRepository {
     constructor(
@@ -14,9 +14,11 @@ export class CiclistaRepository {
       ) {}
 
 async insertCiclista (ciclista: novoCiclista): Promise<Ciclista> {
+    var insertCiclista={...ciclista,status:statusCiclista.AGUARDANDO}
     
-    const card= await this.ciclistaRepository.save(ciclista);
-    return card
+
+    const clic= await this.ciclistaRepository.save(insertCiclista);
+    return clic
     
 }
 
@@ -27,12 +29,16 @@ async updateCiclista (id: number, ciclista: novoCiclista): Promise<Ciclista> {
 }
 
 async deleteCiclista (id: number): Promise<boolean> {
-    var ciclistaArray= await this.getCiclistas()
-    const beforeLenght = ciclistaArray.length
-    ciclistasNovos = ciclistaArray.filter((ciclista) => ciclista.id !== id)
-    ciclistaArray=ciclistasNovos
-    return beforeLenght !== ciclistaArray.length
+    const ciclistaBefore= await this.getCiclistaByID(id)
+    if(ciclistaBefore===null){
+        return false
     }
+    else{
+        
+        await this.ciclistaRepository.delete(id);
+        return true
+    }
+}
 
 async getCiclistas (): Promise<Ciclista[]> {
     return  await this.ciclistaRepository.find()
@@ -42,23 +48,26 @@ async getCiclistaByID (id: number): Promise<Ciclista> {
     return  await this.ciclistaRepository.findOneBy({id: id})
         }
 
-async checkEmail (email: string): Promise<boolean> {
-    const index = ciclistasNovos.findIndex((ciclista) => ciclista.email === email)
-   
-    if (index !== -1) {
+async checkEmail (email: string): Promise<Boolean> {
+    const checkEmail= await this.ciclistaRepository.findOneBy({email: email})
+    if(checkEmail===null){
         return true
-      }
-      return false
+    }
+    return false
+
 }
 
         async ativarCiclista (id: number): Promise<boolean> {
-            const index = ciclistasNovos.findIndex((ciclista) => ciclista.id === id)
-            const status= statusCiclista.ATIVO
-            if (index !== -1) {
-                ciclistasNovos[index] = { ...ciclistasNovos[index],status }
-                return true
-              }
-              return false
+            var ciclista = await this.getCiclistaByID(id)
+            if (ciclista===null){
+                return false
+            }
+            ciclista.status= statusCiclista.ATIVO
+            const update= this.updateCiclista(id,ciclista)
+             if (update===null){
+                return false
+            }
+             return true
         }
             
 

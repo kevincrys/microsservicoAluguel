@@ -1,5 +1,5 @@
 import { statusCiclista } from "src/enums/statusCiclista.enum";
-import { Passaporte } from "../dto/passaporte.dto";
+import { Passaporte } from "../schemas/passaporte.schema";
 import { nacionalidade } from "src/enums/nacionalidade.enum";
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 @Entity()
@@ -22,9 +22,9 @@ export class Ciclista {
   @Column()
   senha: string;
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
   @Column()
-  status: statusCiclista
+  status?: statusCiclista
 }
 
 

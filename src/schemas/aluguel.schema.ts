@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Aluguel {
-  @Column()
+  @PrimaryColumn()
   ciclista: number;
   @Column()
   trancaInicio: number;
@@ -10,9 +10,9 @@ export class Aluguel {
   bicicleta: number;
   @Column()
   horaInicio: string;
-  @Column()
+  @Column({nullable: true })
   trancaFim?: number;
-  @Column()
+  @Column({nullable: true })
   horaFim?: string;
   @Column()
   cobranca: number;

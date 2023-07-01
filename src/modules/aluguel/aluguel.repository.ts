@@ -1,41 +1,40 @@
 
 import { Aluguel } from "src/schemas/aluguel.schema";
 
+import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 
-
-let aluguelsNovos: Aluguel[] = []
+@Injectable()
 export class AluguelRepository {
-
+ constructor(
+        @InjectRepository(Aluguel)
+        private aluguelRepository: Repository<Aluguel>,
+      ) {}
 
 async insertAluguel (aluguel: Aluguel) {
-   try{
-    aluguelsNovos.push(aluguel)
-   }
-   catch{
-    return undefined
-   }
-   return aluguel
+   const alugado= await this.aluguelRepository.save(aluguel);
+   return alugado
 }
 
 async getAluguels (): Promise<Aluguel[]> {
-   return  aluguelsNovos
+   return  await this.aluguelRepository.find()
 }
 
 async permiteAluguel (id: number): Promise<Boolean> {
-const aluguelArray= await this.getAluguels()
-const index = aluguelArray.findIndex((aluguel) => aluguel.ciclista === id)
-if (index !== -1) {
+   const aluguel=  await this.aluguelRepository.findOneBy({ciclista: id})
+
+if (aluguel !== null) {
     return false
   }
   return true
 }
 
 async getBikeByCiclista (id: number): Promise<number> {
-   const aluguelArray= await this.getAluguels()
-      const aluguelfim=  aluguelArray.find((aluguel) => aluguel.ciclista === id)
+   const aluguel=  await this.aluguelRepository.findOneBy({ciclista: id})
    
-      if(aluguelfim===undefined){return }
-      return aluguelfim?.bicicleta
+      if(aluguel===null){return }
+      return aluguel?.bicicleta
    }
 
 

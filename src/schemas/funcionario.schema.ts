@@ -1,5 +1,5 @@
 
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Funcionario {
   @Column()
@@ -16,8 +16,8 @@ export class Funcionario {
   funcao: string;
   @Column()
   cpf: string;
-  @PrimaryColumn()
-  matricula: string;
+  @PrimaryGeneratedColumn('uuid')
+  matricula?: string;
   
 }
  

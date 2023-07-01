@@ -12,10 +12,11 @@ import { Aluguel } from './schemas/aluguel.schema';
 import { Ciclista } from './schemas/ciclista.schema';
 import { Devolucao } from './schemas/devolucao.schema';
 import { Funcionario } from './schemas/funcionario.schema';
+import { Passaporte } from './schemas/passaporte.schema';
 
 @Module({
   imports: [CiclistaModule,FuncionarioModule,CartaoModule,AluguelModule,DevolucaoModule,TypeOrmModule.forRoot(databaseConfig),
-    TypeOrmModule.forFeature([Cartao]),TypeOrmModule.forFeature([Aluguel]),TypeOrmModule.forFeature([Ciclista]),TypeOrmModule.forFeature([Devolucao]),TypeOrmModule.forFeature([Funcionario]),],
+    TypeOrmModule.forFeature([Cartao]),TypeOrmModule.forFeature([Aluguel]),TypeOrmModule.forFeature([Ciclista]),TypeOrmModule.forFeature([Devolucao]),TypeOrmModule.forFeature([Funcionario]),TypeOrmModule.forFeature([Passaporte])],
   controllers: [AppController],
   providers: [],
 })

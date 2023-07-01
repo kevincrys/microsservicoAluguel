@@ -4,9 +4,11 @@ import { DevolucaoService } from './devolucao.service';
 import { DevolucaoRepository } from './devolucao.repository';
 import { Utils } from '../../common/utils';
 import { CiclistaModule } from '../ciclista/ciclista.module';
+import { Devolucao } from '../../schemas/devolucao.schema';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [CiclistaModule],
+  imports: [CiclistaModule,TypeOrmModule.forFeature([Devolucao])],
   controllers: [DevolucaoController],
   providers: [DevolucaoService,DevolucaoRepository, Utils],
   exports: [DevolucaoService, Utils]

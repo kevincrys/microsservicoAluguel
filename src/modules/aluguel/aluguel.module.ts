@@ -4,9 +4,11 @@ import { AluguelService } from './aluguel.service';
 import { AluguelRepository } from './aluguel.repository';
 import { Utils } from '../../common/utils';
 import { CiclistaModule } from '../ciclista/ciclista.module';
+import { Aluguel } from '../../schemas/aluguel.schema';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [CiclistaModule],
+  imports: [CiclistaModule,TypeOrmModule.forFeature([Aluguel])],
   controllers: [AluguelController],
   providers: [AluguelService,AluguelRepository, Utils],
   exports: [AluguelService, Utils]
