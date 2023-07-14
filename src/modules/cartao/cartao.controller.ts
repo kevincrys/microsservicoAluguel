@@ -7,14 +7,14 @@ import { Response } from 'express';
 export class CartaoController {
   constructor(private readonly cartaoService: CartaoService) {}
 
-  @Post("/cartaoDeCredito")
- async cadastrarCartao(
- @Body() novocartao: novoCartao,
- @Res() res: Response): Promise<any> {
+//   @Post("/cartaoDeCredito")
+//  async cadastrarCartao(
+//  @Body() novocartao: novoCartao,
+//  @Res() res: Response): Promise<any> {
 
-    const response= await this.cartaoService.insertCartao(novocartao);
-    return res.status(HttpStatus.CREATED).send(response);
-  }
+//     const response= await this.cartaoService.insertCartao(novocartao);
+//     return res.status(HttpStatus.CREATED).send(response);
+//   }
 
 
   

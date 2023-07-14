@@ -11,5 +11,6 @@ export class Cartao {
     cvv:  string;
     @PrimaryGeneratedColumn()
     id?: number;
-    
+    @Column({ nullable: true })
+    idCiclista?: number;
   }

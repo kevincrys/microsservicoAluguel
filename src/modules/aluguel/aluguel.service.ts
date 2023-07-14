@@ -9,11 +9,13 @@ import { CiclistaService } from '../ciclista/ciclista.service';
 import { emails } from '../../common/emails/emails';
 import { Tranca } from 'src/schemas/trancas.schemas';
 import { statusTranca } from '../../enums/statusTranca.enum';
+import { Api } from 'src/common/api';
 @Injectable()
 export class AluguelService {
   constructor(
     private readonly aluguelRepository:AluguelRepository,
     private readonly utils:Utils,
+    private readonly api:Api,
     private readonly ciclistaService:CiclistaService
   ) {}
 
@@ -30,7 +32,7 @@ export class AluguelService {
     const tranca= await this.mocktrancas(1)
     const fimCobrança= await this.realizaCobrança(cobrança)
     this.destrancaTranca(aluguel?.trancaInicio)
-    this.enviaEmail( {...emails?.aluguel,email})
+    this.api.sendEmail( {...emails?.aluguel,email})
     alugado.bicicleta= tranca?.bicicleta
     alugado.ciclista= aluguel?.ciclista
     alugado.cobranca= fimCobrança
@@ -47,7 +49,7 @@ async mocktrancas(id: number): Promise<Tranca> {
   const trancas =[
     {
       id: 1,
-      bicicleta: 123,
+      bicicleta: 7,
       numero: 456,
       localizacao: "Localização 1",
       anoDeFabricacao: "2022",
@@ -56,7 +58,7 @@ async mocktrancas(id: number): Promise<Tranca> {
     },
     {
       id: 2,
-      bicicleta: 789,
+      bicicleta: 7,
       numero: 101112,
       localizacao: "Localização 2",
       anoDeFabricacao: "2021",
@@ -81,11 +83,6 @@ async getBikeByCiclista(id: number): Promise<number> {
 }
 async realizaCobrança(aluguel: realizaCobrança): Promise<any> {
    return 1
-}
-async enviaEmail(aluguel: enviaEmail): Promise<any> {
-   
-  
-return true
 }
 async destrancaTranca(id: number): Promise<any> {
    

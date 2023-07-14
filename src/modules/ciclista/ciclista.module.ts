@@ -8,11 +8,12 @@ import { AluguelRepository } from '../aluguel/aluguel.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Ciclista } from '../../schemas/ciclista.schema';
 import { Aluguel } from 'src/schemas/aluguel.schema';
+import { Api } from 'src/common/api';
 
 @Module({
   imports: [CartaoModule,TypeOrmModule.forFeature([Ciclista]),TypeOrmModule.forFeature([Aluguel])],
   controllers: [CiclistaController],
-  providers: [CiclistaService,CiclistaRepository, Utils,AluguelRepository],
-  exports: [CiclistaService, Utils]
+  providers: [CiclistaService,CiclistaRepository, Utils,AluguelRepository,Api],
+  exports: [CiclistaService, Utils,Api]
 })
 export class CiclistaModule {}
