@@ -4,17 +4,18 @@ import { DevolucaoRepository } from './devolucao.repository';
 import {Utils} from '../../common/utils';
 import { Devolucao } from '../../schemas/devolucao.schema';
 import {realizaCobrança} from "../../dto/realizaCobranca.dto";
-import { enviaEmail } from '../../dto/enviaEmail.dto';
 import { CiclistaService } from '../ciclista/ciclista.service';
 import { emails } from '../../common/emails/emails';
-import { Tranca } from '../../schemas/trancas.schemas';
-import { statusTranca } from '../../enums/statusTranca.enum';
+import { Api } from 'src/common/api';
+import { AluguelService } from '../aluguel/aluguel.service';
 @Injectable()
 export class DevolucaoService {
   constructor(
     private readonly devolucaoRepository:DevolucaoRepository,
     private readonly utils:Utils,
-    private readonly ciclistaService:CiclistaService
+    private readonly api:Api,
+    private readonly ciclistaService:CiclistaService,
+    private readonly aluguelService:AluguelService
   ) {}
 
   async insertDevolucao(devolucao: NovaDevolucao): Promise<Devolucao> {
@@ -27,53 +28,44 @@ export class DevolucaoService {
       throw new NotFoundException("Ciclista não encontrado")
   }
     const email= ciclista.email
-    const tranca= await this.mocktrancas(1)
-    const fimCobrança= await this.realizaCobrança(cobrança)
-    this.trancarTranca(devolucao.trancaFim)
-    this.enviaEmail( {...emails.devolucao,email})
+    const tranca= await this.api.getTrancaByid(devolucao.trancaFim)
+    alugado.horaFim= await this.utils.getData()
+    const Aluguel = await this.aluguelService.getAluguelByCiclista(devolucao.ciclista)
+    const fimCobrança= await this.realizaCobrança(devolucao, alugado.horaFim, Aluguel.horaInicio)
+    this.api.trancarTranca(devolucao.trancaFim,tranca.bicicleta)
+    this.api.sendEmail( {...emails.devolucao,email})
+    
     alugado.bicicleta= tranca.bicicleta
     alugado.ciclista= devolucao.ciclista
     alugado.cobranca= fimCobrança
-    alugado.horaFim= await this.utils.getData()
+    alugado.horaInicio=Aluguel.horaInicio
+    alugado.trancaInicio=Aluguel.trancaInicio
     alugado.trancaFim=tranca.id
-    const devolucaoResult=  this.devolucaoRepository.insertDevolucao(alugado)
+
+    Aluguel.horaFim=alugado.horaFim
+    Aluguel.trancaFim=alugado.trancaFim
+
+    const updateAluguel= await this.aluguelService.updateAluguel(devolucao.ciclista,Aluguel)
+    const devolucaoResult=await this.devolucaoRepository.insertDevolucao(alugado)
     return devolucaoResult
   
     
 }
-async mocktrancas(id: number): Promise<Tranca> {
-   
-  const trancas =[
-    {
-      id: 1,
-      bicicleta: 123,
-      numero: 456,
-      localizacao: "Localização 1",
-      anoDeFabricacao: "2022",
-      modelo: "Modelo 1",
-      status: statusTranca.OCUPADA,
-    },
-    {
-      id: 2,
-      bicicleta: 789,
-      numero: 101112,
-      localizacao: "Localização 2",
-      anoDeFabricacao: "2021",
-      modelo: "Modelo 2",
-      status: statusTranca.OCUPADA,
-    },
-  ]
-  return trancas[id]
+
+async realizaCobrança(devolucao: NovaDevolucao,horaInicio: string,horaFim: string): Promise<any> {
+
+  const currentDate1 = new Date(horaInicio); // Primeira data em formato ISO
+const currentDate2 = new Date(horaFim); // Segunda data em formato ISO
+
+const diffInMinutes = Math.abs(currentDate2.getTime() - currentDate1.getTime()) / 60000; // Calcula a diferença em minutos
+
+  const cobrança= new realizaCobrança()
+    cobrança.ciclista=  devolucao.ciclista
+    cobrança.valor=  5 * (diffInMinutes % 30)
+    
+ return await  this.api.realizaCobrançaFila(cobrança)
 }
 
-async realizaCobrança(devolucao: realizaCobrança): Promise<any> {
-   return 1
-}
-async enviaEmail(devolucao: enviaEmail): Promise<any> {
-   
-  
-return true
-}
 async trancarTranca(id: number): Promise<any> {
    
   

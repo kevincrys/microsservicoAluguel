@@ -6,11 +6,13 @@ import { Utils } from '../../common/utils';
 import { CiclistaModule } from '../ciclista/ciclista.module';
 import { Devolucao } from '../../schemas/devolucao.schema';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Api } from 'src/common/api';
+import { AluguelModule } from '../aluguel/aluguel.module';
 
 @Module({
-  imports: [CiclistaModule,TypeOrmModule.forFeature([Devolucao])],
+  imports: [CiclistaModule,AluguelModule,TypeOrmModule.forFeature([Devolucao])],
   controllers: [DevolucaoController],
-  providers: [DevolucaoService,DevolucaoRepository, Utils],
-  exports: [DevolucaoService, Utils]
+  providers: [DevolucaoService,DevolucaoRepository, Utils,Api],
+  exports: [DevolucaoService, Utils,Api]
 })
 export class DevolucaoModule {}

@@ -20,7 +20,10 @@ async insertAluguel (aluguel: Aluguel) {
 async getAluguels (): Promise<Aluguel[]> {
    return  await this.aluguelRepository.find()
 }
-
+async getAluguelByCiclista (id: number): Promise<Aluguel> {
+   const aluguel=  await this.aluguelRepository.findOneBy({ciclista: id})
+   return aluguel
+}
 async permiteAluguel (id: number): Promise<Boolean> {
    const aluguel=  await this.aluguelRepository.findOneBy({ciclista: id})
 
@@ -36,7 +39,10 @@ async getBikeByCiclista (id: number): Promise<number> {
       if(aluguel===null){return }
       return aluguel?.bicicleta
    }
-
+   async updateAluguel (id: number, aluguel: Aluguel): Promise<Aluguel> {
+      await this.aluguelRepository.update(id, aluguel)
+      return await this.aluguelRepository.findOneBy({ciclista: id})
+   }
 
 }
 

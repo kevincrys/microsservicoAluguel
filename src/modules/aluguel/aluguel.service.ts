@@ -23,19 +23,19 @@ export class AluguelService {
     const alugado = new Aluguel;
     const cobrança= new realizaCobrança()
     cobrança.ciclista=  aluguel?.ciclista
-    cobrança.valor=  30
+    cobrança.valor=10
     const ciclista= await this.ciclistaService.getCiclistaByID(aluguel?.ciclista)
     if(this.utils.checkNullOrBlank(ciclista) ){
       throw new NotFoundException("Ciclista não encontrado")
   }
     const email= ciclista?.email
-    const tranca= await this.mocktrancas(1)
-    const fimCobrança= await this.realizaCobrança(cobrança)
-    this.destrancaTranca(aluguel?.trancaInicio)
+    const tranca= await this.api.getTrancaByid(aluguel.trancaInicio)
+    const fimCobrança= await this.api.realizaCobrança(cobrança)
+    this.api.destrancaTranca(aluguel?.trancaInicio,tranca?.bicicleta)
     this.api.sendEmail( {...emails?.aluguel,email})
     alugado.bicicleta= tranca?.bicicleta
     alugado.ciclista= aluguel?.ciclista
-    alugado.cobranca= fimCobrança
+    alugado.cobranca= fimCobrança?.id
     alugado.horaInicio= await  this.utils.getData()
     alugado.trancaInicio=tranca?.id
 
@@ -43,30 +43,6 @@ export class AluguelService {
     return aluguelResult
   
     
-}
-async mocktrancas(id: number): Promise<Tranca> {
-   
-  const trancas =[
-    {
-      id: 1,
-      bicicleta: 7,
-      numero: 456,
-      localizacao: "Localização 1",
-      anoDeFabricacao: "2022",
-      modelo: "Modelo 1",
-      status: statusTranca.OCUPADA,
-    },
-    {
-      id: 2,
-      bicicleta: 7,
-      numero: 101112,
-      localizacao: "Localização 2",
-      anoDeFabricacao: "2021",
-      modelo: "Modelo 2",
-      status: statusTranca.OCUPADA,
-    },
-  ]
-return trancas[id]
 }
 
 async permiteAluguel(id: number): Promise<Boolean> {
@@ -81,15 +57,21 @@ async getBikeByCiclista(id: number): Promise<number> {
   return update
 
 }
-async realizaCobrança(aluguel: realizaCobrança): Promise<any> {
-   return 1
-}
-async destrancaTranca(id: number): Promise<any> {
-   
-  
-  return true
-  }
+async getAluguelByCiclista(id: number): Promise<Aluguel> {
+  const update= await this.aluguelRepository.getAluguelByCiclista(id)
+  return update
 
+}
+
+async updateAluguel(id: number, ciclista: Aluguel): Promise<Aluguel> {
+   
+   
+  const update= await this.aluguelRepository.updateAluguel(id,ciclista)
+  if(update === undefined){throw new NotFoundException("Não encontrado")}
+  return update
+ 
+
+}
 
 }
 
