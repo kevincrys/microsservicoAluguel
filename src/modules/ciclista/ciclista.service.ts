@@ -31,8 +31,10 @@ export class CiclistaService {
     }
       var emailContent=emails.cadastroCiclista
       var email= ciclista.ciclista.email
+      console.log("chamou aqui")
       this.sendEmailMock({...emailContent,email})
     return check
+
   }else{
     throw new NotFoundException("Requisição mal formada")
   }
@@ -130,11 +132,23 @@ export class CiclistaService {
 
     return true
   }
-  async sendEmailMock(aluguel: enviaEmail): Promise<boolean> {
-   
-
+  async sendEmailMock(enviaEmail: enviaEmail): Promise<boolean> {
+    console.log("chamou aqui 2")
+    const axios = require('axios');
+    const url = 'https://externo-pm.onrender.com/enviarEmail';
+    try {
+      const response = await axios.post(url, enviaEmail, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log('Resposta:', response.data);
+    } catch (error) {
+      console.error('Erro:', error.message);
+    }
     return true
-  }
+  };
+  
   async getBicicletaByid(id:number): Promise<Bicicleta> {
     // /bicicleta/{idBicicleta}:
   const bike: Bicicleta={
