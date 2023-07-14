@@ -7,7 +7,7 @@ import { Response } from 'express';
 export class CartaoController {
   constructor(private readonly cartaoService: CartaoService) {}
 
-  @Post("/cartao")
+  @Post("/cartaoDeCredito")
  async cadastrarCartao(
  @Body() novocartao: novoCartao,
  @Res() res: Response): Promise<any> {
@@ -18,7 +18,7 @@ export class CartaoController {
 
 
   
-   @Put("/cartao/:idcartao")
+   @Put("/cartaoDeCredito/:idcartao")
  async updateCartao(
  @Body() novocartao: novoCartao,
  @Res() res: Response,@Param('idcartao') id): Promise<any> {
@@ -27,7 +27,7 @@ export class CartaoController {
     return res.status(HttpStatus.OK).send(response);
   }
 
-   @Get("/cartao/:idcartao")
+   @Get("/cartaoDeCredito/:idcartao")
    async getCartaoByID(
    @Res() res: Response,@Param('idcartao') id): Promise<any> {
       const idbicicleta=  parseInt(id)
