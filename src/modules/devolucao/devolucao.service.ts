@@ -58,11 +58,12 @@ async realizaCobrança(devolucao: NovaDevolucao,horaInicio: string,horaFim: stri
 const currentDate2 = new Date(horaFim); // Segunda data em formato ISO
 
 const diffInMinutes = Math.abs(currentDate2.getTime() - currentDate1.getTime()) / 60000; // Calcula a diferença em minutos
-
+console.log(diffInMinutes)
+console.log(diffInMinutes % 30)
   const cobrança= new realizaCobrança()
     cobrança.ciclista=  devolucao.ciclista
-    cobrança.valor=  5 * (diffInMinutes % 30)
-    
+    cobrança.valor=  5 * (Math.floor(diffInMinutes/30))
+    console.log("obrança.valor",cobrança.valor)
  return await  this.api.realizaCobrançaFila(cobrança)
 }
 
