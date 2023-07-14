@@ -10,21 +10,25 @@ import { emails } from '../../common/emails/emails';
 import { AluguelRepository } from '../aluguel/aluguel.repository';
 import { statusBicicleta } from '../../enums/statusBicicleta.enum';
 import { Bicicleta } from '../../schemas/bicicleta.schema';
+import { novoCartao } from 'src/dto/novoCartao.dto';
+import { Api } from 'src/common/api';
 @Injectable()
 export class CiclistaService {
   constructor(
     private readonly ciclistaRepository:CiclistaRepository,
     private readonly utils:Utils,
+    private readonly api:Api,
     private readonly cartaoService:CartaoService,
     private readonly aluguelRepository:AluguelRepository
   ) {}
 
   async insertCiclista(ciclista: CadastroCiclista): Promise<Ciclista> {
    
-    if(await this.validaCartaoMock()){
-    this.cartaoService.insertCartao(ciclista.meioDePagamento)
+    if(await this.api.validaCartaoMock(ciclista.meioDePagamento)){
+   console.log("bateu")
     const check= await this.ciclistaRepository.insertCiclista(ciclista.ciclista)
-
+    const card= await this.cartaoService.insertCartao(ciclista.meioDePagamento,check.id)
+    console.log(card)
     if(check===undefined)
     {
       throw new NotFoundException("Requisição mal formada")
@@ -32,7 +36,7 @@ export class CiclistaService {
       var emailContent=emails.cadastroCiclista
       var email= ciclista.ciclista.email
       console.log("chamou aqui")
-      this.sendEmailMock({...emailContent,email})
+      this.api.sendEmail({...emailContent,email})
     return check
 
   }else{
@@ -112,11 +116,12 @@ export class CiclistaService {
       throw new NotFoundException("Ciclista não encontrado")
   }
     const update= await this.aluguelRepository.getBikeByCiclista(id)
+    console.log("bike id",update)
     if(this.utils.checkNullOrBlank(update)){
       return 
     }
    
-    const getBike= await this.getBicicletaByid(update)
+    const getBike= await this.api.getBicicletaByid(update)
     return getBike
   
   }
@@ -127,40 +132,6 @@ export class CiclistaService {
     return array
   }
 
-  async validaCartaoMock(): Promise<boolean> {
-   
-
-    return true
-  }
-  async sendEmailMock(enviaEmail: enviaEmail): Promise<boolean> {
-    console.log("chamou aqui 2")
-    const axios = require('axios');
-    const url = 'https://externo-pm.onrender.com/enviarEmail';
-    try {
-      const response = await axios.post(url, enviaEmail, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      console.log('Resposta:', response.data);
-    } catch (error) {
-      console.error('Erro:', error.message);
-    }
-    return true
-  };
-  
-  async getBicicletaByid(id:number): Promise<Bicicleta> {
-    // /bicicleta/{idBicicleta}:
-  const bike: Bicicleta={
-    "marca": "Exemplo",
-    "modelo": "XYZ",
-    "ano": "2023",
-    "numero": "12345",
-    "status": "Ativo",
-    "id": 1
-  }
-    return bike
-  }
 
 
 }
