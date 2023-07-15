@@ -1,5 +1,5 @@
 
-import { Cartao } from "src/schemas/cartao.schema";
+import { Cartao } from "../../schemas/cartao.schema";
 import { novoCartao } from "../../dto/novoCartao.dto";
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

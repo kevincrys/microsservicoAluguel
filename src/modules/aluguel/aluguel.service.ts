@@ -1,15 +1,12 @@
-import {Injectable, NotFoundException  } from '@nestjs/common';
+import {Injectable, NotFoundException, UnprocessableEntityException  } from '@nestjs/common';
 import { NovoAluguel } from "../../dto/novoAluguel.dto";
 import { AluguelRepository } from './aluguel.repository';
 import {Utils} from '../../common/utils';
 import { Aluguel } from '../../schemas/aluguel.schema';
 import {realizaCobrança} from "../../dto/realizaCobranca.dto";
-import { enviaEmail } from '../../dto/enviaEmail.dto';
 import { CiclistaService } from '../ciclista/ciclista.service';
 import { emails } from '../../common/emails/emails';
-import { Tranca } from 'src/schemas/trancas.schemas';
-import { statusTranca } from '../../enums/statusTranca.enum';
-import { Api } from 'src/common/api';
+import { Api } from '../../common/api';
 @Injectable()
 export class AluguelService {
   constructor(
@@ -25,15 +22,20 @@ export class AluguelService {
     cobrança.ciclista=  aluguel?.ciclista
     cobrança.valor=10
     const ciclista= await this.ciclistaService.getCiclistaByID(aluguel?.ciclista)
+    console.log("ciclista",ciclista)
     if(this.utils.checkNullOrBlank(ciclista) ){
       throw new NotFoundException("Ciclista não encontrado")
   }
     const email= ciclista?.email
     const tranca= await this.api.getTrancaByid(aluguel.trancaInicio)
+    console.log("tranca",tranca)
     const fimCobrança= await this.api.realizaCobrança(cobrança)
-    this.api.destrancaTranca(aluguel?.trancaInicio,tranca?.bicicleta)
-    this.api.sendEmail( {...emails?.aluguel,email})
-    alugado.bicicleta= tranca?.bicicleta
+    console.log("fimCobrança",fimCobrança)
+    console.log("destrancaTranca",aluguel?.trancaInicio,tranca?.bicicletaId)
+   
+    await  this.api.destrancaTranca(aluguel?.trancaInicio,tranca?.bicicletaId)
+    await this.api.sendEmail( {...emails?.aluguel,email})
+    alugado.bicicleta= tranca?.bicicletaId
     alugado.ciclista= aluguel?.ciclista
     alugado.cobranca= fimCobrança?.id
     alugado.horaInicio= await  this.utils.getData()

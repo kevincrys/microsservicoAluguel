@@ -9,12 +9,14 @@ import { HttpStatus } from '@nestjs/common';
 import { DevolucaoRepository } from './devolucao.repository';
 
 import { CiclistaModule } from '../ciclista/ciclista.module';
+import { Api } from '../../common/api';
 
 const newDevolucao=  {
   "ciclista": 1,
   "trancaFim": 1234,
 }
   const DevolucaoReturn=  {
+    "id":1,
     "ciclista": 1,
     "trancaInicio": 1234,
     "bicicleta": 9876,
@@ -32,8 +34,8 @@ describe('DevolucaoController', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [CiclistaModule],
       controllers:[DevolucaoController],
-      providers: [DevolucaoService, DevolucaoRepository],
-      exports: [DevolucaoService],
+      providers: [DevolucaoService, DevolucaoRepository,Api],
+      exports: [DevolucaoService,Api],
     }).compile();
 
 

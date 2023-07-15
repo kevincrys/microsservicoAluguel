@@ -3,6 +3,7 @@ import { Bicicleta } from "src/schemas/bicicleta.schema";
 import { enviaEmail } from 'src/dto/enviaEmail.dto';
 import { realizaCobrança } from "src/dto/realizaCobranca.dto";
 import { Tranca } from "src/schemas/trancas.schemas";
+import { UnprocessableEntityException } from "@nestjs/common";
 const axios = require('axios');
 const urlexterno = 'https://externo-pm.onrender.com';
 const equipamento = 'https://ms-equipamento.vercel.app';
@@ -71,11 +72,13 @@ export class Api{
         console.log('Resposta:', response.data);
     
         tranca=response.data
-        console.log("bike",tranca)
-      } catch (error) {
-        console.error('Erro:', error);
-      }
         return tranca
+      } catch (error) {
+        console.log(error.response.data.message)
+      
+        throw new UnprocessableEntityException(error?.response?.data?.message)
+      }
+        
       }
 
       async destrancaTranca(id: number,idbicicleta:number): Promise<any> {
@@ -92,29 +95,31 @@ export class Api{
           });
           console.log('Resposta:', response.data);
         } catch (error) {
-          console.error('Erro:', error);
+
+          throw new UnprocessableEntityException(error?.response?.data?.message)
         }
       };
       async trancarTranca(id: number,idbicicleta:number): Promise<any> {
-        console.log("destrancaTranca")
+
         const url = `${equipamento}/tranca/${id}/trancar`;
         const data = {
           bicicletaId: idbicicleta
         };
+       
         try {
           const response = await axios.post(url, data, {
             headers: {
               'Content-Type': 'application/json'
             }
           });
-          console.log('Resposta:', response.data);
+
         } catch (error) {
-          console.error('Erro:', error);
+          throw new UnprocessableEntityException(error?.response?.data?.message)
         }
       };
 
       async realizaCobrança(aluguel: realizaCobrança): Promise<any>  {
-        console.log("realizaCobrança")
+        console.log("realizaCobrança",aluguel)
         
         const url =  `${urlexterno}/cobranca`;
   
@@ -127,7 +132,8 @@ export class Api{
           console.log('Resposta:', response.data);
           return response.data
         } catch (error) {
-          console.error('Erro:', error.message);
+          console.log(error?.response.data.Mensagem)
+          throw new UnprocessableEntityException(`realizaCobrança ${error?.response?.data?.message||error?.response?.data?.Mensagem}`)
         }
  
       };
@@ -146,7 +152,8 @@ export class Api{
           console.log('Resposta:', response.data);
           return response.data
         } catch (error) {
-          console.error('Erro:', error.message);
+
+          throw new UnprocessableEntityException(error?.response?.data?.message)
         }
  
       };

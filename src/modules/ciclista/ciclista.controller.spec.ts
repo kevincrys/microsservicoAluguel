@@ -11,6 +11,7 @@ import { CartaoModule } from '../cartao/cartao.module';
 import { CiclistaRepository } from './ciclista.repository';
 import { Utils } from '../../common/utils';
 import { AluguelRepository } from '../aluguel/aluguel.repository';
+import { Api } from '../../common/api';
 
 const newCiclista=  {
     nome: 'John Doe',
@@ -32,6 +33,7 @@ const newCiclista=  {
     nascimento: '1992-05-15',
     cpf: '9876543210',
     passaporte: {
+      id:1,
       numero: 'WXYZ5678',
       validade: '2024-10-31',
       pais: 'Estados Unidos',
@@ -68,8 +70,8 @@ describe('CiclistaController', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [CartaoModule],
       controllers: [CiclistaController],
-      providers: [CiclistaService, CiclistaRepository, Utils,AluguelRepository],
-      exports: [CiclistaService, Utils],
+      providers: [CiclistaService, CiclistaRepository, Utils,AluguelRepository,Api],
+      exports: [CiclistaService, Utils,Api],
     }).compile();
 
 

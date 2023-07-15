@@ -4,7 +4,7 @@ import { CartaoService } from './cartao.service';
 import { CartaoRepository } from './cartao.repository';
 import { Utils } from '../../common/utils';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Cartao } from 'src/schemas/cartao.schema';
+import { Cartao } from '../../schemas/cartao.schema';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Cartao])],

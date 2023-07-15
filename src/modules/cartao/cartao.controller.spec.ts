@@ -41,26 +41,6 @@ describe('CartaoController', () => {
     service = module.get<CartaoService>(CartaoService);
   });
 
-  describe('cadastrarCartao', () => {
-    it('should call insertCartao in the service and return response from service', async () => {
-
-      const response = CartaoReturn; // sample response from the service
-      
-      jest.spyOn(service, 'insertCartao').mockResolvedValue(CartaoReturn);
-      const res: Response = {
-        status: jest.fn().mockReturnThis(),
-        send: jest.fn(),
-      } as any;
-
-      await controller.cadastrarCartao(newCartao, res);
-
-      expect(service.insertCartao).toHaveBeenCalledWith(newCartao);
-      expect(res.status).toHaveBeenCalledWith(HttpStatus.CREATED);
-      expect(res.send).toHaveBeenCalledWith(response);
-    });
-  });
-
-  
   describe('updateCartao', () => {
     it('should call updateCartao in the service and return response from service', async () => {
       const id = 1;

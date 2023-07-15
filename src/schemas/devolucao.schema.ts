@@ -1,8 +1,9 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Devolucao {
-
-  @PrimaryColumn()
+    @PrimaryGeneratedColumn()
+    id: number;
+    @Column()
     ciclista: number;
     @Column()
     trancaFim: number;
@@ -17,6 +18,5 @@ export class Devolucao {
     @Column()
     cobranca: number;
       
-    
   }
 

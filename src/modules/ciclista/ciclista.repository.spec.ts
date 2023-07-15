@@ -1,15 +1,17 @@
 import { CiclistaRepository } from './ciclista.repository';
 import { statusCiclista } from "../../enums/statusCiclista.enum";
-import { Ciclista } from "src/schemas/ciclista.schema";
+import { Ciclista } from "../../schemas/ciclista.schema";
 import { novoCiclista } from "../../dto/novoCiclista.dto";
 
 import { nacionalidade } from '../../enums/nacionalidade.enum';
+import { Repository } from 'typeorm';
 const ciclistasArray: Ciclista[] = [
   {  id: 1,
     nome: 'Jane Smith',
     nascimento: '1992-05-15',
     cpf: '9876543210',
     passaporte: {
+      id: 1,
       numero: 'WXYZ5678',
       validade: '2024-10-31',
       pais: 'Estados Unidos',
@@ -25,6 +27,7 @@ const ciclistasArray: Ciclista[] = [
     nascimento: '1985-09-20',
     cpf: '4567890123',
     passaporte: {
+      id: 1,
       numero: 'LMNO9012',
       validade: '2023-06-30',
       pais: 'México',
@@ -39,13 +42,18 @@ const ciclistasArray: Ciclista[] = [
 ];
 describe("CiclistaRepository", () => {
   let ciclistaRepository: CiclistaRepository;
+  let repositoryMock: Partial<Repository<Ciclista>>;
 
   beforeEach(() => {
-    ciclistaRepository = new CiclistaRepository();
-  });
+    repositoryMock = {
+      save: jest.fn(),
+      update: jest.fn(),
+      findOne: jest.fn(),
+      delete: jest.fn(),
+      find: jest.fn(),
+    };
 
-  afterEach(() => {
-    ciclistaRepository = null;
+    ciclistaRepository = new CiclistaRepository(repositoryMock as Repository<Ciclista>);
   });
 
   it("should insert a new ciclista", async () => {
@@ -82,6 +90,7 @@ describe("CiclistaRepository", () => {
   });
 
   it("should update an existing ciclista", async () => {
+    
     const ciclistaId = 1; 
    
     const updatedCiclistaData: novoCiclista =  {
@@ -98,9 +107,29 @@ describe("CiclistaRepository", () => {
         urlFotoDocumento: 'https://example.com/document.jpg',
         senha: 'password123',
       };
+
+      const updatedCiclistaDataReturn: Ciclista =  {
+        id: ciclistaId,
+        nome: 'John Doe',
+        nascimento: '1990-01-01',
+        cpf: '1234567890',
+        passaporte: {
+          id:1,
+          numero: 'ABCD1234',
+          validade: '2025-12-31',
+          pais: 'Brasil',
+        },
+        nacionalidade: nacionalidade.BRASILEIRO,
+        email: 'john.doe@example.com',
+        urlFotoDocumento: 'https://example.com/document.jpg',
+        senha: 'password123',
+        status:statusCiclista.AGUARDANDO
+      };
       jest
-      .spyOn(ciclistaRepository, 'getCiclistas')
-      .mockResolvedValue(ciclistasArray)
+      .spyOn(repositoryMock, 'update')
+      jest
+      .spyOn(repositoryMock, 'findOneBy')
+      .mockResolvedValue(updatedCiclistaDataReturn)
     const result = await ciclistaRepository.updateCiclista(ciclistaId, updatedCiclistaData);
 
 

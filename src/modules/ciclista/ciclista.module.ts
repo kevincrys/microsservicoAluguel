@@ -7,8 +7,8 @@ import { CartaoModule } from '../cartao/cartao.module';
 import { AluguelRepository } from '../aluguel/aluguel.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Ciclista } from '../../schemas/ciclista.schema';
-import { Aluguel } from 'src/schemas/aluguel.schema';
-import { Api } from 'src/common/api';
+import { Aluguel } from '../../schemas/aluguel.schema';
+import { Api } from '../../common/api';
 
 @Module({
   imports: [CartaoModule,TypeOrmModule.forFeature([Ciclista]),TypeOrmModule.forFeature([Aluguel])],

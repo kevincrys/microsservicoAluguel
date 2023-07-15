@@ -16,7 +16,7 @@ export class Tranca {
   
     id: number;
 
-    bicicleta: number;
+    bicicletaId: number;
   
       
     }

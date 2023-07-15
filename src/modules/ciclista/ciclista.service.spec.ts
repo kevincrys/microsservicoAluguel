@@ -1,7 +1,7 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { CadastroCiclista } from '../../dto/cadastroCiclista.dto';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Ciclista } from 'src/schemas/ciclista.schema';
+import { Ciclista } from '../../schemas/ciclista.schema';
 import { CiclistaRepository } from './ciclista.repository';
 import { CartaoService } from '../cartao/cartao.service';
 import { CiclistaService } from './ciclista.service';
@@ -10,9 +10,12 @@ import { nacionalidade } from '../../enums/nacionalidade.enum';
 import { emails } from '../../common/emails/emails';
 import { statusCiclista } from '../../enums/statusCiclista.enum';
 import { CartaoModule } from '../cartao/cartao.module';
-import { CiclistaController } from './ciclista.controller';
+
 import { AluguelRepository } from '../aluguel/aluguel.repository';
-import { Bicicleta } from '../../schemas/bicicleta.schema';
+
+import { Api } from '../../common/api';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Aluguel } from '../../schemas/aluguel.schema';
 
 
 
@@ -20,13 +23,14 @@ describe('CiclistaService', () => {
   let ciclistaService: CiclistaService;
   let ciclistaRepository: CiclistaRepository;
   let utils: Utils;
+  let api: Api;
   let cartaoService: CartaoService;
   let aluguelRepository: AluguelRepository;
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CartaoModule],
-      providers: [CiclistaService, CiclistaRepository, Utils,AluguelRepository],
-      exports: [CiclistaService, Utils],
+      imports: [CartaoModule,TypeOrmModule.forFeature([Ciclista]),TypeOrmModule.forFeature([Aluguel])],
+      providers: [CiclistaService, CiclistaRepository, Utils,AluguelRepository,Api],
+      exports: [CiclistaService, Utils,Api],
     }).compile();
     cartaoService = module.get<CartaoService>(CartaoService);
     ciclistaRepository = {
@@ -40,6 +44,7 @@ describe('CiclistaService', () => {
     } as unknown as CiclistaRepository;
 
     utils = {} as Utils;
+    api = {} as Api;
     aluguelRepository =  {
       insertAluguel: jest.fn(),
       getAluguels: jest.fn(),
@@ -49,6 +54,7 @@ describe('CiclistaService', () => {
     ciclistaService = new CiclistaService(
       ciclistaRepository,
       utils,
+      api,
       cartaoService,
       aluguelRepository
     );
@@ -98,7 +104,7 @@ const ciclistaCad={  id: 1,
 
       cartaoService.insertCartao = jest.fn();
       ciclistaRepository.insertCiclista = jest.fn().mockResolvedValue(ciclistaCad);
-      ciclistaService.sendEmailMock= jest.fn();
+      api.sendEmail= jest.fn();
       const result = await ciclistaService.insertCiclista(ciclista);
 
       expect(cartaoService.insertCartao).toHaveBeenCalledWith(
@@ -107,7 +113,7 @@ const ciclistaCad={  id: 1,
       expect(ciclistaRepository.insertCiclista).toHaveBeenCalledWith(
         ciclista.ciclista,
       );
-      expect(ciclistaService.sendEmailMock).toHaveBeenCalledWith({
+      expect(api.sendEmail).toHaveBeenCalledWith({
         email: 'john.doe@example.com',
         assunto: emails.cadastroCiclista.assunto,
         mensagem: emails.cadastroCiclista.mensagem,
@@ -134,7 +140,7 @@ const ciclistaCad={  id: 1,
         meioDePagamento: newCartao,
       };
 
-      ciclistaService.validaCartaoMock = jest.fn().mockResolvedValue(false);
+      api.validaCartaoMock = jest.fn().mockResolvedValue(false);
 
       await expect(ciclistaService.insertCiclista(ciclista)).rejects.toThrow(
         NotFoundException,
@@ -316,8 +322,8 @@ const ciclistaCad={  id: 1,
       aluguelRepository.getBikeByCiclista = jest.fn().mockResolvedValue(1234);
       utils.checkNullOrBlank = jest.fn().mockReturnValue(false);
       const result = await ciclistaService.getBikeByCiclista(id);
-      jest.spyOn(ciclistaService, 'getBicicletaByid').mockResolvedValue(bike);
-     
+      api.getBicicletaByid=jest.fn().mockResolvedValue(bike)
+      
       expect(aluguelRepository.getBikeByCiclista).toHaveBeenCalledWith(id);
       expect(result).toStrictEqual(bike);
     });
@@ -345,21 +351,5 @@ const ciclistaCad={  id: 1,
     });
   });
 
-  describe('validaCartaoMock', () => {
-    it('should return true', async () => {
-      const result = await ciclistaService.validaCartaoMock();
 
-      expect(result).toBe(true);
-    });
-  });
-
-  describe('sendEmailMock', () => {
-    it('should return true', async () => {
-      var emailContent= emails.cadastroCiclista
-      var email= newCiclista.email
-      const result = await ciclistaService.sendEmailMock({...emailContent,email});
-
-      expect(result).toBe(true);
-    });
-  });
 });

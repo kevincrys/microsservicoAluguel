@@ -10,6 +10,9 @@ import { Tranca } from '../../schemas/trancas.schemas';
 import { statusTranca } from '../../enums/statusTranca.enum';
 import { statusCiclista } from '../../enums/statusCiclista.enum';
 import { Utils } from '../../common/utils';
+import { Api } from '../../common/api';
+import { AluguelModule } from '../aluguel/aluguel.module';
+import { AluguelService } from '../aluguel/aluguel.service';
 
 
 
@@ -17,13 +20,16 @@ describe('DevolucaoService', () => {
   let devolucaoService: DevolucaoService;
   let devolucaoRepository: DevolucaoRepository;
   let ciclistaService: CiclistaService;
+  let aluguelService: AluguelService;
 let utils: Utils
+let api: Api
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CiclistaModule],
-      providers: [DevolucaoService, DevolucaoRepository],
-      exports: [DevolucaoService, ],
+      imports: [CiclistaModule,AluguelModule],
+      providers: [DevolucaoService, DevolucaoRepository,Api],
+      exports: [DevolucaoService,Api ],
     }).compile();
+    aluguelService = module.get<AluguelService>(AluguelService);
     ciclistaService = module.get<CiclistaService>(CiclistaService);
     devolucaoRepository = {
       insertDevolucao: jest.fn(),
@@ -35,10 +41,13 @@ let utils: Utils
       getDevolucaos: jest.fn(),
     } as unknown as DevolucaoRepository;
     utils = {} as Utils;
+    api = {} as Api;
     devolucaoService = new DevolucaoService(
       devolucaoRepository,
       utils,
+      api,
       ciclistaService,
+      aluguelService
     );
   });
 
@@ -51,7 +60,7 @@ const devolucao= {
   }
 const tranca: Tranca = {
     id: 1234,
-    bicicleta: 9876,
+    bicicletaId: 9876,
     numero: 456,
     localizacao: "Localização 1",
     anoDeFabricacao: "2022",
@@ -82,23 +91,23 @@ const cobranca={"ciclista": 1, "valor": 30
         ciclistaService.getCiclistaByID=jest.fn().mockResolvedValue(Ciclista);
      
         utils.checkNullOrBlank = jest.fn().mockReturnValue(false);
-      devolucaoService.mocktrancas= jest.fn().mockResolvedValue(tranca);
-      devolucaoService.realizaCobrança= jest.fn().mockResolvedValue(20.5);
-      devolucaoService.trancarTranca=jest.fn()
-      devolucaoService.enviaEmail= jest.fn();
+        api.getTrancaByid= jest.fn().mockResolvedValue(tranca);
+        api.realizaCobrança= jest.fn().mockResolvedValue(20.5);
+        api.trancarTranca=jest.fn()
+        api.sendEmail= jest.fn();
        utils.getData= jest.fn().mockResolvedValue("2023-06-18T10:00:00");
       devolucaoRepository.insertDevolucao = jest.fn().mockResolvedValue(devolucao);
       
       const result = await devolucaoService.insertDevolucao(devolucao);
 
       
-      expect(devolucaoService.realizaCobrança).toHaveBeenCalledWith(
+      expect(api.realizaCobrança).toHaveBeenCalledWith(
         cobranca,
       );
-      expect(devolucaoService.trancarTranca).toHaveBeenCalledWith(
+      expect(api.trancarTranca).toHaveBeenCalledWith(
         1234,
       );
-      expect(devolucaoService.enviaEmail).toHaveBeenCalledWith({
+      expect(api.sendEmail).toHaveBeenCalledWith({
         email: 'jane.smith@example.com',
         assunto: emails.devolucao.assunto,
         mensagem: emails.devolucao.mensagem

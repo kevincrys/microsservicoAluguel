@@ -1,5 +1,6 @@
-import { Cartao } from 'src/schemas/cartao.schema';
+import { Cartao } from '../../schemas/cartao.schema';
 import { CartaoRepository } from './cartao.repository';
+import { Repository } from 'typeorm';
 jest.mock('uuid', () => ({
   __esModule: true,
   v4: jest.fn().mockReturnValue('mocked-uuid'),
@@ -35,10 +36,19 @@ const cartaos: Cartao[] = [
   },
 ];
 describe('CartaoRepository', () => {
-  let repository: CartaoRepository;
+  let cartaoRepository: CartaoRepository;
+  let repositoryMock: Partial<Repository<Cartao>>;
 
   beforeEach(() => {
-    repository = new CartaoRepository();
+    repositoryMock = {
+      save: jest.fn(),
+      update: jest.fn(),
+      findOne: jest.fn(),
+      delete: jest.fn(),
+      find: jest.fn(),
+    };
+
+    cartaoRepository = new CartaoRepository(repositoryMock as Repository<Cartao>);
   });
 
   describe('insertCartao', () => {
@@ -50,7 +60,7 @@ describe('CartaoRepository', () => {
         cvv: '123',
       }
      
-     const func= await repository.insertCartao(novoCartao);
+     const func= await cartaoRepository.insertCartao(novoCartao,1);
      
      expect(func).toEqual(
       expect.objectContaining({
@@ -73,9 +83,9 @@ describe('CartaoRepository', () => {
         cvv: '123',
       };
       jest
-      .spyOn(repository, 'getCartaos')
-      .mockResolvedValue(cartaos)
-      const updated = await repository.updateCartao(id, novoCartao);
+      .spyOn(repositoryMock, 'findOne')
+      .mockResolvedValue(cartaos[1])
+      const updated = await cartaoRepository.updateCartao(id, novoCartao);
 
       expect(updated).toStrictEqual({ ...novoCartao, id });
 
@@ -90,9 +100,9 @@ describe('CartaoRepository', () => {
         cvv: '123',
       };
       jest
-      .spyOn(repository, 'getCartaos')
-      .mockResolvedValue(cartaos)
-      const updated = await repository.updateCartao(id, novoCartao);
+      .spyOn(repositoryMock, 'findOne')
+      .mockResolvedValue(cartaos[1])
+      const updated = await cartaoRepository.updateCartao(id, novoCartao);
 
       expect(updated).toBeUndefined();
     });
@@ -107,10 +117,10 @@ describe('CartaoRepository', () => {
    
 
       jest
-      .spyOn(repository, 'getCartaos')
-      .mockResolvedValue(cartaos)
+      .spyOn(repositoryMock, 'findOne')
+      .mockResolvedValue(cartaos[3])
 
-      const cartao = await repository.getCartaoByID(id);
+      const cartao = await cartaoRepository.getCartaoByID(id);
 
       expect(cartao).toEqual({ ...cartaos[3], id });
     });
@@ -118,9 +128,9 @@ describe('CartaoRepository', () => {
     it('should return undefined for non-existent Cartao', async () => {
       const id = 1234;
       jest
-      .spyOn(repository, 'getCartaos')
-      .mockResolvedValue(cartaos)
-      const cartao = await repository.getCartaoByID(id);
+      .spyOn(repositoryMock, 'findOne')
+      .mockResolvedValue(cartaos[1])
+      const cartao = await cartaoRepository.getCartaoByID(id);
 
       expect(cartao).toBeUndefined();
     });

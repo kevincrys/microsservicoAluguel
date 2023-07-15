@@ -6,7 +6,7 @@ import { Utils } from '../../common/utils';
 import { CiclistaModule } from '../ciclista/ciclista.module';
 import { Aluguel } from '../../schemas/aluguel.schema';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Api } from 'src/common/api';
+import { Api } from '../../common/api';
 
 @Module({
   imports: [CiclistaModule,TypeOrmModule.forFeature([Aluguel])],

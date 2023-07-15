@@ -1,115 +1,1614 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.spec.ts">
-    <testCase name="CiclistaRepository should insert a new ciclista" duration="3"/>
-    <testCase name="CiclistaRepository should update an existing ciclista" duration="3"/>
-    <testCase name="CiclistaRepository should delete an existing ciclista" duration="1"/>
-    <testCase name="CiclistaRepository should get a ciclista by ID" duration="1"/>
-    <testCase name="CiclistaRepository should check if an email is available" duration="1"/>
-    <testCase name="CiclistaRepository should activate a ciclista" duration="1"/>
-  </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.controller.spec.ts">
-    <testCase name="CartaoController cadastrarCartao should call insertCartao in the service and return response from service" duration="26"/>
-    <testCase name="CartaoController updateCartao should call updateCartao in the service and return response from service" duration="6"/>
-    <testCase name="CartaoController getCartaoByID should call getCartaoByID in the service and return response from service" duration="6"/>
-  </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.controller.spec.ts">
-    <testCase name="FuncionarioController cadastrarFuncionario should call insertFuncionario in the service and return response from service" duration="30"/>
-    <testCase name="FuncionarioController getFuncionario should call getFuncionarios in the service and return response from service" duration="6"/>
-    <testCase name="FuncionarioController updateFuncionario should call updateFuncionario in the service and return response from service" duration="12"/>
-    <testCase name="FuncionarioController deleteFuncionario should call deleteFuncionario in the service and return response from service" duration="6"/>
-    <testCase name="FuncionarioController getFuncionarioByID should call getFuncionarioByID in the service and return response from service" duration="6"/>
-  </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.service.spec.ts">
-    <testCase name="DevolucaoService insertDevolucao should insert a devolucao and return true" duration="33"/>
-  </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts">
-    <testCase name="CiclistaService insertCiclista should insert a ciclista and return true" duration="23"/>
-    <testCase name="CiclistaService insertCiclista should throw NotFoundException if insertCiclista returns false" duration="43"/>
-    <testCase name="CiclistaService insertCiclista should throw NotFoundException if validaCartaoMock returns false" duration="9"/>
-    <testCase name="CiclistaService updateCiclista should update a ciclista and return true" duration="6"/>
-    <testCase name="CiclistaService updateCiclista should throw NotFoundException if updateCiclista returns false" duration="8"/>
-    <testCase name="CiclistaService ativarCiclista should activate a ciclista and return true" duration="5"/>
-    <testCase name="CiclistaService ativarCiclista should throw NotFoundException if ativarCiclista returns false" duration="7"/>
-    <testCase name="CiclistaService deleteCiclista should delete a ciclista and return true" duration="4"/>
-    <testCase name="CiclistaService deleteCiclista should throw NotFoundException if deleteCiclista returns false" duration="7"/>
-    <testCase name="CiclistaService getCiclistaByID should get a ciclista by ID and return true" duration="5"/>
-    <testCase name="CiclistaService getCiclistaByID should throw NotFoundException if getCiclistaByID returns null" duration="5"/>
-    <testCase name="CiclistaService checkEmail should check email and return true" duration="4"/>
-    <testCase name="CiclistaService checkEmail should throw BadRequestException if email is null or blank" duration="6"/>
-    <testCase name="CiclistaService permiteAluguel should get a ciclista by ID and return true" duration="4"/>
-    <testCase name="CiclistaService permiteAluguel should get a permiteAluguel by ID and return false" duration="3"/>
-    <testCase name="CiclistaService permiteAluguel should throw NotFoundException if permiteAluguel returns null" duration="13"/>
-    <testCase name="CiclistaService getBikeByCiclista should get a ciclista by ID and return true" duration="7"/>
-    <testCase name="CiclistaService getBikeByCiclista should throw NotFoundException if getBikeByCiclista returns null" duration="5"/>
-    <testCase name="CiclistaService getCiclistas should get all ciclistas" duration="11"/>
-    <testCase name="CiclistaService validaCartaoMock should return true" duration="4"/>
-    <testCase name="CiclistaService sendEmailMock should return true" duration="3"/>
-  </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.controller.spec.ts">
-    <testCase name="AluguelController cadastrarAluguel should call insertAluguel in the service and return response from service" duration="79"/>
-  </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.service.spec.ts">
-    <testCase name="AluguelService insertAluguel should insert a aluguel and return true" duration="28"/>
-  </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.service.spec.ts">
-    <testCase name="FuncionarioService insertFuncionario should insert Funcionario" duration="5"/>
-    <testCase name="FuncionarioService updateFuncionario should update Funcionario" duration="6"/>
-    <testCase name="FuncionarioService updateFuncionario should throw NotFoundException when Funcionario is not found" duration="20"/>
-    <testCase name="FuncionarioService updateFuncionario should not update Funcionario when novoFuncionario is null or blank" duration="1"/>
-    <testCase name="FuncionarioService deleteFuncionario should delete Funcionario" duration="1"/>
-    <testCase name="FuncionarioService deleteFuncionario should throw NotFoundException when Funcionario is not found" duration="1"/>
-    <testCase name="FuncionarioService deleteFuncionario should not delete Funcionario when id is null or blank" duration="1"/>
-    <testCase name="FuncionarioService getFuncionarioByID should return Funcionario by id" duration="1"/>
-    <testCase name="FuncionarioService getFuncionarioByID should throw NotFoundException when Funcionario is not found" duration="1"/>
-    <testCase name="FuncionarioService getFuncionarioByID should not getFuncionarioByID when id is null or blank" duration="0"/>
-    <testCase name="FuncionarioService getFuncionarios should return all Funcionarios" duration="1"/>
-  </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts">
-    <testCase name="CiclistaController cadastrarCiclista should call insertCiclista in the service and return response from service" duration="29"/>
-    <testCase name="CiclistaController getCiclista should call getCiclistas in the service and return response from service" duration="7"/>
-    <testCase name="CiclistaController updateCiclista should call updateCiclista in the service and return response from service" duration="6"/>
-    <testCase name="CiclistaController deleteCiclista should call deleteCiclista in the service and return response from service" duration="6"/>
-    <testCase name="CiclistaController getCiclistaByID should call getCiclistaByID in the service and return response from service" duration="6"/>
-    <testCase name="CiclistaController ativarCiclista should call ativarCiclista in the service and return response from service" duration="12"/>
-    <testCase name="CiclistaController checkEmail should call checkEmail in the service and return response from service" duration="5"/>
-    <testCase name="CiclistaController permiteAluguel should call permiteAluguel in the service and return response from service" duration="4"/>
-    <testCase name="CiclistaController getBikeByCiclista should call getBikeByCiclista in the service and return response from service" duration="6"/>
-  </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.controller.spec.ts">
-    <testCase name="DevolucaoController cadastrarDevolucao should call insertDevolucao in the service and return response from service" duration="31"/>
-  </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.repository.spec.ts">
-    <testCase name="FuncionarioRepository insertFuncionario should insert Funcionario" duration="4"/>
-    <testCase name="FuncionarioRepository updateFuncionario should update Funcionario by matricula" duration="2"/>
-    <testCase name="FuncionarioRepository updateFuncionario should return false when trying to update non-existent Funcionario" duration="1"/>
-    <testCase name="FuncionarioRepository deleteFuncionario should delete Funcionario by matricula" duration="1"/>
-    <testCase name="FuncionarioRepository deleteFuncionario should return false when trying to delete non-existent Funcionario" duration="1"/>
-    <testCase name="FuncionarioRepository getFuncionarioByID should return Funcionario by matricula" duration="1"/>
-    <testCase name="FuncionarioRepository getFuncionarioByID should return undefined for non-existent Funcionario" duration="1"/>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.spec.ts">
+    <testCase name="CartaoRepository insertCartao should insert Cartao" duration="2">
+      <failure message="TypeError: this.cartaoRepository.findOneBy is not a function"><![CDATA[TypeError: this.cartaoRepository.findOneBy is not a function
+    at CartaoRepository.findOneBy [as insertCartao] (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.ts:16:46)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.spec.ts:63:41)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+    <testCase name="CartaoRepository updateCartao should update Cartao by matricula" duration="1">
+      <failure message="TypeError: this.cartaoRepository.findOneBy is not a function"><![CDATA[TypeError: this.cartaoRepository.findOneBy is not a function
+    at CartaoRepository.findOneBy [as updateCartao] (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.ts:26:45)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.spec.ts:88:46)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+    <testCase name="CartaoRepository updateCartao should return false when trying to update non-existent Cartao" duration="0">
+      <failure message="TypeError: this.cartaoRepository.findOneBy is not a function"><![CDATA[TypeError: this.cartaoRepository.findOneBy is not a function
+    at CartaoRepository.findOneBy [as updateCartao] (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.ts:26:45)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.spec.ts:105:46)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+    <testCase name="CartaoRepository getCartaoByID should return Cartao by matricula" duration="1">
+      <failure message="TypeError: this.cartaoRepository.findOneBy is not a function"><![CDATA[TypeError: this.cartaoRepository.findOneBy is not a function
+    at CartaoRepository.findOneBy [as getCartaoByID] (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.ts:36:49)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.spec.ts:123:45)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+    <testCase name="CartaoRepository getCartaoByID should return undefined for non-existent Cartao" duration="1">
+      <failure message="TypeError: this.cartaoRepository.findOneBy is not a function"><![CDATA[TypeError: this.cartaoRepository.findOneBy is not a function
+    at CartaoRepository.findOneBy [as getCartaoByID] (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.ts:36:49)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.spec.ts:133:45)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
   </file>
   <file path="C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.repository.spec.ts">
-    <testCase name="DevolucaoRepository should insert a new devolucao" duration="3"/>
+    <testCase name="DevolucaoRepository should insert a new devolucao" duration="7">
+      <failure message="Error: expect(received).toEqual(expected) // deep equality"><![CDATA[Error: expect(received).toEqual(expected) // deep equality
+
+Expected: {"bicicleta": 9876, "ciclista": 1, "cobranca": 20.5, "horaFim": "2023-06-18T11:30:00", "horaInicio": "2023-06-18T10:00:00", "id": 1, "trancaFim": 5678, "trancaInicio": 1234}
+Received: undefined
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.repository.spec.ts:58:20)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+    </testCase>
   </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.service.spec.ts">
-    <testCase name="CartaoService insertCartao should insert Cartao" duration="4"/>
-    <testCase name="CartaoService updateCartao should update Cartao" duration="0"/>
-    <testCase name="CartaoService updateCartao should throw NotFoundException when Cartao is not found" duration="17"/>
-    <testCase name="CartaoService getCartaoByID should return Cartao by id" duration="1"/>
-    <testCase name="CartaoService getCartaoByID should throw NotFoundException when Cartao is not found" duration="1"/>
-    <testCase name="CartaoService getCartaoByID should not getCartaoByID when id is null or blank" duration="1"/>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.repository.spec.ts">
+    <testCase name="FuncionarioRepository insertFuncionario should insert Funcionario" duration="9">
+      <failure message="Error: expect(received).toEqual(expected) // deep equality"><![CDATA[Error: expect(received).toEqual(expected) // deep equality
+
+Expected: {"confirmacaoSenha": "password", "cpf": "1234567890", "email": "john@example.com", "funcao": "Gerente", "idade": 30, "matricula": "mocked-uuid", "nome": "John Doe", "senha": "password"}
+Received: undefined
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.repository.spec.ts:80:20)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+    </testCase>
+    <testCase name="FuncionarioRepository updateFuncionario should update Funcionario by matricula" duration="1">
+      <failure message="TypeError: this.funcionarioRepository.findOneBy is not a function"><![CDATA[TypeError: this.funcionarioRepository.findOneBy is not a function
+    at FuncionarioRepository.findOneBy [as updateFuncionario] (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.repository.ts:31:45)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.repository.spec.ts:99:23)]]></failure>
+    </testCase>
+    <testCase name="FuncionarioRepository updateFuncionario should return false when trying to update non-existent Funcionario" duration="1">
+      <failure message="TypeError: this.funcionarioRepository.findOneBy is not a function"><![CDATA[TypeError: this.funcionarioRepository.findOneBy is not a function
+    at FuncionarioRepository.findOneBy [as updateFuncionario] (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.repository.ts:31:45)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.repository.spec.ts:117:23)]]></failure>
+    </testCase>
+    <testCase name="FuncionarioRepository deleteFuncionario should delete Funcionario by matricula" duration="2">
+      <failure message="Error: expect(received).toBe(expected) // Object.is equality"><![CDATA[Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.repository.spec.ts:133:23)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+    </testCase>
+    <testCase name="FuncionarioRepository deleteFuncionario should return false when trying to delete non-existent Funcionario" duration="1"/>
+    <testCase name="FuncionarioRepository getFuncionarioByID should return Funcionario by matricula" duration="2">
+      <failure message="Error: expect(received).toEqual(expected) // deep equality"><![CDATA[Error: expect(received).toEqual(expected) // deep equality
+
+Expected: {"confirmacaoSenha": "senha2", "cpf": "23456789012", "email": "funcionario2@example.com", "funcao": "Cargo 2", "idade": 30, "matricula": "MAT002", "nome": "Funcionário 2", "senha": "senha2"}
+Received: undefined
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.repository.spec.ts:161:27)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+    </testCase>
+    <testCase name="FuncionarioRepository getFuncionarioByID should return undefined for non-existent Funcionario" duration="1"/>
   </file>
-  <file path="C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.repository.spec.ts">
-    <testCase name="CartaoRepository insertCartao should insert Cartao" duration="3"/>
-    <testCase name="CartaoRepository updateCartao should update Cartao by matricula" duration="2"/>
-    <testCase name="CartaoRepository updateCartao should return false when trying to update non-existent Cartao" duration="1"/>
-    <testCase name="CartaoRepository getCartaoByID should return Cartao by matricula" duration="0"/>
-    <testCase name="CartaoRepository getCartaoByID should return undefined for non-existent Cartao" duration="0"/>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.controller.spec.ts">
+    <testCase name="FuncionarioController cadastrarFuncionario should call insertFuncionario in the service and return response from service" duration="35">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the FuncionarioRepository (?). Please make sure that the argument FuncionarioRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the FuncionarioRepository (?). Please make sure that the argument FuncionarioRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If FuncionarioRepository is a provider, is it part of the current RootTestModule?
+- If FuncionarioRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing FuncionarioRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.controller.spec.ts:38:35)]]></failure>
+    </testCase>
+    <testCase name="FuncionarioController getFuncionario should call getFuncionarios in the service and return response from service" duration="13">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the FuncionarioRepository (?). Please make sure that the argument FuncionarioRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the FuncionarioRepository (?). Please make sure that the argument FuncionarioRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If FuncionarioRepository is a provider, is it part of the current RootTestModule?
+- If FuncionarioRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing FuncionarioRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.controller.spec.ts:38:35)]]></failure>
+    </testCase>
+    <testCase name="FuncionarioController updateFuncionario should call updateFuncionario in the service and return response from service" duration="10">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the FuncionarioRepository (?). Please make sure that the argument FuncionarioRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the FuncionarioRepository (?). Please make sure that the argument FuncionarioRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If FuncionarioRepository is a provider, is it part of the current RootTestModule?
+- If FuncionarioRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing FuncionarioRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.controller.spec.ts:38:35)]]></failure>
+    </testCase>
+    <testCase name="FuncionarioController deleteFuncionario should call deleteFuncionario in the service and return response from service" duration="10">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the FuncionarioRepository (?). Please make sure that the argument FuncionarioRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the FuncionarioRepository (?). Please make sure that the argument FuncionarioRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If FuncionarioRepository is a provider, is it part of the current RootTestModule?
+- If FuncionarioRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing FuncionarioRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.controller.spec.ts:38:35)]]></failure>
+    </testCase>
+    <testCase name="FuncionarioController getFuncionarioByID should call getFuncionarioByID in the service and return response from service" duration="15">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the FuncionarioRepository (?). Please make sure that the argument FuncionarioRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the FuncionarioRepository (?). Please make sure that the argument FuncionarioRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If FuncionarioRepository is a provider, is it part of the current RootTestModule?
+- If FuncionarioRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing FuncionarioRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.controller.spec.ts:38:35)]]></failure>
+    </testCase>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts">
+    <testCase name="CiclistaController cadastrarCiclista should call insertCiclista in the service and return response from service" duration="45">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CiclistaRepository is a provider, is it part of the current RootTestModule?
+- If CiclistaRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CiclistaRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts:70:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaController getCiclista should call getCiclistas in the service and return response from service" duration="17">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CiclistaRepository is a provider, is it part of the current RootTestModule?
+- If CiclistaRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CiclistaRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts:70:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaController updateCiclista should call updateCiclista in the service and return response from service" duration="9">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CiclistaRepository is a provider, is it part of the current RootTestModule?
+- If CiclistaRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CiclistaRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts:70:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaController deleteCiclista should call deleteCiclista in the service and return response from service" duration="9">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CiclistaRepository is a provider, is it part of the current RootTestModule?
+- If CiclistaRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CiclistaRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts:70:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaController getCiclistaByID should call getCiclistaByID in the service and return response from service" duration="7">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CiclistaRepository is a provider, is it part of the current RootTestModule?
+- If CiclistaRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CiclistaRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts:70:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaController ativarCiclista should call ativarCiclista in the service and return response from service" duration="31">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CiclistaRepository is a provider, is it part of the current RootTestModule?
+- If CiclistaRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CiclistaRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts:70:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaController checkEmail should call checkEmail in the service and return response from service" duration="5">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CiclistaRepository is a provider, is it part of the current RootTestModule?
+- If CiclistaRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CiclistaRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts:70:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaController permiteAluguel should call permiteAluguel in the service and return response from service" duration="4">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CiclistaRepository is a provider, is it part of the current RootTestModule?
+- If CiclistaRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CiclistaRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts:70:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaController getBikeByCiclista should call getBikeByCiclista in the service and return response from service" duration="7">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument CiclistaRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CiclistaRepository is a provider, is it part of the current RootTestModule?
+- If CiclistaRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CiclistaRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.controller.spec.ts:70:35)]]></failure>
+    </testCase>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts">
+    <testCase name="CiclistaService insertCiclista should insert a ciclista and return true" duration="27">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService insertCiclista should throw NotFoundException if insertCiclista returns false" duration="18">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService insertCiclista should throw NotFoundException if validaCartaoMock returns false" duration="11">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService updateCiclista should update a ciclista and return true" duration="10">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService updateCiclista should throw NotFoundException if updateCiclista returns false" duration="17">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService ativarCiclista should activate a ciclista and return true" duration="11">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService ativarCiclista should throw NotFoundException if ativarCiclista returns false" duration="14">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService deleteCiclista should delete a ciclista and return true" duration="7">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService deleteCiclista should throw NotFoundException if deleteCiclista returns false" duration="9">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService getCiclistaByID should get a ciclista by ID and return true" duration="6">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService getCiclistaByID should throw NotFoundException if getCiclistaByID returns null" duration="9">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService checkEmail should check email and return true" duration="5">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService checkEmail should throw BadRequestException if email is null or blank" duration="9">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService permiteAluguel should get a ciclista by ID and return true" duration="7">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService permiteAluguel should get a permiteAluguel by ID and return false" duration="4">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService permiteAluguel should throw NotFoundException if permiteAluguel returns null" duration="15">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService getBikeByCiclista should get a ciclista by ID and return true" duration="6">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService getBikeByCiclista should throw NotFoundException if getBikeByCiclista returns null" duration="8">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
+    <testCase name="CiclistaService getCiclistas should get all ciclistas" duration="9">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.service.spec.ts:30:35)]]></failure>
+    </testCase>
   </file>
   <file path="C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.repository.spec.ts">
-    <testCase name="AluguelRepository should insert a new aluguel" duration="3"/>
-    <testCase name="AluguelRepository should get a  Bike By Ciclista ID" duration="2"/>
-    <testCase name="AluguelRepository should check if permiteAluguel already exist aluguel" duration="1"/>
-    <testCase name="AluguelRepository should check if permiteAluguel not already exist aluguel " duration="1"/>
+    <testCase name="AluguelRepository should insert a new aluguel" duration="7">
+      <failure message="Error: expect(received).toEqual(expected) // deep equality"><![CDATA[Error: expect(received).toEqual(expected) // deep equality
+
+Expected: {"bicicleta": 9876, "ciclista": 1, "cobranca": 20.5, "horaFim": "2023-06-18T11:30:00", "horaInicio": "2023-06-18T10:00:00", "id": 1, "trancaFim": 5678, "trancaInicio": 1234}
+Received: undefined
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.repository.spec.ts:59:20)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+    </testCase>
+    <testCase name="AluguelRepository should get a  Bike By Ciclista ID" duration="1">
+      <failure message="TypeError: this.aluguelRepository.findOneBy is not a function"><![CDATA[TypeError: this.aluguelRepository.findOneBy is not a function
+    at AluguelRepository.findOneBy [as getBikeByCiclista] (C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.repository.ts:41:49)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.repository.spec.ts:67:44)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+    <testCase name="AluguelRepository should check if permiteAluguel already exist aluguel" duration="1">
+      <failure message="TypeError: this.aluguelRepository.findOneBy is not a function"><![CDATA[TypeError: this.aluguelRepository.findOneBy is not a function
+    at AluguelRepository.findOneBy [as permiteAluguel] (C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.repository.ts:32:49)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.repository.spec.ts:78:44)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+    <testCase name="AluguelRepository should check if permiteAluguel not already exist aluguel " duration="1">
+      <failure message="TypeError: this.aluguelRepository.findOneBy is not a function"><![CDATA[TypeError: this.aluguelRepository.findOneBy is not a function
+    at AluguelRepository.findOneBy [as permiteAluguel] (C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.repository.ts:32:49)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.repository.spec.ts:90:44)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.spec.ts">
+    <testCase name="CiclistaRepository should insert a new ciclista" duration="8">
+      <failure message="Error: expect(received).toEqual(expected) // deep equality"><![CDATA[Error: expect(received).toEqual(expected) // deep equality
+
+Expected: ObjectContaining {"cpf": "1234567890", "email": "john.doe@example.com", "nacionalidade": "BRASILEIRO", "nascimento": "1990-01-01", "nome": "John Doe", "passaporte": {"numero": "ABCD1234", "pais": "Brasil", "validade": "2025-12-31"}, "senha": "password123", "status": "AGUARDANDO_CONFIRMACAO", "urlFotoDocumento": "https://example.com/document.jpg"}
+Received: undefined
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.spec.ts:77:20)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)]]></failure>
+    </testCase>
+    <testCase name="CiclistaRepository should update an existing ciclista" duration="0">
+      <failure message="Error: Cannot spy on the findOneBy property because it is not a function; undefined given instead. If you are trying to mock a property, use `jest.replaceProperty(object, &apos;findOneBy&apos;, value)` instead."><![CDATA[Error: Cannot spy on the findOneBy property because it is not a function; undefined given instead. If you are trying to mock a property, use `jest.replaceProperty(object, 'findOneBy', value)` instead.
+    at ModuleMocker.spyOn (C:\Users\kevin\unirio\project-name\node_modules\jest-mock\build\index.js:732:15)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.spec.ts:131:8)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+    <testCase name="CiclistaRepository should delete an existing ciclista" duration="1">
+      <failure message="TypeError: this.ciclistaRepository.findOneBy is not a function"><![CDATA[TypeError: this.ciclistaRepository.findOneBy is not a function
+    at CiclistaRepository.findOneBy [as getCiclistaByID] (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.ts:48:43)
+    at CiclistaRepository.getCiclistaByID [as deleteCiclista] (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.ts:32:38)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.spec.ts:159:45)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+    <testCase name="CiclistaRepository should get a ciclista by ID" duration="1">
+      <failure message="TypeError: this.ciclistaRepository.findOneBy is not a function"><![CDATA[TypeError: this.ciclistaRepository.findOneBy is not a function
+    at CiclistaRepository.findOneBy [as getCiclistaByID] (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.ts:48:43)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.spec.ts:170:45)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+    <testCase name="CiclistaRepository should check if an email is available" duration="0">
+      <failure message="TypeError: this.ciclistaRepository.findOneBy is not a function"><![CDATA[TypeError: this.ciclistaRepository.findOneBy is not a function
+    at CiclistaRepository.findOneBy [as checkEmail] (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.ts:52:53)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.spec.ts:180:45)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+    <testCase name="CiclistaRepository should activate a ciclista" duration="1">
+      <failure message="TypeError: this.ciclistaRepository.findOneBy is not a function"><![CDATA[TypeError: this.ciclistaRepository.findOneBy is not a function
+    at CiclistaRepository.findOneBy [as getCiclistaByID] (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.ts:48:43)
+    at CiclistaRepository.getCiclistaByID [as ativarCiclista] (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.ts:61:39)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\ciclista\ciclista.repository.spec.ts:191:45)
+    at Promise.then.completed (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\kevin\unirio\project-name\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\kevin\unirio\project-name\node_modules\jest-runner\build\testWorker.js:106:12)]]></failure>
+    </testCase>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.controller.spec.ts">
+    <testCase name="CartaoController updateCartao should call updateCartao in the service and return response from service" duration="21">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CartaoRepository (?). Please make sure that the argument CartaoRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CartaoRepository (?). Please make sure that the argument CartaoRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CartaoRepository is a provider, is it part of the current RootTestModule?
+- If CartaoRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CartaoRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.controller.spec.ts:32:35)]]></failure>
+    </testCase>
+    <testCase name="CartaoController getCartaoByID should call getCartaoByID in the service and return response from service" duration="6">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CartaoRepository (?). Please make sure that the argument CartaoRepository at index [0] is available in the RootTestModule context."><![CDATA[Error: Nest can't resolve dependencies of the CartaoRepository (?). Please make sure that the argument CartaoRepository at index [0] is available in the RootTestModule context.
+
+Potential solutions:
+- Is RootTestModule a valid NestJS module?
+- If CartaoRepository is a provider, is it part of the current RootTestModule?
+- If CartaoRepository is exported from a separate @Module, is that module imported within RootTestModule?
+  @Module({
+    imports: [ /* the Module containing CartaoRepository */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 4)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 1)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.controller.spec.ts:32:35)]]></failure>
+    </testCase>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\funcionario\funcionario.service.spec.ts">
+    <testCase name="FuncionarioService insertFuncionario should insert Funcionario" duration="3"/>
+    <testCase name="FuncionarioService updateFuncionario should update Funcionario" duration="1"/>
+    <testCase name="FuncionarioService updateFuncionario should throw NotFoundException when Funcionario is not found" duration="17"/>
+    <testCase name="FuncionarioService updateFuncionario should not update Funcionario when novoFuncionario is null or blank" duration="1"/>
+    <testCase name="FuncionarioService deleteFuncionario should delete Funcionario" duration="2"/>
+    <testCase name="FuncionarioService deleteFuncionario should throw NotFoundException when Funcionario is not found" duration="2"/>
+    <testCase name="FuncionarioService deleteFuncionario should not delete Funcionario when id is null or blank" duration="0"/>
+    <testCase name="FuncionarioService getFuncionarioByID should return Funcionario by id" duration="1"/>
+    <testCase name="FuncionarioService getFuncionarioByID should throw NotFoundException when Funcionario is not found" duration="1"/>
+    <testCase name="FuncionarioService getFuncionarioByID should not getFuncionarioByID when id is null or blank" duration="1"/>
+    <testCase name="FuncionarioService getFuncionarios should return all Funcionarios" duration="1"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\cartao\cartao.service.spec.ts">
+    <testCase name="CartaoService insertCartao should insert Cartao" duration="3"/>
+    <testCase name="CartaoService updateCartao should update Cartao" duration="1"/>
+    <testCase name="CartaoService updateCartao should throw NotFoundException when Cartao is not found" duration="9"/>
+    <testCase name="CartaoService getCartaoByID should return Cartao by id" duration="1"/>
+    <testCase name="CartaoService getCartaoByID should throw NotFoundException when Cartao is not found" duration="10"/>
+    <testCase name="CartaoService getCartaoByID should not getCartaoByID when id is null or blank" duration="1"/>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.service.spec.ts">
+    <testCase name="DevolucaoService insertDevolucao should insert a devolucao and return true" duration="38">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 5)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.service.spec.ts:27:35)]]></failure>
+    </testCase>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.controller.spec.ts">
+    <testCase name="DevolucaoController cadastrarDevolucao should call insertDevolucao in the service and return response from service" duration="61">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 5)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\devolucao\devolucao.controller.spec.ts:34:35)]]></failure>
+    </testCase>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.service.spec.ts">
+    <testCase name="AluguelService insertAluguel should insert a aluguel and return true" duration="32">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 5)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.service.spec.ts:24:35)]]></failure>
+    </testCase>
+  </file>
+  <file path="C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.controller.spec.ts">
+    <testCase name="AluguelController cadastrarAluguel should call insertAluguel in the service and return response from service" duration="23">
+      <failure message="Error: Nest can&apos;t resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context."><![CDATA[Error: Nest can't resolve dependencies of the CiclistaRepository (?). Please make sure that the argument DataSource at index [0] is available in the TypeOrmModule context.
+
+Potential solutions:
+- Is TypeOrmModule a valid NestJS module?
+- If DataSource is a provider, is it part of the current TypeOrmModule?
+- If DataSource is exported from a separate @Module, is that module imported within TypeOrmModule?
+  @Module({
+    imports: [ /* the Module containing DataSource */ ]
+  })
+
+    at TestingInjector.lookupComponentInParentModules (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:247:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:200:33)
+    at TestingInjector.resolveComponentInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-injector.js:19:45)
+    at resolveParam (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:120:38)
+    at async Promise.all (index 0)
+    at TestingInjector.resolveConstructorParams (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:135:27)
+    at TestingInjector.loadInstance (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:61:13)
+    at TestingInjector.loadProvider (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\injector.js:88:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:56:13
+    at async Promise.all (index 3)
+    at TestingInstanceLoader.createInstancesOfProviders (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:55:9)
+    at C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:40:13
+    at async Promise.all (index 5)
+    at TestingInstanceLoader.createInstances (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:39:9)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\core\injector\instance-loader.js:22:13)
+    at TestingInstanceLoader.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-instance-loader.js:9:9)
+    at TestingModuleBuilder.createInstancesOfDependencies (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:97:9)
+    at TestingModuleBuilder.compile (C:\Users\kevin\unirio\project-name\node_modules\@nestjs\testing\testing-module.builder.js:63:9)
+    at Object.<anonymous> (C:\Users\kevin\unirio\project-name\src\modules\aluguel\aluguel.controller.spec.ts:34:35)]]></failure>
+    </testCase>
   </file>
 </testExecutions>

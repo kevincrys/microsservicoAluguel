@@ -1,5 +1,6 @@
-import { Funcionario } from 'src/schemas/funcionario.schema';
+import { Funcionario } from '../../schemas/funcionario.schema';
 import { FuncionarioRepository } from './funcionario.repository';
+import { Repository } from 'typeorm';
 jest.mock('uuid', () => ({
   __esModule: true,
   v4: jest.fn().mockReturnValue('mocked-uuid'),
@@ -47,10 +48,19 @@ const funcionarios: Funcionario[] = [
   },
 ];
 describe('FuncionarioRepository', () => {
-  let repository: FuncionarioRepository;
+  let funcionarioRepository: FuncionarioRepository;
+  let repositoryMock: Partial<Repository<Funcionario>>;
 
   beforeEach(() => {
-    repository = new FuncionarioRepository();
+    repositoryMock = {
+      save: jest.fn(),
+      update: jest.fn(),
+      findOne: jest.fn(),
+      delete: jest.fn(),
+      find: jest.fn(),
+    };
+
+    funcionarioRepository = new FuncionarioRepository(repositoryMock as Repository<Funcionario>);
   });
 
   describe('insertFuncionario', () => {
@@ -65,7 +75,7 @@ describe('FuncionarioRepository', () => {
         cpf: '1234567890',
       };
      
-     const func= await repository.insertFuncionario(novoFuncionario);
+     const func= await funcionarioRepository.insertFuncionario(novoFuncionario);
      
       expect(func).toEqual({ ...novoFuncionario, matricula: "mocked-uuid" });
     });
@@ -84,9 +94,9 @@ describe('FuncionarioRepository', () => {
         cpf: '1234567890',
       };
       jest
-      .spyOn(repository, 'getFuncionarios')
-      .mockResolvedValue(funcionarios)
-      const updated = await repository.updateFuncionario(matricula, novoFuncionario);
+      .spyOn(repositoryMock, 'findOne')
+      .mockResolvedValue(funcionarios[0])
+      const updated = await funcionarioRepository.updateFuncionario(matricula, novoFuncionario);
 
       expect(updated).toStrictEqual({ ...novoFuncionario, matricula });
 
@@ -104,7 +114,7 @@ describe('FuncionarioRepository', () => {
         cpf: '1234567890',
       };
 
-      const updated = await repository.updateFuncionario(matricula, novoFuncionario);
+      const updated = await funcionarioRepository.updateFuncionario(matricula, novoFuncionario);
 
       expect(updated).toBeUndefined();
     });
@@ -115,10 +125,10 @@ describe('FuncionarioRepository', () => {
       const matricula = 'MAT002';
    
       jest
-      .spyOn(repository, 'getFuncionarios')
-      .mockResolvedValue(funcionarios)
+      .spyOn(repositoryMock, 'findOne')
+      .mockResolvedValue(funcionarios[0])
 
-      const deleted = await repository.deleteFuncionario(matricula);
+      const deleted = await funcionarioRepository.deleteFuncionario(matricula);
 
       expect(deleted).toBe(true);
      
@@ -127,9 +137,9 @@ describe('FuncionarioRepository', () => {
     it('should return false when trying to delete non-existent Funcionario', async () => {
       const matricula = 'MAT21';
       jest
-      .spyOn(repository, 'getFuncionarios')
-      .mockResolvedValue(funcionarios)
-      const deleted = await repository.deleteFuncionario(matricula);
+      .spyOn(repositoryMock, 'findOne')
+      .mockResolvedValue(funcionarios[0])
+      const deleted = await funcionarioRepository.deleteFuncionario(matricula);
 
       expect(deleted).toBe(false);
     });
@@ -143,10 +153,10 @@ describe('FuncionarioRepository', () => {
    
 
       jest
-      .spyOn(repository, 'getFuncionarios')
-      .mockResolvedValue(funcionarios)
+      .spyOn(repositoryMock, 'findOne')
+      .mockResolvedValue(funcionarios[0])
 
-      const funcionario = await repository.getFuncionarioByID(matricula);
+      const funcionario = await funcionarioRepository.getFuncionarioByID(matricula);
 
       expect(funcionario).toEqual({ ...funcionarios[1], matricula });
     });
@@ -154,9 +164,9 @@ describe('FuncionarioRepository', () => {
     it('should return undefined for non-existent Funcionario', async () => {
       const matricula = '1234';
       jest
-      .spyOn(repository, 'getFuncionarios')
-      .mockResolvedValue(funcionarios)
-      const funcionario = await repository.getFuncionarioByID(matricula);
+      .spyOn(repositoryMock, 'findOne')
+      .mockResolvedValue(funcionarios[0])
+      const funcionario = await funcionarioRepository.getFuncionarioByID(matricula);
 
       expect(funcionario).toBeUndefined();
     });

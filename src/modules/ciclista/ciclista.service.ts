@@ -5,13 +5,12 @@ import {Utils} from '../../common/utils';
 import { Ciclista } from '../../schemas/ciclista.schema';
 import { CadastroCiclista } from '../../dto/cadastroCiclista.dto';
 import { CartaoService } from '../cartao/cartao.service';
-import { enviaEmail } from '../../dto/enviaEmail.dto';
 import { emails } from '../../common/emails/emails';
 import { AluguelRepository } from '../aluguel/aluguel.repository';
-import { statusBicicleta } from '../../enums/statusBicicleta.enum';
+
 import { Bicicleta } from '../../schemas/bicicleta.schema';
-import { novoCartao } from 'src/dto/novoCartao.dto';
-import { Api } from 'src/common/api';
+
+import { Api } from '../../common/api';
 @Injectable()
 export class CiclistaService {
   constructor(

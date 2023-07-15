@@ -9,12 +9,14 @@ import { HttpStatus } from '@nestjs/common';
 import { AluguelRepository } from './aluguel.repository';
 
 import { CiclistaModule } from '../ciclista/ciclista.module';
+import { Api } from '../../common/api';
 
 const newAluguel=  {
   "ciclista": 1,
   "trancaInicio": 1234,
 }
   const AluguelReturn=  {
+    "id":1,
     "ciclista": 1,
     "trancaInicio": 1234,
     "bicicleta": 9876,
@@ -32,8 +34,8 @@ describe('AluguelController', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [CiclistaModule],
       controllers:[AluguelController],
-      providers: [AluguelService, AluguelRepository],
-      exports: [AluguelService],
+      providers: [AluguelService, AluguelRepository,Api],
+      exports: [AluguelService,Api],
     }).compile();
 
 

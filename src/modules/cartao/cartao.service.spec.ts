@@ -32,9 +32,9 @@ describe('CartaoService', () => {
       };
       ;
 
-      await service.insertCartao(novoCartao);
+      await service.insertCartao(novoCartao,1);
 
-      expect(cartaoRepository.insertCartao).toHaveBeenCalledWith(novoCartao);
+      expect(cartaoRepository.insertCartao).toHaveBeenCalledWith(novoCartao,1);
     });
   });
 

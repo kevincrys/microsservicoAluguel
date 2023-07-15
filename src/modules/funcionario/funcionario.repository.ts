@@ -1,6 +1,6 @@
 
-import { Funcionario } from "src/schemas/funcionario.schema";
-import { v4 as uuidv4 } from 'uuid';
+import { Funcionario } from "../../schemas/funcionario.schema";
+
 import { novoFuncionario } from "../../dto/novoFuncionario.dto";
 
 
