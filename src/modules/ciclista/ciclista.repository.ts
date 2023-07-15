@@ -45,7 +45,13 @@ async getCiclistas (): Promise<Ciclista[]> {
         }
 
 async getCiclistaByID (id: number): Promise<Ciclista> {
-    return  await this.ciclistaRepository.findOneBy({id: id})
+    const ciclista= await this.ciclistaRepository
+    .createQueryBuilder('ciclista')
+    .leftJoinAndSelect('ciclista.passaporte', 'passaporte')
+    .where('ciclista.id = :id', { id })
+    .getOne();
+    return  ciclista
+
         }
 
 async checkEmail (email: string): Promise<Boolean> {
