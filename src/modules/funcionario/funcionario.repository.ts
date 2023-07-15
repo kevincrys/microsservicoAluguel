@@ -41,12 +41,12 @@ async deleteFuncionario (matricula: string): Promise<boolean> {
     }
 
 async getFuncionarios (): Promise<Funcionario[]> {
-            return  FuncionariosNovos
+    return  await this.funcionarioRepository.find()
         }
 
 async getFuncionarioByID (matricula: string): Promise<Funcionario> {
-    var FuncionariosArray= await this.getFuncionarios()
-            return  FuncionariosArray.find((Funcionario) => Funcionario.matricula === matricula)
+    return  await this.funcionarioRepository.findOneBy({matricula: matricula})
+            
         }                     
 
 }  
