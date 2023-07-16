@@ -2,14 +2,13 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { FuncionarioController } from './funcionario.controller';
 import { FuncionarioService } from './funcionario.service';
 import { novoFuncionario } from '../../dto/novoFuncionario.dto';
-
 import { Response } from 'express';
 import { HttpStatus } from '@nestjs/common';
-
-import { CartaoModule } from '../cartao/cartao.module';
 import { FuncionarioRepository } from './funcionario.repository';
 import { Utils } from '../../common/utils';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Funcionario } from '../../schemas/funcionario.schema';
+import { mockDatabaseConfig } from '../../mockdatabase.config';
 const newFuncionario=   {
   senha: 'password',
   confirmacaoSenha: 'password',
@@ -36,7 +35,7 @@ describe('FuncionarioController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CartaoModule],
+      imports: [TypeOrmModule.forFeature([Funcionario]),TypeOrmModule.forRoot(mockDatabaseConfig)],
       controllers: [FuncionarioController],
       providers: [FuncionarioService, FuncionarioRepository, Utils],
       exports: [FuncionarioService, Utils],

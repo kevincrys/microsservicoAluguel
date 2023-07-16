@@ -44,6 +44,7 @@ describe('CartaoRepository', () => {
       save: jest.fn(),
       update: jest.fn(),
       findOne: jest.fn(),
+      findOneBy: jest.fn(),
       delete: jest.fn(),
       find: jest.fn(),
     };

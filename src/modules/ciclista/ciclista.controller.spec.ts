@@ -12,7 +12,10 @@ import { CiclistaRepository } from './ciclista.repository';
 import { Utils } from '../../common/utils';
 import { AluguelRepository } from '../aluguel/aluguel.repository';
 import { Api } from '../../common/api';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Ciclista } from '../../schemas/ciclista.schema';
+import { Aluguel } from '../../schemas/aluguel.schema';
+import { mockDatabaseConfig } from '../../mockdatabase.config';
 const newCiclista=  {
     nome: 'John Doe',
     nascimento: '1990-01-01',
@@ -68,7 +71,7 @@ describe('CiclistaController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CartaoModule],
+      imports: [CartaoModule,TypeOrmModule.forFeature([Ciclista]),TypeOrmModule.forFeature([Aluguel]),TypeOrmModule.forRoot(mockDatabaseConfig)],
       controllers: [CiclistaController],
       providers: [CiclistaService, CiclistaRepository, Utils,AluguelRepository,Api],
       exports: [CiclistaService, Utils,Api],

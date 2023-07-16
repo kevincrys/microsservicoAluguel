@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { DevolucaoController } from './devolucao.controller';
 import { DevolucaoService } from './devolucao.service';
-
-
 import { Response } from 'express';
 import { HttpStatus } from '@nestjs/common';
-
 import { DevolucaoRepository } from './devolucao.repository';
-
 import { CiclistaModule } from '../ciclista/ciclista.module';
 import { Api } from '../../common/api';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Devolucao } from '../../schemas/devolucao.schema';
+import { mockDatabaseConfig } from '../../mockdatabase.config';
+import { AluguelModule } from '../aluguel/aluguel.module';
 
 const newDevolucao=  {
   "ciclista": 1,
@@ -32,7 +32,7 @@ describe('DevolucaoController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CiclistaModule],
+      imports: [CiclistaModule,AluguelModule,TypeOrmModule.forFeature([Devolucao]),TypeOrmModule.forRoot(mockDatabaseConfig)],
       controllers:[DevolucaoController],
       providers: [DevolucaoService, DevolucaoRepository,Api],
       exports: [DevolucaoService,Api],

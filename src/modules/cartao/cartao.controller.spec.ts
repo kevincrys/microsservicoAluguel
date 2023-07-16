@@ -9,6 +9,9 @@ import { HttpStatus } from '@nestjs/common';
 import { CartaoModule } from '../cartao/cartao.module';
 import { CartaoRepository } from './cartao.repository';
 import { Utils } from '../../common/utils';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Cartao } from '../../schemas/cartao.schema';
+import { mockDatabaseConfig } from '../../mockdatabase.config';
 
 const newCartao=  {
   nomeTitular: 'John Doe',
@@ -30,7 +33,7 @@ describe('CartaoController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CartaoModule],
+      imports: [CartaoModule,TypeOrmModule.forFeature([Cartao]),TypeOrmModule.forRoot(mockDatabaseConfig)],
       controllers: [CartaoController],
       providers: [CartaoService, CartaoRepository, Utils],
       exports: [CartaoService, Utils],

@@ -19,7 +19,7 @@ export class DevolucaoService {
   ) {}
 
   async insertDevolucao(devolucao: NovaDevolucao): Promise<Devolucao> {
-     console.log(await this.aluguelService.getAluguelByCiclista(40))
+     console.log(await this.aluguelService.getAluguelByCiclista(41))
     const alugado = new Devolucao;
     const cobrança= new realizaCobrança()
     cobrança.ciclista=  devolucao.ciclista
@@ -36,7 +36,7 @@ export class DevolucaoService {
     if(this.utils.checkNullOrBlank(Aluguel) ){
       throw new NotFoundException("Aluguel não encontrado")
   }
-    console.log("Aluguel",Aluguel)
+    console.log("Aluguel teste",Aluguel)
     const fimCobrança= await this.realizaCobrança(devolucao, alugado.horaFim, Aluguel.horaInicio)
     await this.api.trancarTranca(devolucao.trancaFim,Aluguel.bicicleta)
     await this.api.sendEmail( {...emails.devolucao,email})

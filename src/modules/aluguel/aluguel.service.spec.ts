@@ -11,7 +11,9 @@ import { statusTranca } from '../../enums/statusTranca.enum';
 import { statusCiclista } from '../../enums/statusCiclista.enum';
 import { Utils } from '../../common/utils';
 import { Api } from '../../common/api';
-
+import { mockDatabaseConfig } from '../../mockdatabase.config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Aluguel } from '../../schemas/aluguel.schema';
 
 
 describe('AluguelService', () => {
@@ -22,9 +24,9 @@ let utils: Utils
 let api: Api
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CiclistaModule],
-      providers: [AluguelService, AluguelRepository,Utils,Api],
-      exports: [AluguelService,Utils,Api],
+      imports: [CiclistaModule,TypeOrmModule.forFeature([Aluguel]),TypeOrmModule.forRoot(mockDatabaseConfig)],
+      providers: [AluguelService, AluguelRepository,Api],
+      exports: [AluguelService,Api],
     }).compile();
     ciclistaService = module.get<CiclistaService>(CiclistaService);
     aluguelRepository = {

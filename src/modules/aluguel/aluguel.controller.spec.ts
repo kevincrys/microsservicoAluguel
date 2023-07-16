@@ -1,8 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AluguelController } from './aluguel.controller';
 import { AluguelService } from './aluguel.service';
-
-
+import { mockDatabaseConfig } from '../../mockdatabase.config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Aluguel } from '../../schemas/aluguel.schema';
 import { Response } from 'express';
 import { HttpStatus } from '@nestjs/common';
 
@@ -32,7 +33,7 @@ describe('AluguelController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CiclistaModule],
+      imports: [CiclistaModule,TypeOrmModule.forFeature([Aluguel]),TypeOrmModule.forRoot(mockDatabaseConfig)],
       controllers:[AluguelController],
       providers: [AluguelService, AluguelRepository,Api],
       exports: [AluguelService,Api],

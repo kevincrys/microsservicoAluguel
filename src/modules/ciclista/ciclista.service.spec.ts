@@ -10,11 +10,10 @@ import { nacionalidade } from '../../enums/nacionalidade.enum';
 import { emails } from '../../common/emails/emails';
 import { statusCiclista } from '../../enums/statusCiclista.enum';
 import { CartaoModule } from '../cartao/cartao.module';
-
-import { AluguelRepository } from '../aluguel/aluguel.repository';
-
-import { Api } from '../../common/api';
+import { mockDatabaseConfig } from '../../mockdatabase.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AluguelRepository } from '../aluguel/aluguel.repository';
+import { Api } from '../../common/api';
 import { Aluguel } from '../../schemas/aluguel.schema';
 
 
@@ -28,10 +27,11 @@ describe('CiclistaService', () => {
   let aluguelRepository: AluguelRepository;
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CartaoModule,TypeOrmModule.forFeature([Ciclista]),TypeOrmModule.forFeature([Aluguel])],
+      imports: [CartaoModule,TypeOrmModule.forFeature([Ciclista]),TypeOrmModule.forFeature([Aluguel]),TypeOrmModule.forRoot(mockDatabaseConfig)],
       providers: [CiclistaService, CiclistaRepository, Utils,AluguelRepository,Api],
       exports: [CiclistaService, Utils,Api],
     }).compile();
+    
     cartaoService = module.get<CartaoService>(CartaoService);
     ciclistaRepository = {
       insertCiclista: jest.fn(),

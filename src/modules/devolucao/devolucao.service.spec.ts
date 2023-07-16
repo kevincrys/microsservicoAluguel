@@ -11,10 +11,11 @@ import { statusTranca } from '../../enums/statusTranca.enum';
 import { statusCiclista } from '../../enums/statusCiclista.enum';
 import { Utils } from '../../common/utils';
 import { Api } from '../../common/api';
-import { AluguelModule } from '../aluguel/aluguel.module';
 import { AluguelService } from '../aluguel/aluguel.service';
-
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Devolucao } from '../../schemas/devolucao.schema';
+import { mockDatabaseConfig } from '../../mockdatabase.config';
+import { AluguelModule } from '../aluguel/aluguel.module';
 
 describe('DevolucaoService', () => {
   let devolucaoService: DevolucaoService;
@@ -25,10 +26,11 @@ let utils: Utils
 let api: Api
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CiclistaModule,AluguelModule],
+      imports: [CiclistaModule,AluguelModule,TypeOrmModule.forFeature([Devolucao]),TypeOrmModule.forRoot(mockDatabaseConfig)],
       providers: [DevolucaoService, DevolucaoRepository,Api],
-      exports: [DevolucaoService,Api ],
+      exports: [DevolucaoService,Api],
     }).compile();
+
     aluguelService = module.get<AluguelService>(AluguelService);
     ciclistaService = module.get<CiclistaService>(CiclistaService);
     devolucaoRepository = {
