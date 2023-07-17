@@ -16,6 +16,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Devolucao } from '../../schemas/devolucao.schema';
 import { mockDatabaseConfig } from '../../mockdatabase.config';
 import { AluguelModule } from '../aluguel/aluguel.module';
+import { Aluguel } from '../../schemas/aluguel.schema';
+import { NotFoundException } from '@nestjs/common';
 
 describe('DevolucaoService', () => {
   let devolucaoService: DevolucaoService;
@@ -26,7 +28,7 @@ let utils: Utils
 let api: Api
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [CiclistaModule,AluguelModule,TypeOrmModule.forFeature([Devolucao]),TypeOrmModule.forRoot(mockDatabaseConfig)],
+      imports: [CiclistaModule,AluguelModule,TypeOrmModule.forFeature([Devolucao]),TypeOrmModule.forFeature([Aluguel]),TypeOrmModule.forRoot(mockDatabaseConfig)],
       providers: [DevolucaoService, DevolucaoRepository,Api],
       exports: [DevolucaoService,Api],
     }).compile();
@@ -60,6 +62,15 @@ const devolucao= {
     "horaFim": "2023-06-18T10:00:00",
     "cobranca": 20.5
   }
+const saidaDevolucao= {                                                                                                                                                                                                                                                  
+    horaFim: '2023-06-18T10:00:00',
+    bicicleta: 9876,
+    ciclista: 1,
+    cobranca: 1,
+    horaInicio: '2023-06-18T10:00:00',
+    trancaInicio: 1234,
+    trancaFim: 1234
+  }
 const tranca: Tranca = {
     id: 1234,
     bicicletaId: 9876,
@@ -86,28 +97,38 @@ const Ciclista={  id: 1,
 }
 const cobranca={"ciclista": 1, "valor": 30
 }
+const aluguel= {
+  "id":1,
+ "ciclista": 1,
+ "trancaInicio": 1234,
+ "bicicleta": 9876,
+ "horaInicio": "2023-06-18T10:00:00",
+ "cobranca": 1
+}
   describe('insertDevolucao', () => {
     it('should insert a devolucao and return true', async () => {
 
         
         ciclistaService.getCiclistaByID=jest.fn().mockResolvedValue(Ciclista);
-     
+        
         utils.checkNullOrBlank = jest.fn().mockReturnValue(false);
         api.getTrancaByid= jest.fn().mockResolvedValue(tranca);
         api.realizaCobrança= jest.fn().mockResolvedValue(20.5);
+        devolucaoService.realizaCobrança= jest.fn().mockResolvedValue({id:1}); 
         api.trancarTranca=jest.fn()
         api.sendEmail= jest.fn();
        utils.getData= jest.fn().mockResolvedValue("2023-06-18T10:00:00");
+       aluguelService.getAluguelByCiclista=jest.fn().mockResolvedValue(aluguel);
       devolucaoRepository.insertDevolucao = jest.fn().mockResolvedValue(devolucao);
-      
+      aluguelService.updateAluguel=jest.fn().mockResolvedValue(aluguel);
       const result = await devolucaoService.insertDevolucao(devolucao);
 
       
-      expect(api.realizaCobrança).toHaveBeenCalledWith(
-        cobranca,
+      expect(devolucaoService.realizaCobrança).toHaveBeenCalledWith(
+        devolucao,"2023-06-18T10:00:00","2023-06-18T10:00:00"
       );
       expect(api.trancarTranca).toHaveBeenCalledWith(
-        1234,
+        1234,9876
       );
       expect(api.sendEmail).toHaveBeenCalledWith({
         email: 'jane.smith@example.com',
@@ -115,12 +136,43 @@ const cobranca={"ciclista": 1, "valor": 30
         mensagem: emails.devolucao.mensagem
       });
       expect(devolucaoRepository.insertDevolucao).toHaveBeenCalledWith(
-        devolucao,
+        saidaDevolucao,
       );
       expect(result).toBe(devolucao);
       
     });
 
-   
+    it("should throw an error if the ciclista doesn't exist", async () => {
+      ciclistaService.getCiclistaByID=jest.fn().mockResolvedValue(null);
+      utils.checkNullOrBlank = jest.fn().mockReturnValue(true);
+      await expect(
+        devolucaoService.insertDevolucao(devolucao),
+      ).rejects.toThrow(NotFoundException)
+      })
+
+
+      it("should throw an error if the aluguel doesn't exist", async () => {
+        // Mock para o primeiro checkNullOrBlank (retornar false)
+    
+  
+      ciclistaService.getCiclistaByID=jest.fn().mockResolvedValue(Ciclista);
+// Mock para o segundo checkNullOrBlank (retornar true)
+       
+        ciclistaService.getCiclistaByID=jest.fn().mockResolvedValue(Ciclista);
+        utils.checkNullOrBlank = jest.fn().mockImplementation(() => false);
+        api.getTrancaByid= jest.fn().mockResolvedValue(null);
+        aluguelService.getAluguelByCiclista=jest.fn().mockResolvedValue(null);
+        utils.checkNullOrBlank = jest.fn().mockImplementation(() => true);
+        await expect(
+          devolucaoService.insertDevolucao(devolucao),
+        ).rejects.toThrow(NotFoundException)
+        })
+
+      it("should realiza cobranca with success", async () => {
+
+        api.realizaCobrançaFila=  jest.fn().mockResolvedValue({id:1});
+        await devolucaoService.realizaCobrança( devolucao,"2023-06-18T10:00:00","2023-06-18T12:00:00");
+        expect(  api.realizaCobrançaFila).toHaveBeenCalledWith({"ciclista": 1, "valor": 20});
   });
+});
 });

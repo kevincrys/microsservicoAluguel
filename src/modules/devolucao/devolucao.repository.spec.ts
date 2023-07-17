@@ -35,6 +35,8 @@ describe("DevolucaoRepository", () => {
       save: jest.fn(),
       update: jest.fn(),
       findOne: jest.fn(),
+      createQueryBuilder:jest.fn(),
+      findOneBy: jest.fn(),
       delete: jest.fn(),
       find: jest.fn(),
     };
@@ -52,6 +54,9 @@ describe("DevolucaoRepository", () => {
       "horaFim": "2023-06-18T11:30:00",
       "cobranca": 20.5
     };
+    jest
+    .spyOn(repositoryMock, 'save')
+    .mockResolvedValue(DevolucaoData)
 
     const result = await devolucaoRepository.insertDevolucao(DevolucaoData);
 

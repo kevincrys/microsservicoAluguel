@@ -28,12 +28,14 @@ async insertFuncionario (funcionario: novoFuncionario) {
 
 async updateFuncionario (matricula: string, Funcionario: novoFuncionario): Promise<Funcionario> {
     await this.funcionarioRepository.update(matricula, Funcionario)
+    await this.funcionarioRepository.save(Funcionario)
     return await this.funcionarioRepository.findOneBy({matricula: matricula})
 }
 
 async deleteFuncionario (matricula: string): Promise<boolean> {
     await this.funcionarioRepository.delete(matricula);
-    const ciclista= this.getFuncionarioByID(matricula)
+    const ciclista= await this.getFuncionarioByID(matricula)
+    console.log("deleteFuncionario",ciclista)
     if(ciclista===null){
         return true
     }

@@ -8,7 +8,7 @@ const axios = require('axios');
 const urlexterno = 'https://externo-pm.onrender.com';
 const equipamento = 'https://ms-equipamento.vercel.app';
 export class Api{
-    async validaCartaoMock(cartao:novoCartao): Promise<boolean> {
+    async validaCartao(cartao:novoCartao): Promise<boolean> {
         console.log(cartao)
        
         const url =  `${urlexterno}/validaCartaoDeCredito`;

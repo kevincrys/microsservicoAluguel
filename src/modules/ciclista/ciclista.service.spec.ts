@@ -101,18 +101,20 @@ const ciclistaCad={  id: 1,
   describe('insertCiclista', () => {
     it('should insert a ciclista and return true', async () => {
      
-
-      cartaoService.insertCartao = jest.fn();
+      api.validaCartao = jest.fn().mockResolvedValue(true);
       ciclistaRepository.insertCiclista = jest.fn().mockResolvedValue(ciclistaCad);
-      api.sendEmail= jest.fn();
+      cartaoService.insertCartao = jest.fn().mockResolvedValue(newCartao);
+      api.sendEmail= jest.fn()
       const result = await ciclistaService.insertCiclista(ciclista);
 
-      expect(cartaoService.insertCartao).toHaveBeenCalledWith(
-        ciclista.meioDePagamento,
-      );
+
       expect(ciclistaRepository.insertCiclista).toHaveBeenCalledWith(
         ciclista.ciclista,
       );
+      expect(cartaoService.insertCartao).toHaveBeenCalledWith(
+        ciclista.meioDePagamento,1
+      );
+    
       expect(api.sendEmail).toHaveBeenCalledWith({
         email: 'john.doe@example.com',
         assunto: emails.cadastroCiclista.assunto,
@@ -126,21 +128,22 @@ const ciclistaCad={  id: 1,
         ciclista: newCiclista,
         meioDePagamento: newCartao,
       };
-
+      api.validaCartao = jest.fn().mockResolvedValue(true);
       ciclistaRepository.insertCiclista = jest.fn().mockResolvedValue(undefined);
-
+      cartaoService.insertCartao = jest.fn().mockResolvedValue(newCartao);
+      api.sendEmail= jest.fn()
       await expect(ciclistaService.insertCiclista(ciclista)).rejects.toThrow(
         NotFoundException,
       );
     });
 
-    it('should throw NotFoundException if validaCartaoMock returns false', async () => {
+    it('should throw NotFoundException if validaCartao returns false', async () => {
       const ciclista: CadastroCiclista = {
         ciclista: newCiclista,
         meioDePagamento: newCartao,
       };
 
-      api.validaCartaoMock = jest.fn().mockResolvedValue(false);
+      api.validaCartao = jest.fn().mockResolvedValue(false);
 
       await expect(ciclistaService.insertCiclista(ciclista)).rejects.toThrow(
         NotFoundException,
@@ -225,7 +228,7 @@ const ciclistaCad={  id: 1,
   describe('getCiclistaByID', () => {
     it('should get a ciclista by ID and return true', async () => {
       const id = 1;
-
+      api.getBicicletaByid = jest.fn();
       ciclistaRepository.getCiclistaByID = jest.fn().mockResolvedValue(ciclistaCad);
 
       const result = await ciclistaService.getCiclistaByID(id);
@@ -318,12 +321,10 @@ const ciclistaCad={  id: 1,
         "status": "Ativo",
         "id": 1
       }
-
+      api.getBicicletaByid=jest.fn().mockResolvedValue(bike)
       aluguelRepository.getBikeByCiclista = jest.fn().mockResolvedValue(1234);
       utils.checkNullOrBlank = jest.fn().mockReturnValue(false);
       const result = await ciclistaService.getBikeByCiclista(id);
-      api.getBicicletaByid=jest.fn().mockResolvedValue(bike)
-      
       expect(aluguelRepository.getBikeByCiclista).toHaveBeenCalledWith(id);
       expect(result).toStrictEqual(bike);
     });

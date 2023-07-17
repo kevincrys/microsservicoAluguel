@@ -23,15 +23,15 @@ export class CiclistaService {
 
   async insertCiclista(ciclista: CadastroCiclista): Promise<Ciclista> {
    
-    if(await this.api.validaCartaoMock(ciclista.meioDePagamento)){
+    if(await this.api.validaCartao(ciclista.meioDePagamento)){
    console.log("bateu")
     const check= await this.ciclistaRepository.insertCiclista(ciclista.ciclista)
-    const card= await this.cartaoService.insertCartao(ciclista.meioDePagamento,check.id)
-    console.log(card)
-    if(check===undefined)
-    {
+    if(check===undefined){
       throw new NotFoundException("Requisição mal formada")
     }
+    const card= await this.cartaoService.insertCartao(ciclista.meioDePagamento,check.id)
+    console.log(ciclista.meioDePagamento,check.id)
+    
       var emailContent=emails.cadastroCiclista
       var email= ciclista.ciclista.email
       console.log("chamou aqui")

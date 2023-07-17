@@ -25,6 +25,7 @@ async insertCiclista (ciclista: novoCiclista): Promise<Ciclista> {
 
 async updateCiclista (id: number, ciclista: novoCiclista): Promise<Ciclista> {
     await this.ciclistaRepository.update(id, ciclista)
+    await this.ciclistaRepository.save(ciclista)
     return await this.ciclistaRepository.findOneBy({id: id})
 }
 
@@ -69,7 +70,7 @@ async checkEmail (email: string): Promise<Boolean> {
                 return false
             }
             ciclista.status= statusCiclista.ATIVO
-            const update= this.updateCiclista(id,ciclista)
+            const update= await this.updateCiclista(id,ciclista)
              if (update===null){
                 return false
             }

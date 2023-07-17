@@ -13,18 +13,14 @@ export class CartaoRepository{
         private cartaoRepository: Repository<Cartao>,
       ) {}
 async insertCartao (cartao: novoCartao,idCiclista: number): Promise<Cartao> {
-    const check= await this.cartaoRepository.findOneBy({numero: cartao.numero})
-    if(!check){
     const card= await this.cartaoRepository.save({...cartao,idCiclista});
     return card
-    }
-
 }
 
 
 async updateCartao (id: number, cartao: novoCartao): Promise<Cartao> {
-    const card= await this.cartaoRepository.findOneBy({idCiclista: id})
-        await this.cartaoRepository.update(card.id, cartao)
+        await this.cartaoRepository.update(id, cartao)
+        await this.cartaoRepository.save(cartao)
         return await this.cartaoRepository.findOneBy({idCiclista: id})
 }
 

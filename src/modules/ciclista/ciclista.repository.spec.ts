@@ -2,9 +2,20 @@ import { CiclistaRepository } from './ciclista.repository';
 import { statusCiclista } from "../../enums/statusCiclista.enum";
 import { Ciclista } from "../../schemas/ciclista.schema";
 import { novoCiclista } from "../../dto/novoCiclista.dto";
-
+import { Brackets, DeleteQueryBuilder, EntityMetadata, EntityTarget, FindManyOptions, FindOptionsOrder, FindOptionsRelations, FindOptionsSelect, FindOptionsWhere, InsertQueryBuilder, NotBrackets, ObjectLiteral, OrderByCondition, QueryBuilder, QueryRunner, RelationQueryBuilder, SelectQueryBuilder, UpdateQueryBuilder } from 'typeorm';
 import { nacionalidade } from '../../enums/nacionalidade.enum';
 import { Repository } from 'typeorm';
+import { ReadStream } from 'fs';
+import { ReturningType } from 'typeorm/driver/Driver';
+import { ColumnMetadata } from 'typeorm/metadata/ColumnMetadata';
+import { RelationMetadata } from 'typeorm/metadata/RelationMetadata';
+import { Alias } from 'typeorm/query-builder/Alias';
+import { QueryBuilderCteOptions } from 'typeorm/query-builder/QueryBuilderCte';
+import { QueryExpressionMap } from 'typeorm/query-builder/QueryExpressionMap';
+import { SelectQuery } from 'typeorm/query-builder/SelectQuery';
+import { SelectQueryBuilderOption } from 'typeorm/query-builder/SelectQueryBuilderOption';
+import { SoftDeleteQueryBuilder } from 'typeorm/query-builder/SoftDeleteQueryBuilder';
+import { WhereClause, WhereClauseCondition } from 'typeorm/query-builder/WhereClause';
 const ciclistasArray: Ciclista[] = [
   {  id: 1,
     nome: 'Jane Smith',
@@ -49,6 +60,8 @@ describe("CiclistaRepository", () => {
       save: jest.fn(),
       update: jest.fn(),
       findOne: jest.fn(),
+      createQueryBuilder:jest.fn(),
+      findOneBy: jest.fn(),
       delete: jest.fn(),
       find: jest.fn(),
     };
@@ -70,8 +83,27 @@ describe("CiclistaRepository", () => {
         email: 'john.doe@example.com',
         urlFotoDocumento: 'https://example.com/document.jpg',
         senha: 'password123',
+        
       };
-
+      const ciclistaDataReturn: Ciclista =  {
+        nome: 'John Doe',
+        nascimento: '1990-01-01',
+        cpf: '1234567890',
+        passaporte: {
+          id:1,
+          numero: 'ABCD1234',
+          validade: '2025-12-31',
+          pais: 'Brasil',
+        },
+        nacionalidade: nacionalidade.BRASILEIRO,
+        email: 'john.doe@example.com',
+        urlFotoDocumento: 'https://example.com/document.jpg',
+        senha: 'password123',
+        status: statusCiclista.AGUARDANDO
+      };
+      jest
+      .spyOn(repositoryMock, 'save')
+      .mockResolvedValue(ciclistaDataReturn)
     const result = await ciclistaRepository.insertCiclista(ciclistaData);
 
     expect(result).toEqual(
@@ -79,7 +111,7 @@ describe("CiclistaRepository", () => {
         nome: ciclistaData.nome,
         nascimento: ciclistaData.nascimento,
         cpf: ciclistaData.cpf,
-        passaporte: ciclistaData.passaporte,
+        passaporte: ciclistaDataReturn.passaporte,
         nacionalidade: ciclistaData.nacionalidade,
         email: ciclistaData.email,
         urlFotoDocumento: ciclistaData.urlFotoDocumento,
@@ -141,21 +173,25 @@ describe("CiclistaRepository", () => {
         nome: updatedCiclistaData.nome,
         nascimento: updatedCiclistaData.nascimento,
         cpf: updatedCiclistaData.cpf,
-        passaporte: updatedCiclistaData.passaporte,
+        passaporte: updatedCiclistaDataReturn.passaporte,
         nacionalidade: updatedCiclistaData.nacionalidade,
         email: updatedCiclistaData.email,
         urlFotoDocumento: updatedCiclistaData.urlFotoDocumento,
         senha: updatedCiclistaData.senha,
-        status: expect.any(String),
+        status: statusCiclista.AGUARDANDO,
       })
     );
   });
 
   it("should delete an existing ciclista", async () => {
     const ciclistaId = 2;
-    jest
-    .spyOn(ciclistaRepository, 'getCiclistas')
-    .mockResolvedValue(ciclistasArray)
+    jest.spyOn(repositoryMock, 'createQueryBuilder')
+  .mockReturnValue({
+    leftJoinAndSelect: jest.fn().mockReturnThis(),
+    where: jest.fn().mockReturnThis(),
+    getOne: jest.fn().mockResolvedValue(ciclistasArray[0]),
+  } as any)
+
     const result = await ciclistaRepository.deleteCiclista(ciclistaId);
     expect(result).toBe(true);
     // Verifique se o ciclista foi removido corretamente da lista ciclistasNovos
@@ -164,9 +200,14 @@ describe("CiclistaRepository", () => {
 
   it("should get a ciclista by ID", async () => {
     const ciclistaId = 1;
-    jest
-    .spyOn(ciclistaRepository, 'getCiclistas')
-    .mockResolvedValue(ciclistasArray)
+  // mock da função .createQueryBuilder
+   jest.spyOn(repositoryMock, 'createQueryBuilder')
+  .mockReturnValue({
+    leftJoinAndSelect: jest.fn().mockReturnThis(),
+    where: jest.fn().mockReturnThis(),
+    getOne: jest.fn().mockResolvedValue(ciclistasArray[0]),
+  } as any)
+
     const result = await ciclistaRepository.getCiclistaByID(ciclistaId);
     // Verifique se o ciclista retornado possui o ID correto
     expect(result.id).toBe(ciclistaId);
@@ -175,8 +216,8 @@ describe("CiclistaRepository", () => {
   it("should check if an email is available", async () => {
     const email = "john.doe@example.com"; // Email a ser verificado
     jest
-    .spyOn(ciclistaRepository, 'getCiclistas')
-    .mockResolvedValue(ciclistasArray)
+    .spyOn(repositoryMock, 'findOneBy')
+    .mockResolvedValue(null)
     const result = await ciclistaRepository.checkEmail(email);
 
     expect(result).toBeTruthy();
@@ -186,11 +227,42 @@ describe("CiclistaRepository", () => {
   it("should activate a ciclista", async () => {
     const ciclistaId = 1; // ID de um ciclista existente
     jest
-    .spyOn(ciclistaRepository, 'getCiclistas')
-    .mockResolvedValue(ciclistasArray)
+    .spyOn(ciclistaRepository, 'getCiclistaByID')
+    .mockResolvedValue(ciclistasArray[0])
+    jest
+    .spyOn(ciclistaRepository, 'updateCiclista')
+    .mockResolvedValue(ciclistasArray[0])
     const result = await ciclistaRepository.ativarCiclista(ciclistaId);
 
     expect(result).toBeTruthy();
+
+  });
+
+  it("should dont  activate a ciclista bacause dont getCiclistaByID", async () => {
+    const ciclistaId = 1; // ID de um ciclista existente
+    jest
+    .spyOn(ciclistaRepository, 'getCiclistaByID')
+    .mockResolvedValue(null)
+    jest
+    .spyOn(ciclistaRepository, 'updateCiclista')
+    .mockResolvedValue(ciclistasArray[0])
+    const result = await ciclistaRepository.ativarCiclista(ciclistaId);
+
+    expect(result).toBeFalsy();
+
+  });
+
+  it("should dont  activate a ciclista bacause dont updateCiclista", async () => {
+    const ciclistaId = 1; // ID de um ciclista existente
+    jest
+    .spyOn(ciclistaRepository, 'getCiclistaByID')
+    .mockResolvedValue(ciclistasArray[0])
+    jest
+    .spyOn(ciclistaRepository, 'updateCiclista')
+    .mockResolvedValue(null)
+    const result = await ciclistaRepository.ativarCiclista(ciclistaId);
+
+    expect(result).toBeFalsy();
 
   });
 });

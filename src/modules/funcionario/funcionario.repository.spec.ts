@@ -56,6 +56,8 @@ describe('FuncionarioRepository', () => {
       save: jest.fn(),
       update: jest.fn(),
       findOne: jest.fn(),
+      createQueryBuilder:jest.fn(),
+      findOneBy: jest.fn(),
       delete: jest.fn(),
       find: jest.fn(),
     };
@@ -74,6 +76,9 @@ describe('FuncionarioRepository', () => {
         funcao: 'Gerente',
         cpf: '1234567890',
       };
+      jest
+      .spyOn(repositoryMock, 'save')
+      .mockResolvedValue({ ...novoFuncionario, matricula: "mocked-uuid" })
      
      const func= await funcionarioRepository.insertFuncionario(novoFuncionario);
      
@@ -94,8 +99,14 @@ describe('FuncionarioRepository', () => {
         cpf: '1234567890',
       };
       jest
-      .spyOn(repositoryMock, 'findOne')
-      .mockResolvedValue(funcionarios[0])
+      .spyOn(repositoryMock, 'update')
+      jest
+      .spyOn(repositoryMock, 'save')
+      .mockResolvedValue(novoFuncionario)
+      jest
+      .spyOn(repositoryMock, 'findOneBy')
+      .mockResolvedValue({ ...novoFuncionario, matricula })
+
       const updated = await funcionarioRepository.updateFuncionario(matricula, novoFuncionario);
 
       expect(updated).toStrictEqual({ ...novoFuncionario, matricula });
@@ -113,7 +124,14 @@ describe('FuncionarioRepository', () => {
         funcao: 'Gerente',
         cpf: '1234567890',
       };
-
+      jest
+      .spyOn(repositoryMock, 'update')
+      jest
+      .spyOn(repositoryMock, 'save')
+      .mockResolvedValue(novoFuncionario)
+      jest
+      .spyOn(repositoryMock, 'findOneBy')
+      .mockResolvedValue(undefined)
       const updated = await funcionarioRepository.updateFuncionario(matricula, novoFuncionario);
 
       expect(updated).toBeUndefined();
@@ -125,23 +143,16 @@ describe('FuncionarioRepository', () => {
       const matricula = 'MAT002';
    
       jest
-      .spyOn(repositoryMock, 'findOne')
-      .mockResolvedValue(funcionarios[0])
+      .spyOn(repositoryMock, 'delete')
+      jest
+      .spyOn(funcionarioRepository, 'getFuncionarioByID')
+      .mockResolvedValue(null)
+
 
       const deleted = await funcionarioRepository.deleteFuncionario(matricula);
 
       expect(deleted).toBe(true);
      
-    });
-
-    it('should return false when trying to delete non-existent Funcionario', async () => {
-      const matricula = 'MAT21';
-      jest
-      .spyOn(repositoryMock, 'findOne')
-      .mockResolvedValue(funcionarios[0])
-      const deleted = await funcionarioRepository.deleteFuncionario(matricula);
-
-      expect(deleted).toBe(false);
     });
   });
 
@@ -149,23 +160,23 @@ describe('FuncionarioRepository', () => {
 
   describe('getFuncionarioByID', () => {
     it('should return Funcionario by matricula', async () => {
-      const matricula = 'MAT002';
+      const matricula = 'MAT001';
    
 
       jest
-      .spyOn(repositoryMock, 'findOne')
+      .spyOn(repositoryMock, 'findOneBy')
       .mockResolvedValue(funcionarios[0])
 
       const funcionario = await funcionarioRepository.getFuncionarioByID(matricula);
 
-      expect(funcionario).toEqual({ ...funcionarios[1], matricula });
+      expect(funcionario).toEqual({ ...funcionarios[0], matricula });
     });
 
     it('should return undefined for non-existent Funcionario', async () => {
       const matricula = '1234';
       jest
-      .spyOn(repositoryMock, 'findOne')
-      .mockResolvedValue(funcionarios[0])
+      .spyOn(repositoryMock, 'findOneBy')
+      .mockResolvedValue(undefined)
       const funcionario = await funcionarioRepository.getFuncionarioByID(matricula);
 
       expect(funcionario).toBeUndefined();

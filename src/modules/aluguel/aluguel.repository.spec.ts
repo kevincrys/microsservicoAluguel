@@ -35,6 +35,8 @@ describe("AluguelRepository", () => {
       save: jest.fn(),
       update: jest.fn(),
       findOne: jest.fn(),
+      findOneBy: jest.fn(),
+      createQueryBuilder:jest.fn(),
       delete: jest.fn(),
       find: jest.fn(),
     };
@@ -53,7 +55,9 @@ describe("AluguelRepository", () => {
       "horaFim": "2023-06-18T11:30:00",
       "cobranca": 20.5
     };
-
+    jest
+    .spyOn(repositoryMock, 'save')
+    .mockResolvedValue(AluguelData)
     const result = await aluguelRepository.insertAluguel(AluguelData);
 
     expect(result).toEqual(AluguelData);
@@ -62,8 +66,8 @@ describe("AluguelRepository", () => {
   it("should get a  Bike By Ciclista ID", async () => {
     const aluguelId = 1;
     jest
-    .spyOn(repositoryMock, 'findOne')
-    .mockResolvedValue(aluguelsArray[1])
+    .spyOn(repositoryMock, 'findOneBy')
+    .mockResolvedValue(aluguelsArray[0])
     const result = await aluguelRepository.getBikeByCiclista(aluguelId);
 
 
@@ -73,8 +77,8 @@ describe("AluguelRepository", () => {
   it("should check if permiteAluguel already exist aluguel", async () => {
     const aluguelId = 1;
     jest
-    .spyOn(repositoryMock, 'findOne')
-    .mockResolvedValue(aluguelsArray[1])
+    .spyOn(repositoryMock, 'findOneBy')
+    .mockResolvedValue(aluguelsArray[0])
     const result = await aluguelRepository.permiteAluguel(aluguelId);
 
 
@@ -85,8 +89,8 @@ describe("AluguelRepository", () => {
   it("should check if permiteAluguel not already exist aluguel ", async () => {
     const aluguelId = 5;
     jest
-    .spyOn(repositoryMock, 'findOne')
-    .mockResolvedValue(aluguelsArray[1])
+    .spyOn(repositoryMock, 'findOneBy')
+    .mockResolvedValue(null)
     const result = await aluguelRepository.permiteAluguel(aluguelId);
 
  

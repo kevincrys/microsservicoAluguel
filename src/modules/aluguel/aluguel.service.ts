@@ -65,13 +65,11 @@ async getAluguelByCiclista(id: number): Promise<Aluguel> {
 
 }
 
-async updateAluguel(id: number, ciclista: Aluguel): Promise<Aluguel> {
+async updateAluguel(id: number, aluguel: Aluguel): Promise<Aluguel> {
    
-   
-  const update= await this.aluguelRepository.updateAluguel(id,ciclista)
+  const update= await this.aluguelRepository.updateAluguel(id,aluguel)
   if(update === undefined){throw new NotFoundException("Não encontrado")}
   return update
- 
 
 }
 
