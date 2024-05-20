@@ -1,7 +1,13 @@
-import { BadRequestException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
-import { novoCiclista } from "../../dto/novoCiclista.dto";
+/* eslint-disable @typescript-eslint/ban-types */
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+  UnprocessableEntityException,
+} from '@nestjs/common';
+import { novoCiclista } from '../../dto/novoCiclista.dto';
 import { CiclistaRepository } from './ciclista.repository';
-import {Utils} from '../../common/utils';
+import { Utils } from '../../common/utils';
 import { Ciclista } from '../../schemas/ciclista.schema';
 import { CadastroCiclista } from '../../dto/cadastroCiclista.dto';
 import { CartaoService } from '../cartao/cartao.service';
@@ -14,126 +20,105 @@ import { Api } from '../../common/api';
 @Injectable()
 export class CiclistaService {
   constructor(
-    private readonly ciclistaRepository:CiclistaRepository,
-    private readonly utils:Utils,
-    private readonly api:Api,
-    private readonly cartaoService:CartaoService,
-    private readonly aluguelRepository:AluguelRepository
+    private readonly ciclistaRepository: CiclistaRepository,
+    private readonly utils: Utils,
+    private readonly api: Api,
+    private readonly cartaoService: CartaoService,
+    private readonly aluguelRepository: AluguelRepository,
   ) {}
 
   async insertCiclista(ciclista: CadastroCiclista): Promise<Ciclista> {
-   
-    if(await this.api.validaCartao(ciclista.meioDePagamento)){
-   console.log("bateu")
-    const check= await this.ciclistaRepository.insertCiclista(ciclista.ciclista)
-    if(check===undefined){
-      throw new NotFoundException("Requisição mal formada")
-    }
-    const card= await this.cartaoService.insertCartao(ciclista.meioDePagamento,check.id)
-    console.log(ciclista.meioDePagamento,check.id)
-    
-      var emailContent=emails.cadastroCiclista
-      var email= ciclista.ciclista.email
-      console.log("chamou aqui")
-      this.api.sendEmail({...emailContent,email})
-    return check
+    if (await this.api.validaCartao(ciclista.meioDePagamento)) {
+      const check = await this.ciclistaRepository.insertCiclista(
+        ciclista.ciclista,
+      );
+      if (check === undefined) {
+        throw new NotFoundException('Requisição mal formada');
+      }
+      const card = await this.cartaoService.insertCartao(
+        ciclista.meioDePagamento,
+        check.id,
+      );
 
-  }else{
-    throw new NotFoundException("Requisição mal formada")
+      const emailContent = emails.cadastroCiclista;
+      const email = ciclista.ciclista.email;
+
+      this.api.sendEmail({ ...emailContent, email });
+      return check;
+    } else {
+      throw new NotFoundException('Requisição mal formada');
+    }
   }
-  
-}
 
   async updateCiclista(id: number, ciclista: novoCiclista): Promise<Ciclista> {
-   
-   
-    const update= await this.ciclistaRepository.updateCiclista(id,ciclista)
-    if(update === undefined){throw new NotFoundException("Não encontrado")}
-    return update
-   
-  
+    const update = await this.ciclistaRepository.updateCiclista(id, ciclista);
+    if (update === undefined) {
+      throw new NotFoundException('Não encontrado');
+    }
+    return update;
   }
 
-  async ativarCiclista(id: number): Promise<Boolean> {
-
-    const update= await this.ciclistaRepository.ativarCiclista(id)
-    if(update === true){return update}
-    else{
-      throw new NotFoundException("Não encontrado")
+  async ativarCiclista(id: number): Promise<boolean> {
+    const update = await this.ciclistaRepository.ativarCiclista(id);
+    if (update === true) {
+      return update;
+    } else {
+      throw new NotFoundException('Não encontrado');
     }
-  
   }
 
-  async deleteCiclista(id: number): Promise<Boolean> {
-    
- 
-    const update= await this.ciclistaRepository.deleteCiclista(id)
-    if(update === false){
-      throw new NotFoundException("Não encontrado")
+  async deleteCiclista(id: number): Promise<boolean> {
+    const update = await this.ciclistaRepository.deleteCiclista(id);
+    if (update === false) {
+      throw new NotFoundException('Não encontrado');
     }
-    return true
- 
+    return true;
   }
   async getCiclistaByID(id: number): Promise<Ciclista> {
-    
+    const update = await this.ciclistaRepository.getCiclistaByID(id);
+    if (update === null) {
+      throw new NotFoundException('Não encontrado');
+    }
 
-    const update= await this.ciclistaRepository.getCiclistaByID(id)
-    if(update === null){
-      throw new NotFoundException("Não encontrado")
-  }
- 
-    return update
-  
+    return update;
   }
   async checkEmail(email: string): Promise<Boolean> {
-    
-    if(this.utils.checkNullOrBlank(email)){
-      throw new BadRequestException("Email não enviado como parâmetro")
+    if (this.utils.checkNullOrBlank(email)) {
+      throw new BadRequestException('Email não enviado como parâmetro');
     }
-    const update= await this.ciclistaRepository.checkEmail(email)
+    const update = await this.ciclistaRepository.checkEmail(email);
 
-    return update
-  
+    return update;
   }
 
   async permiteAluguel(id: number): Promise<Boolean> {
-    const getCiclistas= this.getCiclistaByID(id);
-    if(this.utils.checkNullOrBlank(getCiclistas)){
-      throw new NotFoundException("Não encontrado")
-  }
-    const update= await this.aluguelRepository.permiteAluguel(id)
+    const getCiclistas = this.getCiclistaByID(id);
+    if (this.utils.checkNullOrBlank(getCiclistas)) {
+      throw new NotFoundException('Não encontrado');
+    }
+    const update = await this.aluguelRepository.permiteAluguel(id);
 
-    return update
-  
+    return update;
   }
-  
 
   async getBikeByCiclista(id: number): Promise<Bicicleta> {
-    const getCiclistas= await this.getCiclistaByID(id);
-    
-    if(this.utils.checkNullOrBlank(getCiclistas) ){
-      throw new NotFoundException("Ciclista não encontrado")
-  }
-    const update= await this.aluguelRepository.getBikeByCiclista(id)
-    console.log("bike id",update)
-    if(this.utils.checkNullOrBlank(update)){
-      return 
+    const getCiclistas = await this.getCiclistaByID(id);
+
+    if (this.utils.checkNullOrBlank(getCiclistas)) {
+      throw new NotFoundException('Ciclista não encontrado');
     }
-   
-    const getBike= await this.api.getBicicletaByid(update)
-    return getBike
-  
+    const update = await this.aluguelRepository.getBikeByCiclista(id);
+
+    if (this.utils.checkNullOrBlank(update)) {
+      return;
+    }
+
+    const getBike = await this.api.getBicicletaByid(update);
+    return getBike;
   }
   async getCiclistas(): Promise<Ciclista[]> {
-   
-    const array= await this.ciclistaRepository.getCiclistas()
+    const array = await this.ciclistaRepository.getCiclistas();
 
-    return array
+    return array;
   }
-
-
-
 }
-
-
-          
